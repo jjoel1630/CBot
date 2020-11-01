@@ -20,7 +20,7 @@ const Embed = new Discord.MessageEmbed()
 
 const cheerio = require('cheerio');
 const request = require('request');
-const config = require('config.json');
+const config = require('./config.json');
 const ttt = require("discord.js-tictactoe");
 
 bot.on('ready', () => {
