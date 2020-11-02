@@ -30,7 +30,7 @@ module.exports = {
                     message.delete({timeout: 100}).catch(console.error);
                     try {
                         const fetchedBM = await message.channel.messages.fetch({ limit: 100 });
-                        const notPinned = fetched.filter(fetchedMsg => !fetchedMsg.pinned);
+                        const notPinned = fetchedBM.filter(fetchedMsg => !fetchedMsg.pinned);
                         const botMessages = fetchedBM.filter(msg => msg.author.bot);
                         const allMessages = notPinned.concat(botMessages);
 
