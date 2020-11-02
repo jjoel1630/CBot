@@ -10,7 +10,7 @@ module.exports = {
             message.delete({timeout: 1000}).catch(console.error);
         }
 
-        let msgArgs = args.slice(0).join(" ");
+        let msgArgs = args.slice(0).join("");
 
         function image(message) {
             var options = {
