@@ -22,7 +22,6 @@ module.exports = {
                         const botMessages = fetchedBM.filter(msg => {
                             return msg.author.bot;
                         })
-                        const allMessages = notPinned.concat(botMessages);
 
                         await message.channel.bulkDelete(botMessages, !notPinned, true);
                     } catch(err) {
@@ -34,7 +33,7 @@ module.exports = {
                 async function cls() {
                     message.delete({timeout: 100}).catch(console.error);
                     try {
-                        const fetched = await message.channel.messages.fetch({ limit: 100 });
+                        const fetched = await message.channel.messages.fetch(args[0]);
                         const notPinned = fetched.filter(fetchedMsg => !fetchedMsg.pinned);
                       
                         await message.channel.bulkDelete(notPinned, true);
