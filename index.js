@@ -54,7 +54,7 @@ bot.on('message', message=>{
             message.channel.send(`${guild.name} has a total of ${guild.memberCount} members.`)
         })
         message.delete({timeout: 50}).catch(console.error);
-    } else if(command === 'gg') {
+    } else if(command === 'gg') { 
         bot.commands.get('gg').execute(message, args, bot);
     } else if(command === 'spam') {
         bot.commands.get('spam').execute(message, args, bot);
