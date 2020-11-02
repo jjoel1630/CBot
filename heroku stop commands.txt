@@ -1,0 +1,2 @@
+heroku ps:stop --app "cbot-djs" worker.1
+heroku ps:scale=1 --app "cbot-djs" worker.1
