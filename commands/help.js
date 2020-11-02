@@ -12,7 +12,7 @@ module.exports = {
             { name: "i + (whatever image you want to search)", value: "Randomly selects an image that you pass in" },
             { name: "pick + (whatever you want it to choose from)", value: "Randomly selects an option (its always right!)" },
             { name: "poll + (question you want to poll)", value: "Launches a poll that users can react yes, no, maybe" },
-            { name: "spam (not working yet)", value: "Not working yet" },
+            { name: "spam + (int: number of times you wanna spam) + whatever you want the bot to spam", value: "Simple spam command :). Only people with the manage_messages perm can use this tho. oof" },
             { name: "welcome + (name [optional])", value: "welcome message" }
         )
         .setThumbnail(message.author.avatarURL());
