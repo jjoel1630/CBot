@@ -25,7 +25,23 @@ module.exports = {
                       }
                 }
                 cls(); 
-            } else {
+            } else if(args[1]) {
+                async function clsBotMsgs() {
+                    message.delete({timeout: 100}).catch(console.error);
+                    try {
+                        const fetchedBM = await message.channel.messages.fetch({ limit: 100 });
+                        const notPinned = fetched.filter(fetchedMsg => !fetchedMsg.pinned);
+                        const botMessages = fetchedBM.filter(msg => msg.author.bot);
+                        const allMessages = notPinned.concat(botMessages);
+
+                        await message.channel.bulkDelete(allMessages, true);
+                    } catch(err) {
+                        console.error(err);
+                    }
+                }
+                clsBotMsgs();
+            } 
+            else {
                 message.channel.send("You're gonna crash my computer. Only 1- 100 msgs.");
                 message.delete({timeout: 100}).catch(console.error);
             }

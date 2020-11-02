@@ -19,6 +19,8 @@ module.exports = {
                 message.channel.send("lmao you don't have the perms. HAHAHAHAHA.");
                 message.delete({timeout: 100}).catch(console.error);
             }
+        } else if(parseInt(args[0]) >= 100000) {
+            message.channel.send("are you tryna crash my computer?????")
         } else {
             message.channel.send("bro ure first arguement has to be an integer! I would be SMH if i had one.");
         }
