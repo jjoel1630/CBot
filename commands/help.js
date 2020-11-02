@@ -9,7 +9,7 @@ module.exports = {
             { name: "cls + amount of messages (int: max 100 at a time)", value: "Clears messages except pinned ones" },
             { name: "echo + what you want to echo", value: "the bot just says whatever you type as arguements" },
             { name: "gg (guessing game) + (int: just don't go crazy)", value: "Basically the int is just how high you want to go. 0 - whatever number" },
-            { name: "i + (whatever image you want to search)", value: "Randomly selects and image that you pass in" },
+            { name: "i + (whatever image you want to search)", value: "Randomly selects an image that you pass in" },
             { name: "pick + (whatever you want it to choose from)", value: "Randomly selects and option (its always right!)" },
             { name: "poll + (question you want to poll)", value: "Launches a poll that users can react yes, no, maybe" },
             { name: "spam (not working yet)", value: "Not working yet" },
