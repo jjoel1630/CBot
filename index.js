@@ -60,6 +60,8 @@ bot.on('message', message=>{
         bot.commands.get('spam').execute(message, args, bot);
     } else if(command === 'echo') {
         bot.commands.get('echo').execute(message, args, bot);
+    } else if(command === 'help') {
+        bot.commands.get('help').execute(message, args, bot);
     }
 });
 
