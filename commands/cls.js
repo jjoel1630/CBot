@@ -31,7 +31,11 @@ module.exports = {
                     try {
                         const fetchedBM = await message.channel.messages.fetch({ limit: 100 });
                         const notPinned = fetchedBM.filter(fetchedMsg => !fetchedMsg.pinned);
-                        const botMessages = fetchedBM.filter(msg => msg.author.bot);
+                        const botMessages = messages.filterArray(msg => {
+                            const isCommand = msg.content.startsWith("!") || msg.content.startsWith(".") || msg.content.startsWith(">");
+                        
+                            return msg.author.bot || isCommand;
+                        })
                         const allMessages = notPinned.concat(botMessages);
 
                         await message.channel.bulkDelete(botMessages, !notPinned, true);
