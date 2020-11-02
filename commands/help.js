@@ -1,7 +1,7 @@
 module.exports = {
     name : "help",
     description : "help command",
-    execute(message, args) {
+    execute(message, args, Discord) {
         const helpEmbed = new Discord.MessageEmbed()
         .setTitle("Commands")
         .addFields(
