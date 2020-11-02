@@ -3,6 +3,7 @@ module.exports = {
     description : "cls", 
     execute(message, args) {
         if(message.member.hasPermission('MANAGE_MESSAGES')) {
+            console.log(args[1]);
             if(!args[0]) {
                 message.channel.send('Idiot, u have to say that amt of msgs (2 - 100). SMH');
                 message.delete({timeout: 100}).catch(console.error);
