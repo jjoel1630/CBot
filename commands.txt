@@ -2,3 +2,4 @@ heroku ps:stop --app "cbot-djs" worker.1
 heroku ps:scale --app "cbot-djs" worker.1
 heroku ps:restart --app "cbot-djs" worker.1
 heroku ps --app "cbot-djs"
+heroku logs --app "cbot-djs"
