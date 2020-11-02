@@ -58,6 +58,8 @@ bot.on('message', message=>{
         bot.commands.get('gg').execute(message, args, bot);
     } else if(command === 'spam') {
         bot.commands.get('spam').execute(message, args, bot);
+    } else if(command === 'echo') {
+        bot.commands.get('echo').execute(message, args, bot);
     }
 });
 

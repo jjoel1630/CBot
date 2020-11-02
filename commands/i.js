@@ -10,9 +10,11 @@ module.exports = {
             message.delete({timeout: 1000}).catch(console.error);
         }
 
+        let msgArgs = args.slice(0).join(" ");
+
         function image(message) {
             var options = {
-                url: "http://results.dogpile.com/serp?qc=images&q=" + args[0],
+                url: "http://results.dogpile.com/serp?qc=images&q=" + msgArgs,
                 method: "GET",
                 headers: {
                     "Accept": "text/html",
