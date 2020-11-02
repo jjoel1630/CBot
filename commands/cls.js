@@ -12,19 +12,6 @@ module.exports = {
             }else if (args[0] == 0) {
                 message.channel.send("Idiot, you can't clear 0 messages. Are you stupid, or are you stupid??");
                 message.delete({timeout: 100}).catch(console.error);
-            } else if(args[0] <= 100) {
-                async function cls() {
-                    message.delete({timeout: 100}).catch(console.error);
-                    try {
-                        const fetched = await message.channel.messages.fetch({ limit: 100 });
-                        const notPinned = fetched.filter(fetchedMsg => !fetchedMsg.pinned);
-                      
-                        await message.channel.bulkDelete(notPinned, true);
-                      } catch(err) {
-                        console.error(err);
-                      }
-                }
-                cls(); 
             } else if(args[1]) {
                 async function clsBotMsgs() {
                     message.delete({timeout: 100}).catch(console.error);
@@ -44,8 +31,20 @@ module.exports = {
                     }
                 }
                 clsBotMsgs();
-            } 
-            else {
+            } else if(args[0] <= 100) {
+                async function cls() {
+                    message.delete({timeout: 100}).catch(console.error);
+                    try {
+                        const fetched = await message.channel.messages.fetch({ limit: 100 });
+                        const notPinned = fetched.filter(fetchedMsg => !fetchedMsg.pinned);
+                      
+                        await message.channel.bulkDelete(notPinned, true);
+                      } catch(err) {
+                        console.error(err);
+                      }
+                }
+                cls(); 
+            } else {
                 message.channel.send("You're gonna crash my computer. Only 1- 100 msgs.");
                 message.delete({timeout: 100}).catch(console.error);
             }
