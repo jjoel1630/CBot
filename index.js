@@ -16,7 +16,7 @@ const token = 'NzcxNzY5NTI3NDU2ODkwODgw.X5w8Yg.VEJgHx5WqI4E4mnQdH7ACIlcaqU';
 
 const PREFIX = '$';
 
-const Embed = new Discord.MessageEmbed()
+const Embed = new Discord.MessageEmbed();
 
 const cheerio = require('cheerio');
 const request = require('request');
@@ -33,7 +33,7 @@ bot.on('message', message=>{
     let args = message.content.substring(PREFIX.length).split(" ");
     const command = args.shift().toLowerCase();
 
-    if(command === 'ping') {
+    if(command === 'ping') { 
        bot.commands.get('ping').execute(message, args);
     } else if(command === 'g') {
         bot.commands.get('g').execute(message, args);
