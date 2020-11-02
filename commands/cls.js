@@ -19,10 +19,8 @@ module.exports = {
                     try {
                         const fetchedBM = await message.channel.messages.fetch({ limit: 100 });
                         const notPinned = fetchedBM.filter(fetchedMsg => !fetchedMsg.pinned);
-                        const botMessages = messages.filterArray(msg => {
-                            const isCommand = msg.content.startsWith("!") || msg.content.startsWith(".") || msg.content.startsWith(">");
-                        
-                            return msg.author.bot || isCommand;
+                        const botMessages = message.filterArray(msg => {
+                            return msg.author.bot;
                         })
                         const allMessages = notPinned.concat(botMessages);
 
