@@ -19,7 +19,7 @@ module.exports = {
                     try {
                         const fetchedBM = await message.channel.messages.fetch({ limit: 100 });
                         const notPinned = fetchedBM.filter(fetchedMsg => !fetchedMsg.pinned);
-                        const botMessages = message.filter(msg => {
+                        const botMessages = fetchedBM.filter(msg => {
                             return msg.author.bot;
                         })
                         const allMessages = notPinned.concat(botMessages);
