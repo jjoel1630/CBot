@@ -8,15 +8,15 @@ module.exports = {
         } else {
             message.delete({timeout: 20}).catch(console.error);
             message.reply("Pick a number from " + "`" + "0 - " + args[0] + "`");
-            const filter = m => m.author.id ===  message.author.id;
-            message.channel.awaitMessages(filter, {
-                max: 1, // leave this the same
-                time: 10000, // time in MS. there are 1000 MS in a second
-            }).then(async(collected) => {
-                const number = Math.floor(Math.random() * args[0])
-                if(number >= 100000) {
-                    message.reply("bro u tryna crash my comp??? Nice try idiot.");
-                } else {
+            const number = Math.floor(Math.random() * args[0])
+            if(number >= 100000) {
+                message.reply("bro are you tryna crash my computer???? Nice try idiot.")
+            } else {
+                const filter = m => m.author.id ===  message.author.id;
+                message.channel.awaitMessages(filter, {
+                    max: 1, // leave this the same
+                    time: 10000, // time in MS. there are 1000 MS in a second
+                }).then(async(collected) => {
                     if(collected.first().content == 'cancel'){
                         message.reply('Bruh what a simp.')
                     } else if(parseInt(number) === parseInt(collected.first().content)) {
@@ -24,11 +24,11 @@ module.exports = {
                     } else {
                         message.reply("Lmao ure trash. The number was " + "`" + number + "`");
                     }
-                }
-            }).catch(() => {
-                // what to do if a user takes too long goes here 
-                message.reply('Slowpoke.') 
-            });
+                }).catch(() => {
+                    // what to do if a user takes too long goes here 
+                    message.reply('Slowpoke.') 
+                });
+            }
         }
     }
 }
