@@ -14,12 +14,16 @@ module.exports = {
                 time: 10000, // time in MS. there are 1000 MS in a second
             }).then(async(collected) => {
                 const number = Math.floor(Math.random() * args[0])
-                if(collected.first().content == 'cancel'){
-                    message.reply('Bruh what a simp.')
-                } else if(parseInt(number) === parseInt(collected.first().content)) {
-                    message.reply("Nice job!");
+                if(number >= 100000) {
+                    message.reply("bro u tryna crash my comp??? Nice try idiot.");
                 } else {
-                    message.reply("Lmao ure trash. The number was " + "`" + number + "`");
+                    if(collected.first().content == 'cancel'){
+                        message.reply('Bruh what a simp.')
+                    } else if(parseInt(number) === parseInt(collected.first().content)) {
+                        message.reply("Nice job!");
+                    } else {
+                        message.reply("Lmao ure trash. The number was " + "`" + number + "`");
+                    }
                 }
             }).catch(() => {
                 // what to do if a user takes too long goes here 
