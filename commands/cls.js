@@ -33,7 +33,7 @@ module.exports = {
                 async function cls() {
                     message.delete({timeout: 100}).catch(console.error);
                     try {
-                        const fetched = await message.channel.messages.fetch(parseInt(args[0]));
+                        const fetched = await message.channel.messages.fetch({ limit : 100 });
                         const notPinned = fetched.filter(fetchedMsg => !fetchedMsg.pinned);
                       
                         await message.channel.bulkDelete(notPinned, true);
