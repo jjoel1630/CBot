@@ -56,7 +56,9 @@ bot.on('message', message=>{
         message.delete({timeout: 50}).catch(console.error);
     } else if(command === 'gg') {
         bot.commands.get('gg').execute(message, args, bot);
-    } 
+    } else if(command === 'spam') {
+        bot.commands.get('spam').execute(message, args, bot);
+    }
 });
 
 bot.login(config.token);

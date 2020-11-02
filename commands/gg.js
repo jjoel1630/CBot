@@ -7,7 +7,7 @@ module.exports = {
             message.delete({timeout: 20}).catch(console.error);
         } else {
             message.delete({timeout: 20}).catch(console.error);
-            message.reply("Pick a number from " + "`" + "0 - " + " " + args[0] + "`");
+            message.reply("Pick a number from " + "`" + "0 - " + args[0] + "`");
             const filter = m => m.author.id ===  message.author.id;
             message.channel.awaitMessages(filter, {
                 max: 1, // leave this the same
