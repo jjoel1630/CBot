@@ -34,7 +34,7 @@ module.exports = {
                         const botMessages = fetchedBM.filter(msg => msg.author.bot);
                         const allMessages = notPinned.concat(botMessages);
 
-                        await message.channel.bulkDelete(allMessages, true);
+                        await message.channel.bulkDelete(botMessages, !notPinned, true);
                     } catch(err) {
                         console.error(err);
                     }

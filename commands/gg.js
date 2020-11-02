@@ -7,11 +7,12 @@ module.exports = {
             message.delete({timeout: 20}).catch(console.error);
         } else {
             message.delete({timeout: 20}).catch(console.error);
-            message.reply("Pick a number from " + "`" + "0 - " + args[0] + "`");
             const number = Math.floor(Math.random() * args[0])
             if(number >= 100000) {
-                message.reply("bro are you tryna crash my computer???? Nice try idiot.")
+                message.reply("bro are you tryna crash my computer???? Nice try idiot.");
+                message.delete({timeout: 20}).catch(console.error);
             } else {
+                message.reply("Pick a number from " + "`" + "0 - " + args[0] + "`");
                 const filter = m => m.author.id ===  message.author.id;
                 message.channel.awaitMessages(filter, {
                     max: 1, // leave this the same
