@@ -5,8 +5,9 @@ module.exports = {
         if(!args[0]) {
             message.channel.send("How many times u wanna spam bruh");
         }
-        if(Number.isInteger(args[0])) {
-            var times = args[0];
+        console.log(typeof(args[0]));
+        if(Number.isInteger(parseInt(args[0]))) {
+            var times = parseInt(args[0]);
             args.shift();
             if(message.member.hasPermission('MANAGE_MESSAGES')) {
                 let msgArgs = args.slice(0).join(" ");
