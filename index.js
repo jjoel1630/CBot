@@ -76,6 +76,10 @@ bot.on('message', (message) => {
 		bot.commands.get('pp').execute(message, args, bot);
 	} else if (command === 'iq') {
 		bot.commands.get('iq').execute(message, args, bot);
+	} else if (command === 'kick') {
+		bot.commands.get('kick').execute(message, args, bot, Discord);
+	} else if (command === 'ban') {
+		bot.commands.get('ban').execute(message, args, bot, Discord);
 	}
 });
 
