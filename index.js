@@ -73,7 +73,9 @@ bot.on('message', (message) => {
 	} else if (command === 'sinfo') {
 		bot.commands.get('sinfo').execute(message, args, bot, Discord);
 	} else if (command === 'pp') {
-		bot.commands.get('pp').execute(message, args, bot, Discord);
+		bot.commands.get('pp').execute(message, args, bot);
+	} else if (command === 'iq') {
+		bot.commands.get('iq').execute(message, args, bot);
 	}
 });
 
