@@ -4,7 +4,7 @@ module.exports = {
     execute(message, args, bot) {
         console.log(bot.users.size);
         if(args[0] === "watching") {
-            bot.user.setPresence(`Watching over ${bot.guilds.cache} servers and ${bot.guilds.cache.size} people`);
+            bot.user.setActivity(`over ${bot.guilds.cache} servers and ${bot.guilds.cache.size} people`, { type: 'WATCHING' });
         } else {
             var msgArgs = args.slice(0).join(" ");
             bot.user.setPresence({
