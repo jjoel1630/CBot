@@ -23,7 +23,7 @@ module.exports = {
 				},
 				{
 					name: 'owner',
-					value: guild.owner
+					value: guild.owner.user.tag
 				}
 			);
 		message.channel.send(infoEmbed);
