@@ -40,7 +40,7 @@ module.exports = {
             }
 
             used.set(message.author.id, Date.now() + 1000 * 7);
-            setTimeout(() => { used.delet(message.author.id), 1000 * 7})
+            setTimeout(() => { used.delete(message.author.id), 1000 * 7})
         }
     }
 }
