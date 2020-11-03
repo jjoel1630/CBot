@@ -5,7 +5,7 @@ module.exports = {
 		if (message.author.id === '535671100001222668' && !args[0]) {
 			message.channel.send(`The God's IQ is too high to calculate!`);
 		} else if (!args[0]) {
-			var iq = Math.floor(Math.random() * 15);
+			var iq = Math.floor(Math.random() * 300);
 			if (iq === 0) {
 				message.channel.send(
 					`${message.member.user.tag}'s IQ is so low it doesn't register lmaooo`
