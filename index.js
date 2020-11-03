@@ -63,7 +63,7 @@ bot.on('message', message=>{
     } else if(command === 'help') {
         bot.commands.get('help').execute(message, args, Discord);
     } else if(command === 'status') {
-        bot.commands.get('status').execute(message, args, Discord);
+        bot.commands.get('status').execute(message, args, bot);
     }
 });
 
