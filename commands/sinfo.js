@@ -7,7 +7,7 @@ module.exports = {
 		const { guild } = message;
 
 		const { name, region, memberCount } = guild;
-		const icon = guild.iconUrl;
+		const icon = guild.icon;
 
 		const infoEmbed = new Discord.MessageEmbed()
 			.setTitle(`Server info for "${name}"`)
@@ -23,7 +23,7 @@ module.exports = {
 				},
 				{
 					name: 'owner',
-					value: guild.owner.user.id
+					value: guild.owner
 				}
 			);
 		message.channel.send(infoEmbed);
