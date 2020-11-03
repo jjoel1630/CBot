@@ -23,7 +23,7 @@ module.exports = {
 				},
 				{
 					name: 'owner',
-					value: owner.user.tag
+					value: owner.tag
 				}
 			);
 		message.channel.send(infoEmbed);
