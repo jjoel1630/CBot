@@ -21,7 +21,7 @@ module.exports = {
         const cooldown = used.get(message.author.id);
         if(cooldown) {
             const remaining = Duration(cooldown - Date.now(), { units: ['h', 'm'], round: true });
-            return message.reply(`you need to wait ${remaining} before using this command!`.catch((err) => message.reply(`${err}`)))
+            message.reply(`you need to wait ${remaining} before using this command!`.catch((err) => message.reply(`${err}`)))
         } else {
             message.channel.send(helpEmbed);
             used.set(message.author.id, Date.now() + 1000 * 7);

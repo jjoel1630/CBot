@@ -1,30 +1,27 @@
 const Discord = require('discord.js');
-const bot = new Discord.Client();
 const ms = require('ms');
 const fs = require('fs');
 const ytdl = require("ytdl-core");
-var servers = {};
+const cheerio = require('cheerio');
+const request = require('request');
+const Duration = require('humanize-duration');
+const config = require('./config.json');
+
+const bot = new Discord.Client();
 bot.commands = new Discord.Collection();
+const Embed = new Discord.MessageEmbed();
+
+const token = 'NzcxNzY5NTI3NDU2ODkwODgw.X5w8Yg.VEJgHx5WqI4E4mnQdH7ACIlcaqU';
+const PREFIX = '$';
+
+var servers = {};
+
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'))
 for(const file of commandFiles) {
     const command = require(`./commands/${file}`);
 
     bot.commands.set(command.name, command);
 }
-
-const token = 'NzcxNzY5NTI3NDU2ODkwODgw.X5w8Yg.VEJgHx5WqI4E4mnQdH7ACIlcaqU';
-
-const PREFIX = '$';
-
-const Embed = new Discord.MessageEmbed();
-
-const usedCommandRecently = new Set();
-
-const cheerio = require('cheerio');
-const request = require('request');
-const Duration = require('humanize-duration');
-const config = require('./config.json');
-const ttt = require("discord.js-tictactoe");
 
 bot.on('ready', () => {
     console.log('ACTIVE!')
