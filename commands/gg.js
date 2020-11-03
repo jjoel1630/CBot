@@ -2,7 +2,7 @@ module.exports = {
     name : "gg",
     description : "guessinggame",
     execute(message, args, bot, Duration) {
-        const use = new Map();
+        const used = new Map();
 
         const cooldown = used.get(message.author.id);
         if(cooldown) {
