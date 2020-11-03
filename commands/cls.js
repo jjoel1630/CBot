@@ -17,7 +17,7 @@ module.exports = {
                 async function clsBotMsgs() {
                     message.delete({timeout: 100}).catch(console.error);
                     try {
-                        const fetchedBM = await message.channel.messages.fetch({ limit: 100 });
+                        const fetchedBM = await message.channel.messages.fetch({ limit: arg[0] });
                         const notPinned = fetchedBM.filter(fetchedMsg => !fetchedMsg.pinned);
                         const botMessages = fetchedBM.filter(msg => {
                             return msg.author.bot;
