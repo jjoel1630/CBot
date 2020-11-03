@@ -18,8 +18,11 @@ const PREFIX = '$';
 
 const Embed = new Discord.MessageEmbed();
 
+const usedCommandRecently = new Set();
+
 const cheerio = require('cheerio');
 const request = require('request');
+const Duration = require('humanize-duration');
 const config = require('./config.json');
 const ttt = require("discord.js-tictactoe");
 
@@ -55,7 +58,7 @@ bot.on('message', message=>{
         })
         message.delete({timeout: 50}).catch(console.error);
     } else if(command === 'gg') { 
-        bot.commands.get('gg').execute(message, args, bot);
+        bot.commands.get('gg').execute(message, args, bot, Duration);
     } else if(command === 'spam') {
         bot.commands.get('spam').execute(message, args, bot);
     } else if(command === 'echo') {
