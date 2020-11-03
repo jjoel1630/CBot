@@ -75,7 +75,7 @@ bot.on('message', (message) => {
 	} else if (command === 'cvc') {
 		bot.commands.get('cvc').execute(message, args, bot);
 	} else if (command === 'sinfo') {
-		bot.commands.get('sinfo').execute(message, args, bot);
+		bot.commands.get('sinfo').execute(message, args, bot, Discord);
 	}
 });
 
