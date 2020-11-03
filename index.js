@@ -16,9 +16,7 @@ const PREFIX = '$';
 
 var servers = {};
 
-const commandFiles = fs
-	.readdirSync('./commands/')
-	.filter((file) => file.endsWith('.js'));
+const commandFiles = fs.readdirSync('./commands/').filter((file) => file.endsWith('.js'));
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
 
@@ -53,9 +51,7 @@ bot.on('message', (message) => {
 		bot.commands.get('pick').execute(message, args, bot, Discord);
 	} else if (command === 'members') {
 		bot.guilds.cache.forEach((guild) => {
-			message.channel.send(
-				`${guild.name} has a total of ${guild.memberCount} members.`
-			);
+			message.channel.send(`${guild.name} has a total of ${guild.memberCount} members.`);
 		});
 		message.delete({ timeout: 50 }).catch(console.error);
 	} else if (command === 'gg') {
@@ -76,6 +72,8 @@ bot.on('message', (message) => {
 		bot.commands.get('cvc').execute(message, args, bot);
 	} else if (command === 'sinfo') {
 		bot.commands.get('sinfo').execute(message, args, bot, Discord);
+	} else if (command === 'pp') {
+		bot.commands.get('pp').execute(message, args, bot, Discord);
 	}
 });
 

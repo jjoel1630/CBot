@@ -7,7 +7,7 @@ module.exports = {
 		const { guild } = message;
 
 		const { name, region, memberCount } = guild;
-		const icon = guild.icon.url;
+		const icon = guild.icon.url();
 
 		const infoEmbed = new Discord.MessageEmbed()
 			.setTitle(`Server info for "${name}"`)
