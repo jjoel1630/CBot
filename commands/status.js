@@ -4,7 +4,7 @@ module.exports = {
     execute(message, args, bot) {
         let msgArgs = args.slice(0).join(" ");
         console.log(msgArgs)
-        bot.user.setActivity({
+        bot.user.setPresence({
             activity: {
                 name: msgArgs,
                 type: 0,
