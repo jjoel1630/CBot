@@ -6,7 +6,7 @@ module.exports = {
 	execute(message, args, bot, Discord) {
 		const { guild } = message;
 
-		const { name, region, memberCount, owner } = guild;
+		const { name, region, memberCount } = guild;
 		const icon = guild.iconUrl;
 
 		const infoEmbed = new Discord.MessageEmbed()
@@ -23,7 +23,7 @@ module.exports = {
 				},
 				{
 					name: 'owner',
-					value: owner.tag
+					value: guild.owner.user.id
 				}
 			);
 		message.channel.send(infoEmbed);
