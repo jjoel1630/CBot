@@ -1,7 +1,7 @@
 module.exports = {
     name : "help",
     description : "help command",
-    execute(message, args, Discord) {
+    execute(message, args, Discord, Duration) {
         const helpEmbed = new Discord.MessageEmbed()
         .setTitle("Commands")
         .addFields(
@@ -16,6 +16,16 @@ module.exports = {
             { name: "welcome + (name [optional])", value: "welcome message" }
         )
         .setThumbnail(message.author.avatarURL());
-        message.channel.send(helpEmbed);
+        const used = new Map();
+
+        const cooldown = used.get(message.author.id);
+        if(cooldown) {
+            const remaining = Duration(cooldown - Date.now(), { units: ['h', 'm'], round: true });
+            return message.reply(`you need to wait ${remaining} before using this command!`.catch((err) => message.reply(`${err}`)))
+        } else {
+            message.channel.send(helpEmbed);
+            used.set(message.author.id, Date.now() + 1000 * 7);
+            setTimeout(() => { used.delete(message.author.id), 1000 * 7})
+        }
     }
 }
