@@ -66,6 +66,10 @@ bot.on('message', (message) => {
 		bot.commands.get('status').execute(message, args, bot);
 	} else if (command === 'pm') {
 		bot.commands.get('pm').execute(message, args, bot);
+	} else if (command === 'ctc') {
+		bot.commands.get('ctc').execute(message, args, bot);
+	} else if (command === 'cvc') {
+		bot.commands.get('cvc').execute(message, args, bot);
 	}
 });
 
