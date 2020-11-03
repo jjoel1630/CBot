@@ -11,7 +11,7 @@ module.exports = {
 					`${message.member.user.tag}'s IQ is so low it doesn't register lmaooo`
 				);
 			} else {
-				message.channel.send(`${message.member.user.tag}'s IQ is ${size}`);
+				message.channel.send(`${message.member.user.tag}'s IQ is ${iq}`);
 			}
 		} else if (
 			args[0] === 'Joel' ||
