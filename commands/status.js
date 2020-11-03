@@ -3,7 +3,7 @@ module.exports = {
     description : "set bot status",
     execute(message, args, bot) {
         let msgArgs = args.slice(0).join(" ");
-        bot.user.setPresence({
+        bot.user.setActivity({
             activity: {
                 name: msgArgs,
                 type: 0,
