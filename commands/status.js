@@ -4,11 +4,15 @@ module.exports = {
     execute(message, args, bot) {
         let msgArgs = args.slice(0).join(" ");
         console.log(msgArgs)
-        bot.user.setPresence({
-            activity: {
-                name: msgArgs,
-                type: 0,
-            },
-        })
+        if(args[0] === "watching") {
+            bot.user.setPresence(`Watching over ${bot.users.size} people`);
+        } else {
+            bot.user.setPresence({
+                activity: {
+                    name: msgArgs,
+                    type: 0,
+                },
+            })
+        }
     }
 }
