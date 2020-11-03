@@ -3,7 +3,6 @@ module.exports = {
 	description: 'set bot status',
 	execute(message, args, bot) {
 		console.log(bot.users.size);
-		q;
 		if (message.user.id == '535671100001222668') {
 			if (args[0] === 'watching') {
 				bot.user.setActivity(`over many people and ${bot.guilds.cache.size} servers`, {
