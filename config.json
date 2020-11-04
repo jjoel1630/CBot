@@ -1,6 +1,6 @@
 {
-    "mongoPath" : "mongodb://localhost:27017",
+    "mongoPath": "mongodb://localhost:27017",
     "useNewUrlParser": "true",
-    "prefix" : "$",
-    "token" : "NzczMDUzNjc0NTkwMTc1Mjc0.X6DoVg.eBgTP8qws_vCAjrjkkQnbQ6ypT4"
+    "prefix": "$",
+    "token": "NzczMDUzNjc0NTkwMTc1Mjc0.X6DoVg.eBgTP8qws_vCAjrjkkQnbQ6ypT4"
 }
