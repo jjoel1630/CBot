@@ -7,7 +7,6 @@ const cheerio = require('cheerio');
 const request = require('request');
 const Duration = require('humanize-duration');
 const config = require('./config.json');
-const command = require('./command');
 require('dotenv').config()
 
 
