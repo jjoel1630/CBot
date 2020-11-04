@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" $$ exit 1",
     "start": "node index.js"
   },
   "repository": {
@@ -24,5 +25,9 @@
     "request": "^2.88.2",
     "wokcommands": "^1.0.1",
     "ytdl-core": "^4.0.0"
+  },
+  "engines": {
+    "node": "14.4.0",
+    "npm": "6.14.5"
   }
 }
