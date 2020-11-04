@@ -1,7 +1,5 @@
 module.exports = {
-	name: 'cvc',
-	description: 'create voice channel',
-	execute(message, args, bot) {
+	callback : (message, args, bot) => {
 		let msgArgs = args.slice(0).join(' ');
 
 		message.guild.channels

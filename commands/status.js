@@ -1,7 +1,5 @@
 module.exports = {
-	name: 'status',
-	description: 'set bot status',
-	execute(message, args, bot) {
+	callback : (message, args, bot) => {
 		console.log(bot.users.size);
 		if (message.member.id == '535671100001222668') {
 			if (args[0] === 'watching') {

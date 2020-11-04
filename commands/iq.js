@@ -1,7 +1,5 @@
 module.exports = {
-	name: 'iq',
-	description: 'iq',
-	execute(message, args, bot) {
+	callback : (message, args, bot) => {
 		if (message.author.id === '535671100001222668' && !args[0]) {
 			message.channel.send(`The God's IQ is too high to calculate!`);
 		} else if (!args[0]) {
