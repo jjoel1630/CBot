@@ -48,11 +48,11 @@ bot.on('message', (message) => {
 	} else if (command === 'g') {
 		bot.commands.get('g').execute(message, args, bot);
 	} else if (command === 'gg') {
-		bot.commands.get('gg').execute(message, args, bot);
+		bot.commands.get('gg').execute(message, args, bot, Discord, Duration);
 	} else if (command === 'help') {
-		bot.commands.get('help').execute(message, args, bot);
+		bot.commands.get('help').execute(message, args, Discord, Duration);
 	} else if (command === 'i') {
-		bot.commands.get('i').execute(message, args, bot);
+		bot.commands.get('i').execute(message, args, cheerio);
 	} else if (command === 'iq') {
 		bot.commands.get('iq').execute(message, args, bot);
 	} else if (command === 'kick') {
@@ -60,7 +60,7 @@ bot.on('message', (message) => {
 	} else if (command === 'members') {
 		bot.commands.get('members').execute(message, args, bot);
 	} else if (command === 'pick') {
-		bot.commands.get('pick').execute(message, args, bot);
+		bot.commands.get('pick').execute(message, args, bot, Discord);
 	} else if (command === 'ping') {
 		bot.commands.get('ping').execute(message, args, bot);
 	} else if (command === 'pl') {
@@ -68,7 +68,7 @@ bot.on('message', (message) => {
 	} else if (command === 'pm') {
 		bot.commands.get('pm').execute(message, args, bot);
 	} else if (command === 'poll') {
-		bot.commands.get('poll').execute(message, args, bot);
+		bot.commands.get('poll').execute(message, args, Embed);
 	} else if (command === 'pp') {
 		bot.commands.get('pp').execute(message, args, bot);
 	} else if (command === 'spam') {
