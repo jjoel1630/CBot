@@ -1,5 +1,7 @@
 module.exports = {
-	callback : (message, args, bot) => {
+	name : "cls",
+	description : "clear cmd",
+	execute(message, args, bot) {
 		if (message.member.hasPermission('MANAGE_MESSAGES')) {
 			console.log(args[1]);
 			if (!args[0]) {

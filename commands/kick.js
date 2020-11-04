@@ -1,5 +1,7 @@
 module.exports = {
-	callback : (message, args, bot) => {
+	name : "kick", 
+	descriptiom : "kick",
+	execute(message, args, bot) {
 		const { member, mentions } = message;
 		if (member.hasPermission('ADMINISTRATOR') || member.hasPermission('KICK_MEMBERS')) {
 			const target = mentions.users.first();

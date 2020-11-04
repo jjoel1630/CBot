@@ -1,5 +1,7 @@
 module.exports = {
-	callback : (message, args, bot) => {
+	name : "spam", 
+	descriptiom : "spam",
+	execute(message, args, bot) {
 		if (!args[0]) {
 			message.channel.send('How many times u wanna spam bruh');
 		}

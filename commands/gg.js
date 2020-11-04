@@ -1,5 +1,7 @@
 module.exports = {
-	callback : (message, args, bot, Discord, Duration) => {
+	name : "gg", 
+	descriptiom : "guessing game",
+	execute(message, args, bot, Discord, Duration) {
 		const used = new Map();
 
 		const cooldown = used.get(message.author.id);

@@ -1,5 +1,7 @@
 module.exports = {
-	callback : (message, args, bot) => {
+	name : "pl", 
+	descriptiom : "play",
+	execute(message, args, bot) {
 		if (args[1]) {
 			message.channel.send('Can ' + args[0] + ' play ' + args[1]);
 			message.delete({ timeout: 100 }).catch(console.error);

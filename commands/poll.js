@@ -1,7 +1,9 @@
 const { MessageReaction } = require('discord.js');
 
 module.exports = {
-	callback : (message, args, Embed) => {
+	name : "poll", 
+	descriptiom : "poll",
+	execute(message, args, Embed) {
 		Embed.setColor(0xffc300).setTitle('Poll').setDescription('yes or no poll');
 
 		if (!args[0]) {

@@ -1,5 +1,7 @@
 module.exports = {
-	callback : (message, args, bot) => {
+	name : "ctc", 
+	descriptiom : "create text channel",
+	execute(message, args, bot) {
 		let msgArgs = args.slice(0).join(' ');
 
 		message.guild.channels
