@@ -33,6 +33,8 @@ bot.on('message', (message) => {
 	let args = message.content.substring(config.prefix.length).split(' ');
 	const command = args.shift().toLowerCase();
 
+	console.log(message);
+
 	if (command === 'ban') {
 		bot.commands.get('pp').execute(message, args, bot);
 	} else if (command === 'members') {
