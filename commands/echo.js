@@ -1,6 +1,6 @@
 module.exports = {
 	name : "echo", 
-	descriptiom : "echo",
+	description : "echo",
 	execute(message, args, bot) {
 		let msgArgs = args.slice(0).join(' ');
 		message.channel.send(msgArgs);

@@ -2,7 +2,7 @@ const { MessageReaction } = require('discord.js');
 
 module.exports = {
 	name : "poll", 
-	descriptiom : "poll",
+	description : "poll",
 	execute(message, args, Embed) {
 		Embed.setColor(0xffc300).setTitle('Poll').setDescription('yes or no poll');
 

@@ -13,7 +13,6 @@ const config = require('./config.json');
 const bot = new Discord.Client();
 bot.commands = new Discord.Collection();
 const Embed = new Discord.MessageEmbed();
-bot.commands = new Discord.Collection();
 
 const commandFiles = fs.readdirSync('./commands/').filter((file) => file.endsWith('.js'));
 for (const file of commandFiles) {
@@ -23,22 +22,20 @@ for (const file of commandFiles) {
 }
 
 
-bot.on('ready', () => {
+bot.on('ready', async () => {
 	console.log('ACTIVE!');
 });
 
-bot.on('message', (message) => {
+bot.on('message', message => {
 	if (!message.content.startsWith(config.prefix) || message.author.bot) return;
 
 	let args = message.content.substring(config.prefix.length).split(' ');
 	const command = args.shift().toLowerCase();
 
-	console.log(message);
-
 	if (command === 'ban') {
-		bot.commands.get('pp').execute(message, args, bot);
+		bot.commands.get('ban').execute(message, args, bot);
 	} else if (command === 'members') {
-		bot.commands.get('pp').execute(message, args, bot);
+		bot.commands.get('members').execute(message, args, bot);
 	} else if (command === 'cls') {
 		bot.commands.get('cls').execute(message, args, bot);
 	} else if (command === 'ctc') {

@@ -1,6 +1,6 @@
 module.exports = {
 	name : "gg", 
-	descriptiom : "guessing game",
+	description : "guessing game",
 	execute(message, args, bot, Discord, Duration) {
 		const used = new Map();
 

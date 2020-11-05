@@ -1,6 +1,6 @@
 module.exports = {
 	name : "kick", 
-	descriptiom : "kick",
+	description : "kick",
 	execute(message, args, bot) {
 		const { member, mentions } = message;
 		if (member.hasPermission('ADMINISTRATOR') || member.hasPermission('KICK_MEMBERS')) {

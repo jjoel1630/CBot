@@ -2,7 +2,7 @@ const request = require('request');
 
 module.exports = {
 	name : "i", 
-	descriptiom : "random image",
+	description : "random image",
 	execute(message, args, cheerio) {
 		if (message.member.hasPermission('MANAGE_CHANNEL')) {
 			image(message);

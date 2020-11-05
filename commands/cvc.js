@@ -1,6 +1,6 @@
 module.exports = {
 	name : "cvc", 
-	descriptiom : "create voice channel",
+	description : "create voice channel",
 	execute(message, args, bot) {
 		let msgArgs = args.slice(0).join(' ');
 

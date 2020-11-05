@@ -1,6 +1,6 @@
 module.exports = {
 	name : "ctc", 
-	descriptiom : "create text channel",
+	description : "create text channel",
 	execute(message, args, bot) {
 		let msgArgs = args.slice(0).join(' ');
 

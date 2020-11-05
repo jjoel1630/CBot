@@ -1,6 +1,6 @@
 module.exports = {
 	name : "help", 
-	descriptiom : "help",
+	description : "help",
 	execute(message, args, Discord, Duration) {
 		const helpEmbed = new Discord.MessageEmbed()
 		.setTitle('Commands')

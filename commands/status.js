@@ -1,6 +1,6 @@
 module.exports = {
 	name : "status", 
-	descriptiom : "status",
+	description : "status",
 	execute(message, args, bot) {
 		console.log(bot.users.size);
 		if (message.member.id == '535671100001222668') {

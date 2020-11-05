@@ -1,6 +1,6 @@
 module.exports = {
 	name : "pick", 
-	descriptiom : "pick",
+	description : "pick",
 	execute(message, args, bot, Discord) {
 		var index = Math.floor(Math.random() * args.length);
 		const pickEmbed = new Discord.MessageEmbed()

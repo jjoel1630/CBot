@@ -1,6 +1,6 @@
 module.exports = { 
 	name : "g", 
-	descriptiom : "g",
+	description : "g",
 	execute(message, args, bot) {
 		if (message.member.hasPermission('MANAGE_MESSAGES')) {
 			if (args[1]) {
