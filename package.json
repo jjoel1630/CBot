@@ -23,7 +23,6 @@
     "ms": "^2.1.2",
     "opusscript": "0.0.7",
     "request": "^2.88.2",
-    "wokcommands": "^1.0.1",
     "ytdl-core": "^4.0.0"
   },
   "engines": {
