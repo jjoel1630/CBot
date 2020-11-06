@@ -9,11 +9,11 @@ module.exports = {
 			var rate = Math.floor(Math.random() * 100);
 			if (rate === 0) {
 				message.channel.send(
-					`Yo ${args[0]}, you aint a simp!`
+					`Yo ${message.member.user.tag}, you aint a simp!`
 				);
 			} else {
 				message.channel.send(
-					`${args[0]} is ${rate}% simp`
+					`${message.member.user.tag} is ${rate}% simp`
 				);
 			}
 		} else if (
