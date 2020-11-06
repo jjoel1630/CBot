@@ -35,9 +35,9 @@ bot.on('message', message => {
 	let args = message.content.substring(config.prefix.length).split(' ');
 	const command = args.shift().toLowerCase();
 
-	const command = bot.commands.get(cmd)
+	const commands = bot.commands.get(cmd)
 	
-	command.execute(message, args, bot, Discord, Duration, cheerio); 
+	commands.execute(message, args, bot, Discord, Duration, cheerio); 
 });
 
 bot.login(config.token);
