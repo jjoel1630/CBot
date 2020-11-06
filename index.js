@@ -12,6 +12,7 @@ const config = require('./config.json');
 //clients
 const bot = new Discord.Client();
 bot.commands = new Discord.Collection();
+bot.aliases = new Discord.Collection();
 const Embed = new Discord.MessageEmbed();
 
 const commandFiles = fs.readdirSync('./commands/').filter((file) => file.endsWith('.js'));
