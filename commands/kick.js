@@ -9,7 +9,7 @@ module.exports = {
 				const targetMember = message.guild.members.cache.get(target.id);
 				targetMember.kick();
 				message.channel.send(
-					`<@${message.member.user.tag}>, has been kicked lmaoooooo. Get yo butt outta here.`
+					`${args[0]}, has been kicked lmaoooooo. Get yo butt outta here.`
 				);
 			} else {
 				message.channel.send(`<@${message.member.user.tag}>, bro you gotta tell me who to kick stupid. SMH.`);
