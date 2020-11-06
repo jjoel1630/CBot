@@ -1,7 +1,8 @@
 module.exports = {
 	name : "pl", 
 	description : "play",
-	execute(message, args, bot) {
+	aliases: ["pl", "play"],
+	execute(message=message, args=args, bot=bot) {
 		if (args[1]) {
 			message.channel.send('Can ' + args[0] + ' play ' + args[1]);
 			message.delete({ timeout: 100 }).catch(console.error);

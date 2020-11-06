@@ -3,7 +3,8 @@ const { MessageReaction } = require('discord.js');
 module.exports = {
 	name : "poll", 
 	description : "poll",
-	execute(message, args, Embed) {
+	aliases: ["poll"],
+	execute(message=message, args=args, bot=bot, Embed=Embed) {
 		Embed.setColor(0xffc300).setTitle('Poll').setDescription('yes or no poll');
 
 		if (!args[0]) {

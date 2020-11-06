@@ -1,7 +1,8 @@
 module.exports = {
 	name : "pp", 
 	description : "pp",
-	execute(message, args, bot) {
+	aliases: ["pp"],
+	execute(message=message, args=args, bot=bot) {
 		if (message.author.id === '535671100001222668' && !args[0]) {
 			message.channel.send(`The God's pp is too long to calculate!`);
 		} else if (!args[0]) {

@@ -1,7 +1,8 @@
 module.exports = {
 	name : "spam", 
 	description : "spam",
-	execute(message, args, bot) {
+	aliases: ["spam"],
+	execute(message=message, args=args, bot=bot) {
 		if (!args[0]) {
 			message.channel.send('How many times u wanna spam bruh');
 		}

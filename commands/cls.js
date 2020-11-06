@@ -1,7 +1,8 @@
 module.exports = {
 	name : "cls",
 	description : "clear cmd",
-	execute(message, args, bot) {
+	aliases: ["cls"],
+	execute(message=message, args=args, bot=bot) {
 		if (message.member.hasPermission('MANAGE_MESSAGES')) {
 			console.log(args[1]);
 			if (!args[0]) {

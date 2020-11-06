@@ -1,7 +1,8 @@
 module.exports = {
 	name : "pick", 
 	description : "pick",
-	execute(message, args, bot, Discord) {
+	aliases: ["pick"],
+	execute(message=message, args=args, bot=bot, Discord=Discord) {
 		var index = Math.floor(Math.random() * args.length);
 		const pickEmbed = new Discord.MessageEmbed()
 			.setTitle('Question: ' + args)

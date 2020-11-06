@@ -3,7 +3,8 @@ const request = require('request');
 module.exports = {
 	name : "i", 
 	description : "random image",
-	execute(message, args, cheerio) {
+	aliases: ["i", "image"],
+	execute(message=message, args=args, cheerio=cheerio) {
 		if (message.member.hasPermission('MANAGE_CHANNEL')) {
 			image(message);
 			message.delete({ timeout: 1000 }).catch(console.error);

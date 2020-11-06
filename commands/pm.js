@@ -1,7 +1,8 @@
 module.exports = {
 	name : "pm", 
 	description : "private message",
-	execute(message, args, bot) {
+	aliases: ["pm"],
+	execute(message=message, args=args, bot=bot) {
 		message.author.send(
 			'yoooo u found a hidden command. You get 500 points!!!! Keep looking for more to get more points.'
 		);

@@ -1,7 +1,10 @@
+
+
 module.exports = {
 	name : "gg", 
 	description : "guessing game",
-	execute(message, args, bot, Discord, Duration) {
+	aliases: ["gg"],
+	execute(message=message, args=args, bot=bot, Discord=Discord, Duration=Duration) {
 		const used = new Map();
 
 		const cooldown = used.get(message.author.id);
