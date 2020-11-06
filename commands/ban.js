@@ -9,11 +9,11 @@ module.exports = {
 				const targetMember = message.guild.members.cache.get(target.id);
 				targetMember.ban();
 				message.channel.send(
-					`<@${targetMember.id}>, has been banned lmaoooooo. Get yo butt outta here.`
+					`<@${message.member.user.tag}>, has been banned lmaoooooo. Get yo butt outta here.`
 				);
 			} else {
 				message.channel.send(
-					`<@${member.id}>, bro you gotta tell me who to ban stupid. SMH.`
+					`<@${message.member.user.tag}>, bro you gotta tell me who to ban stupid. SMH.`
 				);
 			}
 		} else {
