@@ -74,6 +74,8 @@ bot.on('message', message => {
 		bot.commands.get('spam').execute(message, args, bot);
 	} else if (command === 'status') {
 		bot.commands.get('status').execute(message, args, bot);
+	} else if (command === 'simp') {
+		bot.commands.get('simp').execute(message, args, bot);
 	} 
 });
 
