@@ -34,7 +34,7 @@ bot.on('message', message => {
 	if (!message.content.startsWith(config.prefix) || message.author.bot) return;
 
 	let args = message.content.substring(config.prefix.length).split(' ');
-	const command = args.shift().toLowerCase();
+	const cmd = args.shift().toLowerCase();
 
 	const commands = bot.commands.get(cmd)
 	
