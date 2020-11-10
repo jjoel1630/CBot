@@ -38,6 +38,8 @@ bot.on('message', message => {
 
 	const commands = bot.commands.get(cmd)
 	
+	if(!command) return;
+	
 	commands.execute(message, args, bot, Discord, Duration, cheerio); 
 });
 
