@@ -4,7 +4,7 @@ module.exports = {
 	name : "poll", 
 	description : "poll",
 	aliases: ["poll"],
-	execute(message=message, args=args, bot=bot) {
+	execute(message=message, args=args, bot=bot, Discord=Discord) {
 		const pollEmbed = new Discord.MessageEmbed();
 		pollEmbed.setColor(0xffc300).setTitle('Poll').setDescription('yes or no poll');
 
