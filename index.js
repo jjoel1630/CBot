@@ -40,7 +40,7 @@ bot.on('message', message => {
 	
 	if(!command) return;
 	
-	commands.execute(message, args, bot, Discord, Duration, cheerio); 
+	command.execute(message, args, bot, Discord, Duration, cheerio); 
 });
 
 bot.login(config.token);
