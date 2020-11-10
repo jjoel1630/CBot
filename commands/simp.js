@@ -8,7 +8,7 @@ module.exports = {
 			message.channel.send(`God is not a simp`);
 		} else if (!args[0]) {
 			var rate = Math.floor(Math.random() * 100);
-			if (size === 0) {
+			if (rate === 0) {
 				message.channel.send(
 					`Yo ${args[0]}, you aint a simp!`
 				);
@@ -26,9 +26,9 @@ module.exports = {
 				}
 			} else {
 				var rate = Math.floor(Math.random() * 100);
-			message.channel.send(
-                `${args[0]} is ${rate}% simp.`
-            );
+				message.channel.send(
+					`${args[0]} is ${rate}% simp.`
+				);
 			}
 		}
     }
