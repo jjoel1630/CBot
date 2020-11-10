@@ -4,8 +4,9 @@ module.exports = {
 	name : "poll", 
 	description : "poll",
 	aliases: ["poll"],
-	execute(message=message, args=args, bot=bot, Embed=Embed) {
-		Embed.setColor(0xffc300).setTitle('Poll').setDescription('yes or no poll');
+	execute(message=message, args=args, bot=bot) {
+		const pollEmbed = new Discord.MessageEmbed();
+		pollEmbed.setColor(0xffc300).setTitle('Poll').setDescription('yes or no poll');
 
 		if (!args[0]) {
 			message.channel.send(Embed);
