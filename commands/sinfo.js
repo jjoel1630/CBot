@@ -1,7 +1,7 @@
 module.exports = {
     name: 'serverinfo',
     description: 'serverinfo',
-    aliases: ['sinfo'],
+    aliases: ['sinfo', 'serverinfo'],
     execute(message=message, args=args, bot=bot, Discord=Discord) {
         const { guild } = message;
 
