@@ -15,7 +15,7 @@
   "author": "Joel",
   "license": "ISC",
   "dependencies": {
-    "cheerio": "^1.0.0-rc.3",
+    "cheerio": "^1.0.0-rc.5",
     "discord.js": "^12.4.1",
     "discord.js-tictactoe": "^1.0.2",
     "humanize-duration": "^3.24.0",
