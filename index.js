@@ -31,6 +31,9 @@ bot.on('ready', async () => {
 });
 
 bot.on('message', message => {
+	if(message.content==='stop the cap') {
+		message.channel.send('https://www.youtube.com/watch?v=mugRenBeRw0&ab_channel=BruhCentralMoments')
+	}
 	if (!message.content.startsWith(config.prefix) || message.author.bot) return;
 
 	let args = message.content.substring(config.prefix.length).split(' ');
