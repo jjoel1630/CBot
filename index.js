@@ -50,9 +50,10 @@ bot.on('message', message => {
 });
 
 bot.on("messageDelete", (message) => {
+	console.log(message.content);
 	if (message.author.bot) return;
-	deletedMsg.delete('deleted msg')
-	deletedMsg.set("deleted msg", {'message': message, 'author': message.author.tag, 'created': message.createdAt})
+	deletedMsg.delete('deleted msg');
+	deletedMsg.set("deleted msg", {'message': message, 'author': message.author.tag, 'created': message.createdAt});
 });
 
 bot.login(config.token);
