@@ -41,8 +41,8 @@ bot.on('message', message => {
 		const cmd = args.shift().toLowerCase();
 
 		if(cmd == 'snipe') {
-			message = deletedMsg.get('deleted msg').message;
-			message.channel.send(message);
+			dmessage = deletedMsg.get('deleted msg').message;
+			message.channel.send(dmessage);
 		} else {
 			if(bot.aliases.get(cmd)) {
 				const command = bot.commands.get(bot.aliases.get(cmd));
