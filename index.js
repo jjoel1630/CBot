@@ -14,6 +14,7 @@ const bot = new Discord.Client();
 bot.commands = new Discord.Collection();
 bot.aliases = new Discord.Collection();
 const Embed = new Discord.MessageEmbed();
+deletedMsg = new Map();
 
 const commandFiles = fs.readdirSync('./commands/').filter((file) => file.endsWith('.js'));
 for (let file of commandFiles) {
@@ -41,11 +42,17 @@ bot.on('message', message => {
 
 		if(bot.aliases.get(cmd)) {
 			const command = bot.commands.get(bot.aliases.get(cmd));
-			command.execute(message, args, bot, Discord, Duration, cheerio); 
+			command.execute(message, args, bot, Discord, Duration, cheerio, deletedMsg); 
 		} else {
 			return;
 		}
 	}
+});
+
+client.on("messageDelete", (message) => {
+	if (message.author.bot) return;
+	deletedMsg.delete('deleted msg')
+	deletedMsg.set("deleted msg", {'message': message, 'author': message.author.tag, 'created': message.createdAt})
 });
 
 bot.login(config.token);
