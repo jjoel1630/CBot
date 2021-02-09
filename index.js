@@ -7,6 +7,7 @@ const cheerio = require('cheerio');
 const request = require('request');
 const Duration = require('humanize-duration');
 const config = require('./config.json');
+const help = require('./commands/help');
 
 
 //clients
@@ -42,7 +43,23 @@ bot.on('message', message => {
 
 		if(cmd == 'snipe') {
 			dmessage = deletedMsg.get('deleted msg').message;
-			message.channel.send(dmessage);
+			dauthor = deletedMsg.get('deleted msg').author;
+			dcreated = deletedMsg.get('deleted msg').created;
+			const DEmbed = new Discord.MessageEmbed()
+			.setTitle('Last Deleted Message')
+			.addFields(
+				{
+					name: `Message content`, value: `${dmessage}`
+				},
+				{
+					name: `Author`, value: `${dauthor}`
+				},
+				{
+					name: `Created at`, value: `${dcreated}`
+				},
+			)
+			.setThumbnail(message.author.avatarURL());
+			message.channel.send(DEmbed);
 		} else {
 			if(bot.aliases.get(cmd)) {
 				const command = bot.commands.get(bot.aliases.get(cmd));
@@ -55,12 +72,9 @@ bot.on('message', message => {
 });
 
 bot.on("messageDelete", (message) => {
-	console.log(message.content);
 	if (message.author.bot) return;
 	deletedMsg.delete('deleted msg');
 	deletedMsg.set("deleted msg", {'message': message.content, 'author': message.author.tag, 'created': message.createdAt});
-	console.log(deletedMsg.get('deleted msg'));
-	console.log(typeof(deletedMsg));
 });
 
 bot.login(config.token);
