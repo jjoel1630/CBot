@@ -49,7 +49,7 @@ bot.on('message', message => {
 	}
 });
 
-client.on("messageDelete", (message) => {
+bot.on("messageDelete", (message) => {
 	if (message.author.bot) return;
 	deletedMsg.delete('deleted msg')
 	deletedMsg.set("deleted msg", {'message': message, 'author': message.author.tag, 'created': message.createdAt})
