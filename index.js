@@ -40,9 +40,13 @@ bot.on('message', message => {
 		let args = message.content.substring(config.prefix.length).split(' ');
 		const cmd = args.shift().toLowerCase();
 
+		if(cmd == 'snipe') {
+			console.log(typeof(deletedMsg));
+		}
+
 		if(bot.aliases.get(cmd)) {
 			const command = bot.commands.get(bot.aliases.get(cmd));
-			command.execute(message, args, bot, Discord, Duration, cheerio, deletedMsg); 
+			command.execute(message, args, bot, Discord, Duration, cheerio); 
 		} else {
 			return;
 		}
