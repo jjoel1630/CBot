@@ -41,7 +41,7 @@ bot.on('message', message => {
 		const cmd = args.shift().toLowerCase();
 
 		if(cmd == 'snipe') {
-			console.log(typeof(deletedMsg));
+			console.log(deletedMsg.get('deleted msg'));
 		}
 
 		if(bot.aliases.get(cmd)) {
