@@ -41,14 +41,15 @@ bot.on('message', message => {
 		const cmd = args.shift().toLowerCase();
 
 		if(cmd == 'snipe') {
-			message.channel.send(deletedMsg.get('deleted msg'));
-		}
-
-		if(bot.aliases.get(cmd)) {
-			const command = bot.commands.get(bot.aliases.get(cmd));
-			command.execute(message, args, bot, Discord, Duration, cheerio); 
+			message = deletedMsg.get('deleted msg').message;
+			message.channel.send(message);
 		} else {
-			return;
+			if(bot.aliases.get(cmd)) {
+				const command = bot.commands.get(bot.aliases.get(cmd));
+				command.execute(message, args, bot, Discord, Duration, cheerio); 
+			} else {
+				return;
+			}
 		}
 	}
 });
