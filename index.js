@@ -59,6 +59,7 @@ bot.on("messageDelete", (message) => {
 	deletedMsg.delete('deleted msg');
 	deletedMsg.set("deleted msg", {'message': message.content, 'author': message.author.tag, 'created': message.createdAt});
 	console.log(deletedMsg.get('deleted msg'));
+	console.log(typeof(deletedMsg));
 });
 
 bot.login(config.token);
