@@ -40,7 +40,7 @@ bot.on('message', message => {
 		let args = message.content.substring(config.prefix.length).split(' ');
 		const cmd = args.shift().toLowerCase();
 
-		if(cmd == 'snipe') {
+		if(cmd == 'snipe' && deletedMsg.get('deleted msg').dcontent) {
 			dmessage = deletedMsg.get('deleted msg').dcontent;
 			dauthor = deletedMsg.get('deleted msg').person;
 			dcreated = deletedMsg.get('deleted msg').created;
@@ -59,6 +59,8 @@ bot.on('message', message => {
 			)
 			.setThumbnail(message.author.avatarURL());
 			message.channel.send(DEmbed);
+		} else if(!deletedMsg.get('deleted msg').dcontent) {
+			message.channel.send('There is nothing to snipe');
 		} else {
 			if(bot.aliases.get(cmd)) {
 				const command = bot.commands.get(bot.aliases.get(cmd));
@@ -72,8 +74,6 @@ bot.on('message', message => {
 
 bot.on("messageDelete", (message) => {
 	if (message.author.bot) return;
-	console.log(message.content);
-	console.log(message.author.tag);
 	deletedMsg.set("deleted msg", {'dcontent': message.content, 'person': message.author.tag, 'created': message.createdAt});
 });
 
