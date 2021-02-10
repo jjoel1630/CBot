@@ -10,6 +10,7 @@ module.exports = {
 
         if(!args[1]) {
             message.channel.send('$news <country ex. us, ru, ch> <category ex. health, business>');
+            return;
         }
 
         key = '&apiKey=1b28b79af51a4d28816452334d1dee0f';
