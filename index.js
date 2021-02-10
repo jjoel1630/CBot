@@ -47,7 +47,7 @@ bot.on('message', message => {
 			dcreated = deletedMsg.get('deleted msg').created;
 			const DEmbed = new Discord.MessageEmbed()
 			.setTitle('Last Deleted Message')
-			.addFields(
+			.addFields( 
 				{
 					name: `Message content`, value: `${dmessage}`
 				},
