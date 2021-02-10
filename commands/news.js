@@ -24,7 +24,7 @@ module.exports = {
         //     args[0] = 'top-headlines';
         // }
 
-        if(arg[0] == 'help') {
+        if(args[0] == 'help') {
             const Newsembed = new Discord.MessageEmbed()
             .setTitle('Valid Countries:')
             .addFields(
