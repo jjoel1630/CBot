@@ -23,6 +23,7 @@
     "ms": "^2.1.2",
     "opusscript": "0.0.7",
     "request": "^2.88.2",
+    "xmlhttprequest": "^1.8.0",
     "ytdl-core": "^4.0.0"
   },
   "engines": {
