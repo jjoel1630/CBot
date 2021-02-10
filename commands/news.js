@@ -8,7 +8,7 @@ module.exports = {
     execute(message=message, args=args, bot=bot) {
         var request = new XMLHttpRequest();
 
-        console.log(args);
+        message.channel.send(args);
 
         // key = '&apiKey=1b28b79af51a4d28816452334d1dee0f'
         // params = '?country=us&category=business'
