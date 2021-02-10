@@ -8,6 +8,10 @@ module.exports = {
     execute(message=message, args=args, bot=bot, Discord=Discord) {
         var request = new XMLHttpRequest();
 
+        key = '&apiKey=1b28b79af51a4d28816452334d1dee0f';
+        params = ``;
+        api = ``;
+
         if(!args[0]) {
             message.channel.send('Try $news help');
         }
