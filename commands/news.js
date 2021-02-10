@@ -58,7 +58,7 @@ module.exports = {
             if(args[2]) {
                 params = `?country=${args[1]}&category=&${args[2]}`;
                 api = `https://newsapi.org/v2/${args[0]}`; 
-            } else if(args[1].length > 2) {
+            } else if(args[1] && args[1].length > 2) {
                 params = `?country=us&category=&${args[1]}`;
                 api = `https://newsapi.org/v2/${args[0]}`; 
             }
