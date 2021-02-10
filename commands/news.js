@@ -36,7 +36,8 @@ module.exports = {
                     \`se\` \`sg\` \`si\` \`sk\` \`th\` \`tr\` \`tw\``
                 },
                 {
-                    name: `Categories (Param 2)`, value: `\`business\` \`entertainment\` \`general\` \`health\` \`science\` \`sports\` \`technology\``
+                    name: `Categories (Param 2)`, value: `\`business\` \`entertainment\` \`general\` \`health\` 
+                    \`science\` \`sports\` \`technology\``
                 },
             );
             message.channel.send(Newsembed);
