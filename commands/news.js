@@ -8,21 +8,9 @@ module.exports = {
     execute(message=message, args=args, bot=bot, Discord=Discord) {
         var request = new XMLHttpRequest();
 
-        // if(!args[1]) {
-        //     message.channel.send('$news <country ex. us, ru, ch> <category ex. health, business>');
-        //     return;
-        // }
-
-        // defaultCountry = 'us';
-        // defaultCategory = '&category=business';
-
-        // if(!args[3]) {
-        //     defaultCategory = '';
-        // }
-
-        // if(args[0] === 'top' || 'topheadlines') {
-        //     args[0] = 'top-headlines';
-        // }
+        if(!args[0]) {
+            message.channel.send('Try $news help');
+        }
 
         if(args[0] == 'help') {
             const Newsembed = new Discord.MessageEmbed()
@@ -51,13 +39,17 @@ module.exports = {
             return;
         }
 
-        if(!args[2]) {
-            message.channel.send('Try $news help');
+        if(args[0] == 'everything') {
+            if(args[1]) {
+                key = '&apiKey=1b28b79af51a4d28816452334d1dee0f';
+                params = `?q=${args.slice(1).join(' ')}`;
+                api = `https://newsapi.org/v2/${args[0]}`;
+            } else {
+                key = '&apiKey=1b28b79af51a4d28816452334d1dee0f';
+                params = ``;
+                api = `https://newsapi.org/v2/${args[0]}`;
+            }
         }
-
-        key = '&apiKey=1b28b79af51a4d28816452334d1dee0f';
-        params = `?country=${arg[0]}${defaultCategory}`;
-        api = `https://newsapi.org/v2/top-headlines`;
 
         call = api + params + key
 

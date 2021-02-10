@@ -1,5 +1,8 @@
-test = new Map();
+test = ['1', '2', '3'];
+testcopy = test;
 
-test.set("deleted msg", {'message': 'this is the message', 'date': 'this is the date'})
+test1 = testcopy.slice(1).join(' ');
 
-console.log(test.get("deleted msg").date);
+console.log(test);
+console.log(test1);
+console.log(testcopy);
