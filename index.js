@@ -41,7 +41,7 @@ bot.on('message', message => {
 		const cmd = args.shift().toLowerCase();
 
 		if(cmd == 'snipe') {
-			dmessage = deletedMsg.get('deleted msg').content;
+			dmessage = deletedMsg.get('deleted msg');
 			dauthor = deletedMsg.get('deleted msg').author;
 			dcreated = deletedMsg.get('deleted msg').created;
 			const DEmbed = new Discord.MessageEmbed()
