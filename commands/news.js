@@ -55,6 +55,7 @@ module.exports = {
 
         if(args[0] == 'top-headlines') {
             params = `?country=us`;
+            api = `https://newsapi.org/v2/${args[0]}`; 
             if(args[2]) {
                 params = `?country=${args[1]}&category=&${args[2]}`;
                 api = `https://newsapi.org/v2/${args[0]}`; 
