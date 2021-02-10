@@ -29,14 +29,21 @@ module.exports = {
             .setTitle('Parameters')
             .addFields(
                 {
-                    name: `Countries (Param 1)`, value: `\`ae\` \`ar\` \`at\` \`au\` \`be\` \`bg\` \`br\` \`eg\` \`fr\` \`gb\` \`gr\` \`hk\` 
+                    name: `Possible Commands`, value: `$news top-headlines <country (default: us)> <category (optional)>
+                    $news everything <keywords (optional)>`
+                },
+                {
+                    name: `Type (Param 1)`, value: `\`top-headlines\` \`everything\``
+                },
+                {
+                    name: `Countries (Param 2)`, value: `\`ae\` \`ar\` \`at\` \`au\` \`be\` \`bg\` \`br\` \`eg\` \`fr\` \`gb\` \`gr\` \`hk\` 
                     \`ca\` \`ch\` \`cn\` \`co\` \`cu\` \`cz\` \`de\` \`kr\` \`lt\` \`lv\` \`ma\` \`mx\`
                     \`hu\` \`id\` \`ie\` \`il\` \`in\` \`it\` \`jp\` \`pt\` \`ro\` \`rs\` \`ru\` \`sa\`
                     \`my\` \`ng\` \`nl\` \`no\` \`nz\` \`ph\` \`pl\` \`ua\` \`us\` \`ve\` \`za\`
                     \`se\` \`sg\` \`si\` \`sk\` \`th\` \`tr\` \`tw\``
                 },
                 {
-                    name: `Categories (Param 2)`, value: `\`business\` \`entertainment\` \`general\` \`health\` 
+                    name: `Categories (Param 3)`, value: `\`business\` \`entertainment\` \`general\` \`health\` 
                     \`science\` \`sports\` \`technology\``
                 },
             );
@@ -49,7 +56,7 @@ module.exports = {
         }
 
         key = '&apiKey=1b28b79af51a4d28816452334d1dee0f';
-        params = `?country=${args[1] || defaultCountry}${defaultCategory}`;
+        params = `?country=${arg[0]}${defaultCategory}`;
         api = `https://newsapi.org/v2/top-headlines`;
 
         call = api + params + key
