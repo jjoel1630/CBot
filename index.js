@@ -8,6 +8,7 @@ const request = require('request');
 const Duration = require('humanize-duration');
 const config = require('./config.json');
 const help = require('./commands/help');
+const { clearScreenDown } = require('readline');
 
 
 //clients
@@ -61,6 +62,7 @@ bot.on('message', message => {
 			.setThumbnail(message.author.avatarURL());
 			message.channel.send(DEmbed);
 		} else {
+			console.log(message);
 			if(bot.aliases.get(cmd)) {
 				const command = bot.commands.get(bot.aliases.get(cmd));
 				command.execute(message, args, bot, Discord, Duration, cheerio); 
