@@ -40,7 +40,7 @@ bot.on('message', message => {
 		let args = message.content.substring(config.prefix.length).split(' ');
 		const cmd = args.shift().toLowerCase();
 
-		if(cmd == 'snipe' && deletedMsg.get("delted msg") != undefined) {
+		if(cmd == 'snipe') {
 			dmessage = deletedMsg.get('deleted msg').dcontent;
 			dauthor = deletedMsg.get('deleted msg').person;
 			dcreated = deletedMsg.get('deleted msg').created;
