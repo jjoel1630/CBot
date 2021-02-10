@@ -29,8 +29,8 @@ module.exports = {
             .setTitle('Parameters')
             .addFields(
                 {
-                    name: `Possible Commands`, value: `$news top-headlines <country (default: us)> <category (optional)>
-                    $news everything <keywords (optional)>`
+                    name: `Possible Commands`, value: `\`$news top-headlines <country (default: us)> <category (optional)>\`
+                    \`$news everything <keywords (optional)>\``
                 },
                 {
                     name: `Type (Param 1)`, value: `\`top-headlines\` \`everything\``
