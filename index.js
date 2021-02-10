@@ -48,7 +48,7 @@ bot.on('message', message => {
 			.setTitle('Last Deleted Message')
 			.addFields( 
 				{
-					name: `Message content`, value: `test`
+					name: `Message content`, value: `${dmessage}`
 				},
 				{
 					name: `Author`, value: `${dauthor}`
