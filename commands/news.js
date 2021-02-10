@@ -5,7 +5,7 @@ module.exports = {
     name: 'news',
     description: 'news',
     aliases: ['news'],
-    execute(message=message, args=args, bot=bot) {
+    execute(message=message, args=args, bot=bot, Discord=Discord) {
         var request = new XMLHttpRequest();
 
         // if(!args[1]) {
@@ -13,11 +13,40 @@ module.exports = {
         //     return;
         // }
 
-        defaultCountry = 'us'
-        defaultCategory = 'business'
+        // defaultCountry = 'us';
+        // defaultCategory = '&category=business';
+
+        // if(!args[3]) {
+        //     defaultCategory = '';
+        // }
+
+        // if(args[0] === 'top' || 'topheadlines') {
+        //     args[0] = 'top-headlines';
+        // }
+
+        if(arg[0] == 'help') {
+            const Newsembed = new Discord.MessageEmbed()
+            .setTitle('Valid Countries:')
+            .addFields(
+                {
+                    name: `Countries`, value: `\`ae\` \`ar\` \`at\` \`au\` \`be\` \`bg\` \`br\` 
+                    \`ca\` \`ch\` \`cn\` \`co\` \`cu\` \`cz \`de\` \`eg\` \`fr\` \`gb\` \`gr\` \`hk\` 
+                    \`hu\` \`id\` \`ie\` \`il\` \`in\` \`it\` \`jp\` \`kr\` \`lt\` \`lv\` \`ma\` \`mx\`
+                    \`my\` \`ng\` \`nl\` \`no\` \`nz\` \`ph\` \`pl\` \`pt\` \`ro\` \`rs\` \`ru\` \`sa\` 
+                    \`se\` \`sg\` \`si\` \`sk\` \`th\` \`tr\` \`tw\` \`ua\` \`us\` \`ve\` \`za\``
+                },
+            );
+            message.channel.send(Newsembed);
+            return;
+        }
+
+        if(!args[2]) {
+            message.channel.send('$news <country ex. us, ru, ch> <category ex. health, business>');
+            message.channel.send('valid countries: ae ar at au be bg br ca ch cn co cu cz de eg fr gb gr hk hu id ie il in it jp kr lt lv ma mx my ng nl no nz ph pl pt ro rs ru sa se sg si sk th tr tw ua us ve za');
+        }
 
         key = '&apiKey=1b28b79af51a4d28816452334d1dee0f';
-        params = `?country=${args[0] || defaultCountry}&category=${args[1] || defaultCategory}`;
+        params = `?country=${args[1] || defaultCountry}${defaultCategory}`;
         api = `https://newsapi.org/v2/top-headlines`;
 
         call = api + params + key
