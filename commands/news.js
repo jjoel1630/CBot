@@ -18,7 +18,7 @@ module.exports = {
             .addFields(
                 {
                     name: `Possible Commands`, value: `\`$news top-headlines <country (default: us)> <category (optional)>\`
-                    \`$news everything <keywords (optional)>\``
+                    \`$news everything <keywords>\``
                 },
                 {
                     name: `Type (Param 1)`, value: `\`top-headlines\` \`everything\``
@@ -45,9 +45,7 @@ module.exports = {
                 params = `?q=${args.slice(1).join(' ')}`;
                 api = `https://newsapi.org/v2/${args[0]}`;
             } else {
-                key = '&apiKey=1b28b79af51a4d28816452334d1dee0f';
-                params = ``;
-                api = `https://newsapi.org/v2/${args[0]}`;
+                message.channel.send('Please provide a keyword to search for your article');
             }
         }
 
