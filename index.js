@@ -72,7 +72,6 @@ bot.on('message', message => {
 
 bot.on("messageDelete", (message) => {
 	if (message.author.bot) return;
-	deletedMsg.delete('deleted msg');
 	deletedMsg.set("deleted msg", {'content': message.content, 'author': message.author.tag, 'created': message.createdAt});
 });
 
