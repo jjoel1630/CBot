@@ -40,26 +40,25 @@ bot.on('message', message => {
 		let args = message.content.substring(config.prefix.length).split(' ');
 		const cmd = args.shift().toLowerCase();
 
-		if(cmd == 'snipe') {
-			console.log(deletedMsg.get('deleted msg'));
-			// dmessage = deletedMsg.get('deleted msg').dcontent;
-			// dauthor = deletedMsg.get('deleted msg').person;
-			// dcreated = deletedMsg.get('deleted msg').created;
-			// const DEmbed = new Discord.MessageEmbed()
-			// .setTitle('Last Deleted Message')
-			// .addFields( 
-			// 	{
-			// 		name: `Message content`, value: `test`
-			// 	},
-			// 	{
-			// 		name: `Author`, value: `${dauthor}`
-			// 	},
-			// 	{
-			// 		name: `Created at`, value: `${dcreated}`
-			// 	},
-			// )
-			// .setThumbnail(message.author.avatarURL());
-			// message.channel.send(DEmbed);
+		if(cmd == 'snipe' && deletedMsg.get("delted msg")) {
+			dmessage = deletedMsg.get('deleted msg').dcontent;
+			dauthor = deletedMsg.get('deleted msg').person;
+			dcreated = deletedMsg.get('deleted msg').created;
+			const DEmbed = new Discord.MessageEmbed()
+			.setTitle('Last Deleted Message')
+			.addFields( 
+				{
+					name: `Message content`, value: `test`
+				},
+				{
+					name: `Author`, value: `${dauthor}`
+				},
+				{
+					name: `Created at`, value: `${dcreated}`
+				},
+			)
+			.setThumbnail(message.author.avatarURL());
+			message.channel.send(DEmbed);
 		} else {
 			if(bot.aliases.get(cmd)) {
 				const command = bot.commands.get(bot.aliases.get(cmd));
