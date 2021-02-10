@@ -26,14 +26,17 @@ module.exports = {
 
         if(args[0] == 'help') {
             const Newsembed = new Discord.MessageEmbed()
-            .setTitle('Valid Countries:')
+            .setTitle('Parameters')
             .addFields(
                 {
-                    name: `Countries`, value: `\`ae\` \`ar\` \`at\` \`au\` \`be\` \`bg\` \`br\` 
-                    \`ca\` \`ch\` \`cn\` \`co\` \`cu\` \`cz\` \`de\` \`eg\` \`fr\` \`gb\` \`gr\` \`hk\` 
-                    \`hu\` \`id\` \`ie\` \`il\` \`in\` \`it\` \`jp\` \`kr\` \`lt\` \`lv\` \`ma\` \`mx\`
-                    \`my\` \`ng\` \`nl\` \`no\` \`nz\` \`ph\` \`pl\` \`pt\` \`ro\` \`rs\` \`ru\` \`sa\` 
-                    \`se\` \`sg\` \`si\` \`sk\` \`th\` \`tr\` \`tw\` \`ua\` \`us\` \`ve\` \`za\``
+                    name: `Countries (Param 1)`, value: `\`ae\` \`ar\` \`at\` \`au\` \`be\` \`bg\` \`br\` \`eg\` \`fr\` \`gb\` \`gr\` \`hk\` 
+                    \`ca\` \`ch\` \`cn\` \`co\` \`cu\` \`cz\` \`de\` \`kr\` \`lt\` \`lv\` \`ma\` \`mx\`
+                    \`hu\` \`id\` \`ie\` \`il\` \`in\` \`it\` \`jp\` \`pt\` \`ro\` \`rs\` \`ru\` \`sa\`
+                    \`my\` \`ng\` \`nl\` \`no\` \`nz\` \`ph\` \`pl\` \`ua\` \`us\` \`ve\` \`za\`
+                    \`se\` \`sg\` \`si\` \`sk\` \`th\` \`tr\` \`tw\``
+                },
+                {
+                    name: `Categories (Param 2)`, value: `\`business\` \`entertainment\` \`general\` \`health\` \`science\` \`sports\` \`technology\``
                 },
             );
             message.channel.send(Newsembed);
@@ -41,8 +44,7 @@ module.exports = {
         }
 
         if(!args[2]) {
-            message.channel.send('$news <country ex. us, ru, ch> <category ex. health, business>');
-            message.channel.send('valid countries: ae ar at au be bg br ca ch cn co cu cz de eg fr gb gr hk hu id ie il in it jp kr lt lv ma mx my ng nl no nz ph pl pt ro rs ru sa se sg si sk th tr tw ua us ve za');
+            message.channel.send('Try $news help');
         }
 
         key = '&apiKey=1b28b79af51a4d28816452334d1dee0f';
