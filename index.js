@@ -41,14 +41,14 @@ bot.on('message', message => {
 		const cmd = args.shift().toLowerCase();
 
 		if(cmd == 'snipe') {
-			dmessage = deletedMsg.get('deleted msg').dcontent;
+			// dmessage = deletedMsg.get('deleted msg').dcontent;
 			dauthor = deletedMsg.get('deleted msg').person;
 			dcreated = deletedMsg.get('deleted msg').created;
 			const DEmbed = new Discord.MessageEmbed()
 			.setTitle('Last Deleted Message')
 			.addFields( 
 				{
-					name: `Message content`, value: `${dmessage}`
+					name: `Message content`, value: `test`
 				},
 				{
 					name: `Author`, value: `${dauthor}`
