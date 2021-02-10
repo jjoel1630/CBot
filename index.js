@@ -41,7 +41,7 @@ bot.on('message', message => {
 		const cmd = args.shift().toLowerCase();
 
 		if(cmd == 'snipe') {
-			dmessage = deletedMsg.get('deleted msg').message;
+			dmessage = deletedMsg.get('deleted msg').content;
 			dauthor = deletedMsg.get('deleted msg').author;
 			dcreated = deletedMsg.get('deleted msg').created;
 			const DEmbed = new Discord.MessageEmbed()
@@ -73,7 +73,9 @@ bot.on('message', message => {
 bot.on("messageDelete", (message) => {
 	if (message.author.bot) return;
 	deletedMsg.delete('deleted msg');
-	deletedMsg.set("deleted msg", {'message': message.content, 'author': message.author.tag, 'created': message.createdAt});
+	console.log(message);
+	deletedMsg.set("deleted msg", {'content': message.content, 'author': message.author.tag, 'created': message.createdAt});
+	console.log(deletedMsg.content);
 });
 
 bot.login(config.token);
