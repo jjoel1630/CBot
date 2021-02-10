@@ -53,6 +53,8 @@ module.exports = {
 
         call = api + params + key
 
+        console.log(call);
+
         request.open('GET', call, true)
         request.onload = function () {
             var data = JSON.parse(this.responseText);
