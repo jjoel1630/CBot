@@ -9,8 +9,8 @@ module.exports = {
         var request = new XMLHttpRequest();
 
         key = '&apiKey=1b28b79af51a4d28816452334d1dee0f'
-        params = '?country=us&category=business'
-        api = 'https://newsapi.org/v2/top-headlines'
+        params = `?country=${args[0]}&category=${args[1]}`
+        api = `https://newsapi.org/v2/top-headlines`
 
         call = api + params + key
 
