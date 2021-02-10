@@ -8,10 +8,10 @@ module.exports = {
     execute(message=message, args=args, bot=bot) {
         var request = new XMLHttpRequest();
 
-        if(!args[1]) {
-            message.channel.send('$news <country ex. us, ru, ch> <category ex. health, business>');
-            return;
-        }
+        // if(!args[1]) {
+        //     message.channel.send('$news <country ex. us, ru, ch> <category ex. health, business>');
+        //     return;
+        // }
 
         defaultCountry = 'us'
         defaultCategory = 'business'
