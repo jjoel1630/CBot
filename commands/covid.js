@@ -51,7 +51,6 @@ module.exports = {
 
                 message.channel.send(Globalembed);
             }else if(args[0] && args[0].toLowerCase() === 'countries') {
-                console.log('countries');
                 for(let x = 0; x < data.length; x++) {
                     countries = countries + `\`${data[x].Slug}\``
                 }
@@ -59,7 +58,6 @@ module.exports = {
                 let countriesString1 = countriesList.splice(data.length / 2).join(" ")
                 let countriesString2 = countriesList.join(" ")
                 message.channel.send(countriesString1);
-                message.channel.send(countriesString2);
             }
         }
         request.send()
