@@ -103,7 +103,7 @@ module.exports = {
                     const Newsembed = new Discord.MessageEmbed()
                     .setTitle(`Article Title: ${articleTitle}`)
                     .setDescription(`Description: ${articleDescription}`)
-                    // .setImage(articleImage)
+                    .setImage(articleImage)
                     // .setUrl(articleUrl);
                     .addFields(
                         {
