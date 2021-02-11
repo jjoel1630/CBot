@@ -21,9 +21,11 @@ module.exports = {
         request.onload = function () {
             var data = JSON.parse(this.responseText);
 
+            var locations = locationstr.split(", ");
+
             const Weatherembed = new Discord.MessageEmbed()
             .setTitle(`Current Weather`)
-            .setDescription(`Current weather based on your given zipcode, and country code: ${location}`)
+            .setDescription(`Current weather based on your given zipcode, and country code: \`${locations[0]}\` \`${locations[1]}\``)
             .addFields(
                 {
                     name: `** **`, value: `** **`
@@ -51,9 +53,10 @@ module.exports = {
                 },
             )
             .addField('** **', '** **', true)
-            .setTimestamp()
             .setColor('#add8e6')
-            .setFooter('Getting the wrong info? Contact the owner.');
+            .setFooter('Getting the wrong info? Contact the owner.')
+            .addField('** **', '** **', true)
+            .setTimestamp()
 
             message.channel.send(Weatherembed);
         }
