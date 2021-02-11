@@ -58,8 +58,9 @@ module.exports = {
                 let countriesList = countries.split(' ');
                 let countriesString1 = countriesList.splice(data.length / 2).join(" ")
                 let countriesString2 = countriesList.join(" ")
-                message.channel.send(countriesString1);
-                message.channel.send(countriesString2);
+                console.log(CountriesList);
+                console.log(countriesString1);
+                console.log(countriesString2);
             }
         }
         request.send()
