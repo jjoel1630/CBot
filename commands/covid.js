@@ -22,7 +22,11 @@ module.exports = {
         request.open('GET', api, true)
         request.setRequestHeader('X-Access-Token', '5cf9dfd5-3449-485e-b5ae-70a60e997864')
         request.onload = function () {
-            var data = JSON.parse(this.responseText);
+            try {
+                var data = JSON.parse(this.responseText);
+            } catch(err) {
+                message.channel.send('There was an error processing your request. Please try again in a few minutes. If you are still facing issues, please contact the owner');
+            }
 
             if(args[0] && args[0] === 'global') {
                 const Globalembed = new Discord.MessageEmbed()
