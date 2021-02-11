@@ -1,0 +1,52 @@
+const help = require("./help");
+
+module.exports = {
+    name: 'covid',
+    description: 'covid',
+    aliases: ['covid', 'c19'],
+    execute(message=message, args=args, bot=bot, Discord=Discord) {
+        var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+
+        var request = new XMLHttpRequest();
+
+        request.open('GET', 'https://api.covid19api.com/summary', true)
+        request.setRequestHeader('X-Access-Token', '5cf9dfd5-3449-485e-b5ae-70a60e997864')
+        request.onload = function () {
+            var data = JSON.parse(this.responseText);
+
+            if(args[0] && args[0] === 'global') {
+                const Globalembed = new Discord.MessageEmbed()
+                .setTitle('Global Covid Summary')
+                .setTimestamp()
+                .addFields(
+                    {
+                        name: `** **`, value: `** **`
+                    },
+                    {
+                        name: `NewConfirmed`, value: `${data.Global.NewConfirmed}`
+                    },
+                    {
+                        name: `TotalConfirmed`, value: `${data.Global.TotalConfirmed}`
+                    },
+                    {
+                        name: `NewDeaths`, value: `${data.Global.NewDeaths}`
+                    },
+                    {
+                        name: `TotalDeaths`, value: `${data.Global.TotalDeaths}`
+                    },
+                    {
+                        name: `NewRecovered`, value: `${data.Global.NewRecovered}`
+                    },
+                    {
+                        name: `TotalRecovered`, value: `${data.Global.TotalRecovered}`
+                    },
+                )
+                .setColor('#d64545')
+                .setImage('https://ewscripps.brightspotcdn.com/dims4/default/7671677/2147483647/strip/true/crop/1303x733+15+0/resize/1280x720!/quality/90/?url=https%3A%2F%2Fewscripps.brightspotcdn.com%2F0a%2Ff2%2F72b1b4d94794992a0772cb593ce5%2Fscreen-shot-2020-02-25-at-10.49.27%20AM.png');
+
+                message.channel.send(Globalembed);
+            }
+        }
+        request.send()
+    }
+}

@@ -8,6 +8,15 @@ module.exports = {
     execute(message=message, args=args, bot=bot, Discord=Discord) {
         var request = new XMLHttpRequest();
 
+        if(args[0].toLowerCase() === 'help') {
+            message.channel.send('$weather <zip code> <2 letter country (ISO alpha-2) code>');
+        } 
+
+        if(!args[1]) {
+            message.channel.send('try $weather help');
+            return;
+        }
+
         var key = '&appid=2f1cae5eaed2d47e492553f8036a4f34';
         var params = '?';
         var api = 'https://api.openweathermap.org/data/2.5/forecast';
