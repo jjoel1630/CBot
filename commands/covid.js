@@ -54,9 +54,9 @@ module.exports = {
                 for(let x = 0; x < data.length; x++) {
                     countries = countries + `\`${data[x].Slug}\``
                 }
-                let splitIndex = Math.floor(countries.length / 2)
-                console.log(splitIndex);
                 let countriesList = countries.split(' ');
+                let splitIndex = Math.floor(countriesList.length / 2)
+                console.log(splitIndex);
                 let countriesString1 = countriesList.splice(splitIndex).join(" ")
                 console.log(countriesString1);
                 let countriesString2 = countriesList.join(" ")
