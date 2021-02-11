@@ -84,6 +84,14 @@ module.exports = {
                 articleNum = Math.floor(Math.random() * 10)
 
                 var article = JSON.stringify(data.articles[articleNum], null, 4)
+                var articleSource = JSON.stringify(data.articles[articleNum].source.name, null, 4)
+                var articleAuthor = JSON.stringify(data.articles[articleNum].author, null, 4)
+                var articleTitle = JSON.stringify(data.articles[articleNum].title, null, 4)
+                var articleDescription = JSON.stringify(data.articles[articleNum].description, null, 4)
+                var articleUrl = JSON.stringify(data.articles[articleNum].url, null, 4)
+                var articleImage = JSON.stringify(data.articles[articleNum].urlToImage, null, 4)
+                var articleTime = JSON.stringify(data.articles[articleNum].publishedAt, null, 4)
+                var articleContent = JSON.stringify(data.articles[articleNum].content, null, 4)
 
                 // fs.writeFile('news.txt', article, function(err) {
                 //     if(err) {
@@ -93,7 +101,24 @@ module.exports = {
 
                 if(request.status >= 200 && request.status < 400) {
                     const Newsembed = new Discord.MessageEmbed()
-                    .setTitle(`Article Title: ${article.title}`)
+                    .setTitle(`Article Title: ${articleTitle}`)
+                    .addFields(
+                        {
+                            name: `From`, value: `${articleSource}`
+                        },
+                        {
+                            name: `Published at:`, value: `${articleTime}`
+                        },
+                        {
+                            name: `By:`, value: `${articleAuthor}`
+                        },
+                        {
+                            name: `Content:`, value: `${articleContent}`
+                        },
+                    )
+                    .setDescription(`Description: ${articleDescription}`)
+                    .setImage(articleImage)
+                    .setUrl(articleUrl)
                     message.channel.send(Newsembed);
                 } else {
                     console.log('error getting request');
