@@ -1,8 +1,6 @@
-test = ['1', '2', '3'];
-testcopy = test;
+var test = "'asdasdasdasdasdasdasadsdasdads'"
 
-test1 = testcopy.slice(1).join(' ');
+var test = test.slice(0, -1);
+var test = test.substring(1);
 
 console.log(test);
-console.log(test1);
-console.log(testcopy);
