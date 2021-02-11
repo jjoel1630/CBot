@@ -118,7 +118,7 @@ module.exports = {
                     )
                     .setDescription(`Description: ${articleDescription}`)
                     .setImage(articleImage)
-                    .setUrl(articleUrl)
+                    .setUrl(articleUrl);
                     message.channel.send(Newsembed);
                 } else {
                     console.log('error getting request');
