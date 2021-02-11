@@ -60,7 +60,7 @@ module.exports = {
                 var countriesString2 = countriesList.join(" ")
 
                 if(!args[1] || args[1] === '1') {
-                    const Countries1 = Discord.MessageEmbed()
+                    const Countries1 = new Discord.MessageEmbed()
                     .setTitle('Acceptable countries')
                     .addFields(
                         {
@@ -71,7 +71,7 @@ module.exports = {
 
                     message.channel.send(Countries1);
                 } if(args[1] === '2') {
-                    const Countries2 = Discord.MessageEmbed()
+                    const Countries2 = new Discord.MessageEmbed()
                     .setTitle('Acceptable countries')
                     .addFields(
                         {
