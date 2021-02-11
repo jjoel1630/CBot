@@ -44,7 +44,7 @@ module.exports = {
                     name: `Wind speed`, value: `${data.list[0].wind.speed} mph`
                 },
             )
-            .addTimestamp()
+            .setTimestamp()
             .setColor('#add8e6')
             .setFooter('Getting the wrong info? Contact the owner.');
 
