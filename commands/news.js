@@ -102,6 +102,9 @@ module.exports = {
                 if(request.status >= 200 && request.status < 400) {
                     const Newsembed = new Discord.MessageEmbed()
                     .setTitle(`Article Title: ${articleTitle}`)
+                    .setDescription(`Description: ${articleDescription}`)
+                    // .setImage(articleImage)
+                    // .setUrl(articleUrl);
                     .addFields(
                         {
                             name: `From`, value: `${articleSource}`
@@ -116,9 +119,6 @@ module.exports = {
                             name: `Content:`, value: `${articleContent}`
                         },
                     )
-                    .setDescription(`Description: ${articleDescription}`)
-                    .setImage(articleImage)
-                    .setUrl(articleUrl);
                     message.channel.send(Newsembed);
                 } else {
                     console.log('error getting request');
