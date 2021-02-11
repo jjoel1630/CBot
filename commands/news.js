@@ -92,7 +92,6 @@ module.exports = {
                 var articleImage = JSON.stringify(data.articles[articleNum].urlToImage, null, 4)
                 var articleTime = JSON.stringify(data.articles[articleNum].publishedAt, null, 4)
                 var articleContent = JSON.stringify(data.articles[articleNum].content, null, 4)
-                console.log(articleUrl);
 
                 // fs.writeFile('news.txt', article, function(err) {
                 //     if(err) {
@@ -105,11 +104,12 @@ module.exports = {
                     articleImage = articleImage.substring(1);
                     articleUrl = articleUrl.slice(0, -1);
                     articleUrl = articleUrl.substring(1);
+                    console.log(articleUrl);
                     const Newsembed = new Discord.MessageEmbed()
                     .setTitle(`Article Title: ${articleTitle}`)
+                    .setUrl(articleUrl)
                     .setDescription(`**Description:** ${articleDescription}`)
                     .setImage(articleImage)
-                    .setUrl(articleUrl)
                     .addFields(
                         {
                             name: `From`, value: `${articleSource}`
