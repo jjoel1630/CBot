@@ -17,7 +17,7 @@ module.exports = {
         }
 
         if(args[0] == 'help') {
-            const Newsembed = new Discord.MessageEmbed()
+            const Newshelpembed = new Discord.MessageEmbed()
             .setTitle('Parameters')
             .addFields(
                 {
@@ -39,7 +39,7 @@ module.exports = {
                     \`science\` \`sports\` \`technology\``
                 },
             );
-            message.channel.send(Newsembed);
+            message.channel.send(Newshelpembed);
             return;
         }
 
@@ -92,7 +92,9 @@ module.exports = {
                 // })
 
                 if(request.status >= 200 && request.status < 400) {
-                    message.channel.send(article);
+                    const Newsembed = new Discord.MessageEmbed()
+                    .setTitle(`Article Title: ${article.title}`)
+                    message.channel.send(Newsembed);
                 } else {
                     console.log('error getting request');
                 }
