@@ -58,7 +58,7 @@ module.exports = {
                 let countriesList = countries.split(' ');
                 let countriesString1 = countriesList.splice(data.length / 2).join(" ")
                 let countriesString2 = countriesList.join(" ")
-                console.log(CountriesList);
+                console.log(countriesList);
                 console.log(countriesString1);
                 console.log(countriesString2);
             }
