@@ -56,11 +56,11 @@ module.exports = {
                 }
                 try {
                     let countriesList = countries.split(' ');
-                    console.log(countriesList.length);
                     let splitIndex = Math.floor(countriesList.length / 2)
-                    console.log(splitIndex);
                     let countriesString1 = countriesList.splice(splitIndex).join(" ")
                     let countriesString2 = countriesList.join(" ")
+                    message.channel.send(countriesString1);
+                    message.channel.send(countriesString2);
                 } catch(err) {
                     message.channel.send(err);
                 }
