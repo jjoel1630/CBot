@@ -54,8 +54,9 @@ module.exports = {
                 for(let x = 0; x < data.length; x++) {
                     countries = countries + `\`${data[x].Slug}\``
                 }
+                let splitIndex = Math.floor(countries.length / 2)
                 let countriesList = countries.split(' ');
-                let countriesString1 = countriesList.splice(data.length / 2).join(" ")
+                let countriesString1 = countriesList.splice(splitIndex).join(" ")
                 let countriesString2 = countriesList.join(" ")
                 message.channel.send(countriesString1);
             }
