@@ -20,7 +20,7 @@ module.exports = {
 				message.channel.send("lmao you don't have the perms. HAHAHAHAHA.");
 				message.delete({ timeout: 100 }).catch(console.error);
 			}
-		} else if (parseInt(args[0]) >= 100000) {
+		} else if (parseInt(args[0]) >= 100) {
 			message.channel.send('are you tryna crash my computer?????');
 		} else {
 			message.channel.send(

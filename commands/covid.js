@@ -54,15 +54,13 @@ module.exports = {
                 for(let x = 0; x < data.length; x++) {
                     countries = countries + `\`${data[x].Slug}\` `
                 }
-                try {
-                    let countriesList = countries.split(' ');
-                    let splitIndex = Math.floor(countriesList.length / 2)
-                    let countriesString1 = countriesList.splice(splitIndex).join(" ")
-                    let countriesString2 = countriesList.join(" ")
-                    message.channel.send(countriesString1);
-                    message.channel.send(countriesString2);
-                } catch(err) {
-                    message.channel.send(err);
+                var countriesList = countries.split(' ');
+                var splitIndex = Math.floor(countriesList.length / 2)
+                var countriesString1 = countriesList.splice(splitIndex).join(" ")
+                var countriesString2 = countriesList.join(" ")
+
+                if(!args[1] || args[1] === '1') {
+                    const Countries1 = Discord.MessageEmbed()
                 }
             }
         }
