@@ -21,7 +21,7 @@ module.exports = {
         request.onload = function () {
             var data = JSON.parse(this.responseText);
 
-            var locations = locationstr.split(", ");
+            var locations = location.split(", ");
 
             const Weatherembed = new Discord.MessageEmbed()
             .setTitle(`Current Weather`)
