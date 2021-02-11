@@ -26,7 +26,7 @@ module.exports = {
             .setDescription(`Here is the current weather based on your given zipcode, and country code: ${location}`)
             .addFields(
                 {
-                    name: `Temperature`, value: `${data.list[0].main.temp}° F`
+                    name: `Temperature`, value: `${data.list[0].main.temp}° F`, inline: true
                 },
                 {
                     name: `Min temp`, value: `${data.list[0].main.temp_min}° F`, inline: true
@@ -35,7 +35,10 @@ module.exports = {
                     name: `Max temp`, value: `${data.list[0].main.temp_max}° F`, inline: true
                 },
                 {
-                    name: `Weather`, value: `${data.list[0].weather[0].main}`
+                    name: `** **`, value: `** **`
+                },
+                {
+                    name: `Weather`, value: `${data.list[0].weather[0].main}`, inline: true
                 },
                 {
                     name: `Weather description`, value: `${data.list[0].weather[0].description}`, inline: true
