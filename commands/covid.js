@@ -61,6 +61,26 @@ module.exports = {
 
                 if(!args[1] || args[1] === '1') {
                     const Countries1 = Discord.MessageEmbed()
+                    .setTitle('Acceptable countries')
+                    .addFields(
+                        {
+                            name: `Countries`, value: `${countriesString1}`
+                        },
+                    )
+                    .setFooter('Page 1 of 2');
+
+                    message.channel.send(Countries1);
+                } if(args[1] === '2') {
+                    const Countries2 = Discord.MessageEmbed()
+                    .setTitle('Acceptable countries')
+                    .addFields(
+                        {
+                            name: `Countries`, value: `${countriesString2}`
+                        },
+                    )
+                    .setFooter('Page 1 of 2');
+
+                    message.channel.send(Countries2);
                 }
             }
         }
