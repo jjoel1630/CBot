@@ -102,11 +102,13 @@ module.exports = {
                 if(request.status >= 200 && request.status < 400) {
                     articleImage = articleImage.slice(0, -1);
                     articleImage = articleImage.substring(1);
+                    articleUrl = articleUrl.slice(0, -1);
+                    articleUrl = articleUrl.substring(1);
                     const Newsembed = new Discord.MessageEmbed()
                     .setTitle(`Article Title: ${articleTitle}`)
                     .setDescription(`**Description:** ${articleDescription}`)
                     .setImage(articleImage)
-                    // .setUrl(articleUrl);
+                    .setUrl(articleUrl)
                     .addFields(
                         {
                             name: `From`, value: `${articleSource}`
