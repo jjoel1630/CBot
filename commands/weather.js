@@ -23,8 +23,11 @@ module.exports = {
 
             const Weatherembed = new Discord.MessageEmbed()
             .setTitle(`Current Weather`)
-            .setDescription(`Here is the current weather based on your given zipcode, and country code: ${location}`)
+            .setDescription(`Current weather based on your given zipcode, and country code: ${location}`)
             .addFields(
+                {
+                    name: `** **`, value: `** **`
+                },
                 {
                     name: `Temperature`, value: `${data.list[0].main.temp}° F`, inline: true
                 },
