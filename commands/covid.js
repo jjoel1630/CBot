@@ -55,9 +55,10 @@ module.exports = {
                     countries = countries + `\`${data[x].Slug}\` `
                 }
                 var countriesList = countries.split(' ');
-                var splitIndex = Math.floor(countriesList.length / 2)
+                var splitIndex = Math.floor(countriesList.length / 3)
                 var countriesString1 = countriesList.splice(splitIndex).join(" ")
-                var countriesString2 = countriesList.join(" ")
+                var countriesString2 = countriesList.splice(splitIndex*2).join(" ")
+                var countriesString3 = countriesList.join(" ")
 
                 if(!args[1] || args[1] === '1') {
                     const Countries1 = new Discord.MessageEmbed()
@@ -67,10 +68,10 @@ module.exports = {
                             name: `Countries`, value: `${countriesString1}`
                         },
                     )
-                    .setFooter('Page 1 of 2');
+                    .setFooter('Page 1 of 3');
 
                     message.channel.send(Countries1);
-                } if(args[1] === '2') {
+                } else if(args[1] === '2') {
                     const Countries2 = new Discord.MessageEmbed()
                     .setTitle('Acceptable countries')
                     .addFields(
@@ -78,9 +79,20 @@ module.exports = {
                             name: `Countries`, value: `${countriesString2}`
                         },
                     )
-                    .setFooter('Page 1 of 2');
+                    .setFooter('Page 2 of 3');
 
                     message.channel.send(Countries2);
+                } else if(args[1] === '3') {
+                    const Countries3 = new Discord.MessageEmbed()
+                    .setTitle('Acceptable countries')
+                    .addFields(
+                        {
+                            name: `Countries`, value: `${countriesString3}`
+                        },
+                    )
+                    .setFooter('Page 3 of 3');
+
+                    message.channel.send(Countries3);
                 }
             }
         }
