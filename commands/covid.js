@@ -63,8 +63,8 @@ module.exports = {
                 var countriesList = countries.split(' ');
                 countriesList.sort();
                 var splitIndex = Math.floor(countriesList.length / 2)
-                var countriesString1 = countriesList.splice(splitIndex).join(" ")
-                var countriesString2 = countriesList.join(" ")
+                var countriesString2 = countriesList.splice(splitIndex).join(" ")
+                var countriesString1 = countriesList.join(" ")
 
                 if(!args[1] || args[1] === '1') {
                     message.channel.send(countriesString1 + " page 1 of 2");
