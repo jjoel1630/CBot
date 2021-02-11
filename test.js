@@ -1,6 +1,8 @@
-var test = "'asdasdasdasdasdasdasadsdasdads'"
+var test = 'test car bus bike scooter plane boat ship';
+test1 = test.split(' ');
 
-var test = test.slice(0, -1);
-var test = test.substring(1);
+test2 = test1.splice(3).join(" ");
+test1 = test1.join(" ");
 
-console.log(test);
+console.log(test1);
+console.log(test2);

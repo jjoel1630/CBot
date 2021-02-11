@@ -15,7 +15,6 @@ module.exports = {
             api = 'https://api.covid19api.com/summary'
         } else if(args[0] && args[0] === 'countries') {
             api = 'https://api.covid19api.com/countries'
-            console.log('countries');
         }
 
         request.open('GET', api, true)
@@ -56,8 +55,11 @@ module.exports = {
                 for(let x = 0; x < data.length; x++) {
                     countries = countries + `\`${data[x].Slug}\``
                 }
-                console.log(countries);
-                message.channel.send(countries);
+                let countriesList = countries.split(' ');
+                let countriesString1 = countriesList.splice(data.length / 2).join(" ")
+                let countriesString2 = countriesList.join(" ")
+                message.channel.send(countriesString1);
+                message.channel.send(countriesString2);
             }
         }
         request.send()
