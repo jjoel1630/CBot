@@ -23,25 +23,25 @@ module.exports = {
 
             const Weatherembed = new Discord.MessageEmbed()
             .setTitle(`Current Weather`)
-            .setDescription(`Here is the current weather based on your given zipcode, and country code: ${args[0]}, ${args[1]}`)
+            .setDescription(`Here is the current weather based on your given zipcode, and country code: ${location}`)
             .addFields(
                 {
                     name: `Temperature`, value: `${data.list[0].main.temp}° F`
                 },
                 {
-                    name: `Min temp`, value: `${data.list[0].main.temp_min}° F`, inline=true
+                    name: `Min temp`, value: `${data.list[0].main.temp_min}° F`, inline: true
                 },
                 {
-                    name: `Max temp`, value: `${data.list[0].main.temp_max}° F`, inline=true
+                    name: `Max temp`, value: `${data.list[0].main.temp_max}° F`, inline: true
                 },
                 {
-                    name: `Weather`, value: `${data.list[0].weather.main}`
+                    name: `Weather`, value: `${data.list[0].weather[0].main}`
                 },
                 {
-                    name: `Weather description`, value: `${data.list[0].weather.description}`, inline=true
+                    name: `Weather description`, value: `${data.list[0].weather[0].description}`, inline: true
                 },
                 {
-                    name: `Wind speed`, value: `${data.list[0].wind.speed} mph`, inline=true
+                    name: `Wind speed`, value: `${data.list[0].wind.speed} mph`, inline: true
                 },
             )
             .addField('** **', '** **', true)
