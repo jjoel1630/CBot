@@ -54,13 +54,16 @@ module.exports = {
                 for(let x = 0; x < data.length; x++) {
                     countries = countries + `\`${data[x].Slug}\``
                 }
-                let countriesList = countries.split(' ');
-                let splitIndex = Math.floor(countriesList.length / 2)
-                console.log(splitIndex);
-                let countriesString1 = countriesList.splice(splitIndex).join(" ")
-                console.log(countriesString1);
-                let countriesString2 = countriesList.join(" ")
-                message.channel.send(countriesString1);
+                try {
+                    let countriesList = countries.split(' ');
+                    console.log(countriesList.length);
+                    let splitIndex = Math.floor(countriesList.length / 2)
+                    console.log(splitIndex);
+                    let countriesString1 = countriesList.splice(splitIndex).join(" ")
+                    let countriesString2 = countriesList.join(" ")
+                } catch(err) {
+                    message.channel.send(err);
+                }
             }
         }
         request.send()
