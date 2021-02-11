@@ -51,9 +51,7 @@ module.exports = {
             } else {
                 message.channel.send('Please provide a keyword to search for your article');
             }
-        }
-
-        if(args[0] == 'top-headlines') {
+        } else if (args[0] == 'top-headlines') {
             params = `?country=us`;
             api = `https://newsapi.org/v2/${args[0]}`; 
             if(args[2]) {
@@ -66,6 +64,8 @@ module.exports = {
                 params = `?country=${args[1]}`;
                 api = `https://newsapi.org/v2/${args[0]}`; 
             }
+        } else {
+            message.channel.send('try $news help');
         }
 
         call = api + params + key
@@ -74,27 +74,30 @@ module.exports = {
 
         request.open('GET', call, true)
         request.onload = function () {
-            var data = JSON.parse(this.responseText);
+            try {
+                var data = JSON.parse(this.responseText);
 
-            if(!data) {
-                message.channel.send('$news <country ex. us, ru, ch> <category ex. health, business> invaild country or category');
-                return;
-            }
+                if(!data) {
+                    message.channel.send('try $news help');
+                }
 
-            articleNum = Math.floor(Math.random() * 10)
+                articleNum = Math.floor(Math.random() * 10)
 
-            var article = JSON.stringify(data.articles[articleNum], null, 4)
+                var article = JSON.stringify(data.articles[articleNum], null, 4)
 
-            // fs.writeFile('news.txt', article, function(err) {
-            //     if(err) {
-            //         return console.error(err);
-            //     }
-            // })
+                // fs.writeFile('news.txt', article, function(err) {
+                //     if(err) {
+                //         return console.error(err);
+                //     }
+                // })
 
-            if(request.status >= 200 && request.status < 400) {
-                message.channel.send(article);
-            } else {
-                console.log('error getting request');
+                if(request.status >= 200 && request.status < 400) {
+                    message.channel.send(article);
+                } else {
+                    console.log('error getting request');
+                }
+            } catch(err) {
+                console.error(err);
             }
         }
         request.send()
