@@ -92,6 +92,7 @@ module.exports = {
                 var articleImage = JSON.stringify(data.articles[articleNum].urlToImage, null, 4)
                 var articleTime = JSON.stringify(data.articles[articleNum].publishedAt, null, 4)
                 var articleContent = JSON.stringify(data.articles[articleNum].content, null, 4)
+                console.log(articleUrl);
 
                 // fs.writeFile('news.txt', article, function(err) {
                 //     if(err) {
