@@ -29,21 +29,22 @@ module.exports = {
                     name: `Temperature`, value: `${data.list[0].main.temp}° F`
                 },
                 {
-                    name: `Min temp`, value: `${data.list[0].main.temp_min}° F`
+                    name: `Min temp`, value: `${data.list[0].main.temp_min}° F`, inline=true
                 },
                 {
-                    name: `Max temp`, value: `${data.list[0].main.temp_max}° F`
+                    name: `Max temp`, value: `${data.list[0].main.temp_max}° F`, inline=true
                 },
                 {
                     name: `Weather`, value: `${data.list[0].weather.main}`
                 },
                 {
-                    name: `Weather description`, value: `${data.list[0].weather.description}`
+                    name: `Weather description`, value: `${data.list[0].weather.description}`, inline=true
                 },
                 {
-                    name: `Wind speed`, value: `${data.list[0].wind.speed} mph`
+                    name: `Wind speed`, value: `${data.list[0].wind.speed} mph`, inline=true
                 },
             )
+            .addField('** **', '** **', true)
             .setTimestamp()
             .setColor('#add8e6')
             .setFooter('Getting the wrong info? Contact the owner.');
