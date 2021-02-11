@@ -13,10 +13,9 @@ module.exports = {
 
         if(args[0] && args[0] === 'global') {
             api = 'https://api.covid19api.com/summary'
-        }
-
-        if(args[0] && args[0] === 'countries') {
+        } else if(args[0] && args[0] === 'countries') {
             api = 'https://api.covid19api.com/countries'
+            console.log('countries');
         }
 
         request.open('GET', api, true)
@@ -53,9 +52,11 @@ module.exports = {
 
                 message.channel.send(Globalembed);
             }else if(args[0] && args[0].toLowerCase() === 'countries') {
+                console.log('countries');
                 for(let x = 0; x < data.length; x++) {
                     countries = countries + `\`${data[x].Slug}\``
                 }
+                console.log(countries);
                 message.channel.send(countries);
             }
         }
