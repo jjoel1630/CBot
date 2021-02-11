@@ -8,8 +8,18 @@ module.exports = {
         var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
         var request = new XMLHttpRequest();
+        var api = 'https://api.covid19api.com/summary'
+        var countries = ''
 
-        request.open('GET', 'https://api.covid19api.com/summary', true)
+        if(args[0] && args[0] === 'global') {
+            api = 'https://api.covid19api.com/summary'
+        }
+
+        if(args[0] && args[0] === 'countries') {
+            api = 'https://api.covid19api.com/countries'
+        }
+
+        request.open('GET', api, true)
         request.setRequestHeader('X-Access-Token', '5cf9dfd5-3449-485e-b5ae-70a60e997864')
         request.onload = function () {
             var data = JSON.parse(this.responseText);
@@ -42,6 +52,12 @@ module.exports = {
                 .setThumbnail('https://ewscripps.brightspotcdn.com/dims4/default/7671677/2147483647/strip/true/crop/1303x733+15+0/resize/1280x720!/quality/90/?url=https%3A%2F%2Fewscripps.brightspotcdn.com%2F0a%2Ff2%2F72b1b4d94794992a0772cb593ce5%2Fscreen-shot-2020-02-25-at-10.49.27%20AM.png');
 
                 message.channel.send(Globalembed);
+            }
+            if(args[0] && args[0].toLowerCase() === 'countries') {
+                for(let x = 0; x < data.length; x++) {
+                    countries = countries + `\`${data[x].Slug}\``
+                }
+                message.channel.send(countries);
             }
         }
         request.send()
