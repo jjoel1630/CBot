@@ -52,7 +52,7 @@ module.exports = {
                 message.channel.send(Globalembed);
             }else if(args[0] && args[0].toLowerCase() === 'countries') {
                 for(let x = 0; x < data.length; x++) {
-                    countries = countries + `\`${data[x].Slug}\``
+                    countries = countries + `\`${data[x].Slug}\` `
                 }
                 try {
                     let countriesList = countries.split(' ');
