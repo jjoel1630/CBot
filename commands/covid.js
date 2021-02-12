@@ -106,6 +106,7 @@ module.exports = {
                             return;
                         }
                     }
+                    message.channel.send('Sorry, we don\'t have data for that country, try <$c19 countries> for the available countries');
                 }
             }
         }
