@@ -76,7 +76,7 @@ module.exports = {
                 if(!args[1]) {
                     message.channel.send('you need to specify a country. Try $c19 countries to see the available countries');
                     return;
-                }else {
+                } else {
                     for(let x = 0; x < data.length; x++) {
                         console.log('countries');
                         if(data.Countries[x].Slug === args[1]) {
@@ -84,6 +84,7 @@ module.exports = {
                             message.channel.send(data.Countries[x]);
                             return;
                         }
+                    }
                 }
             }
         }
