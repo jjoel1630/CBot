@@ -98,41 +98,32 @@ module.exports = {
                 var articleTime = JSON.stringify(data.articles[articleNum].publishedAt, null, 4)
                 var articleContent = JSON.stringify(data.articles[articleNum].content, null, 4)
 
-                // fs.writeFile('news.txt', article, function(err) {
-                //     if(err) {
-                //         return console.error(err);
-                //     }
-                // })
-
-                if(request.status >= 200 && request.status < 400) {
-                    articleImage = articleImage.slice(0, -1);
-                    articleImage = articleImage.substring(1);
-                    articleUrl = articleUrl.slice(0, -1);
-                    articleUrl = articleUrl.substring(1);
-                    console.log(articleUrl);
-                    const Newsembed = new Discord.MessageEmbed()
-                    .setTitle(`Article Title: ${articleTitle}`)
-                    // .setUrl(articleUrl)
-                    .setDescription(`**Description:** ${articleDescription}`)
-                    .setImage(articleImage)
-                    .addFields(
-                        {
-                            name: `From`, value: `${articleSource}`
-                        },
-                        {
-                            name: `Published at:`, value: `${articleTime}`
-                        },
-                        {
-                            name: `By:`, value: `${articleAuthor}`
-                        },
-                        {
-                            name: `Content:`, value: `${articleContent}`
-                        },
-                    )
-                    message.channel.send(Newsembed);
-                } else {
-                    console.log('error getting request');
-                }
+                
+                articleImage = articleImage.slice(0, -1);
+                articleImage = articleImage.substring(1);
+                articleUrl = articleUrl.slice(0, -1);
+                articleUrl = articleUrl.substring(1);
+                console.log(articleUrl);
+                const Newsembed = new Discord.MessageEmbed()
+                .setTitle(`Article Title: ${articleTitle}`)
+                // .setUrl(articleUrl)
+                .setDescription(`**Description:** ${articleDescription}`)
+                .setImage(articleImage)
+                .addFields(
+                    {
+                        name: `From`, value: `${articleSource}`
+                    },
+                    {
+                        name: `Published at:`, value: `${articleTime}`
+                    },
+                    {
+                        name: `By:`, value: `${articleAuthor}`
+                    },
+                    {
+                        name: `Content:`, value: `${articleContent}`
+                    },
+                )
+                message.channel.send(Newsembed);
             } catch(err) {
                 console.error(err);
             }
