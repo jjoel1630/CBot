@@ -64,8 +64,12 @@ module.exports = {
                 params = `?country=${args[1]}`;
                 api = `https://newsapi.org/v2/${args[0]}`; 
             }
+        } else if (!args[0]) {
+            params = `?country=us`;
+            api = `https://newsapi.org/v2/top-headlines`; 
         } else {
-            message.channel.send('try $news help');
+            message.channel.send('Try $news help');
+            return;
         }
 
         call = api + params + key
@@ -79,6 +83,7 @@ module.exports = {
 
                 if(!data) {
                     message.channel.send('try $news help');
+                    return;
                 }
 
                 articleNum = Math.floor(Math.random() * 10)
