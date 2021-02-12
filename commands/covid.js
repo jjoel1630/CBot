@@ -74,7 +74,7 @@ module.exports = {
             } else if(args[0] && args[0].toLowerCase() === 'country') {
                 console.log('countries');
                 if(!args[1]) {
-                    console.log('countries');
+                    console.log('countries1');
                     message.channel.send('you need to specify a country. Try $c19 countries to see the available countries');
                     return;
                 } else {
