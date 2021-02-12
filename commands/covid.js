@@ -77,7 +77,33 @@ module.exports = {
                 } else {
                     for(var x = 0; x < data.Countries.length; x++) {
                         if(data.Countries[x].Slug === args[1].toLowerCase()) {
-                            message.channel.send(data.Countries[x].NewConfirmed);
+                            const Countrycovidembed = new Discord.MessageEmbed()
+                            .setTitle(`Covid Stats for ${data.Countries[x].Country}`)
+                            .addFields(
+                                {
+                                    name: `NewConfirmed`, value: `${data.Countries[x].NewConfirmed}`
+                                },
+                                {
+                                    name: `TotalConfirmed`, value: `${data.Countries[x].TotalConfirmed}`
+                                },
+                                {
+                                    name: `NewDeaths`, value: `${data.Countries[x].NewDeaths}`
+                                },
+                                {
+                                    name: `TotalDeaths`, value: `${data.Countries[x].TotalDeaths}`
+                                },
+                                {
+                                    name: `NewRecovered`, value: `${data.Countries[x].NewRecovered}`
+                                },
+                                {
+                                    name: `TotalRecovered`, value: `${data.Countries[x].TotalRecovered}`
+                                },
+                            )
+                            .setTimestamp()
+                            .setColor('#d64545')
+                            .setThumbnail('https://ewscripps.brightspotcdn.com/dims4/default/7671677/2147483647/strip/true/crop/1303x733+15+0/resize/1280x720!/quality/90/?url=https%3A%2F%2Fewscripps.brightspotcdn.com%2F0a%2Ff2%2F72b1b4d94794992a0772cb593ce5%2Fscreen-shot-2020-02-25-at-10.49.27%20AM.png');
+                            message.channel.send(Countrycovidembed);
+                            return;
                         }
                     }
                 }
