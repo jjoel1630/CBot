@@ -5,7 +5,7 @@ module.exports = {
     name: 'randomperson',
     description: 'randomperson',
     aliases: ['ranperson', 'rp', 'randomperson'],
-    execute(message=message, args=args, bot=bot) {
+    execute(message=message, args=args, bot=bot, Discord=Discord) {
         var request = new XMLHttpRequest();
 
         var params = '?results=1';
@@ -17,7 +17,25 @@ module.exports = {
         request.onload = function () {
             var data = JSON.parse(this.responseText);
 
-            message.channel.send(data.results[0].gender);  
+            const Rpembed = new Discord.MessageEmbed()
+            .setTitle(`Random Person Genned: ${data.results[0].name.title}. ${data.results[0].name.first} ${data.results[0].name.last}`)
+            .addFields(
+                {
+                    name: `Location:`, value: `${data.results[0].location.street.number} ${data.results[0].location.street.name}, ${data.results[0].location.city}, ${data.results[0].location.state} ${data.results[0].location.country} ${data.results[0].location.postcode}`
+                },
+                {
+                    name: `Email:`, value: `${data.results[0].email}`
+                },
+                {
+                    name: `Username:`, value: `${data.results[0].login.username}`, inline: true
+                },
+                {
+                    name: `Password:`, value: `${data.results[0].login.password}`, inline: true
+                },
+            )
+            .setImage('https://randomuser.me/api/portraits/thumb/women/39.jpg')
+
+            message.channel.send(Rpembed);  
         }
         request.send()
     }
