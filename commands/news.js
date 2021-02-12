@@ -82,7 +82,7 @@ module.exports = {
                 var data = JSON.parse(this.responseText);
 
                 if(!data) {
-                    message.channel.send('try $news help');
+                    console.log('try $news help');
                     return;
                 }
 
