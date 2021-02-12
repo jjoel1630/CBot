@@ -12,10 +12,6 @@ module.exports = {
         params = ``;
         api = ``;
 
-        if(!args[0]) {
-            message.channel.send('Try $news help');
-        }
-
         if(args[0] == 'help') {
             const Newshelpembed = new Discord.MessageEmbed()
             .setTitle('Parameters')
@@ -98,7 +94,7 @@ module.exports = {
                 var articleTime = JSON.stringify(data.articles[articleNum].publishedAt, null, 4)
                 var articleContent = JSON.stringify(data.articles[articleNum].content, null, 4)
 
-                
+
                 articleImage = articleImage.slice(0, -1);
                 articleImage = articleImage.substring(1);
                 articleUrl = articleUrl.slice(0, -1);
