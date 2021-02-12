@@ -72,12 +72,15 @@ module.exports = {
                     message.channel.send(countriesString2 + " page 2 of 2");
                 }
             } else if(args[0] && args[0].toLowerCase() === 'country') {
+                console.log('countries');
                 if(!args[1]) {
                     message.channel.send('you need to specify a country. Try $c19 countries to see the available countries');
                     return;
                 }
                 for(let x = 0; x < data.length; x++) {
+                    console.log('countries');
                     if(data.Countries[x].Slug === args[1]) {
+                        console.log('countries');
                         message.channel.send(data.Countries[x]);
                         return;
                     }
