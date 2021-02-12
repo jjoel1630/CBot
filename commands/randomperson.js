@@ -18,7 +18,8 @@ module.exports = {
             var data = JSON.parse(this.responseText);
 
             const Rpembed = new Discord.MessageEmbed()
-            .setTitle(`Random Person Genned: ${data.results[0].name.title}. ${data.results[0].name.first} ${data.results[0].name.last}`)
+            .setTitle(`${data.results[0].name.title}. ${data.results[0].name.first} ${data.results[0].name.last}`)
+            .setDescription('Random person has been generated')
             .addFields(
                 {
                     name: `Location: <street>, <city>, <state>, <country> <zipcode>`, value: `${data.results[0].location.street.number} ${data.results[0].location.street.name}, ${data.results[0].location.city}, ${data.results[0].location.state}, ${data.results[0].location.country} ${data.results[0].location.postcode}`
@@ -32,8 +33,37 @@ module.exports = {
                 {
                     name: `Password:`, value: `${data.results[0].login.password}`, inline: true
                 },
+                {
+                    name: `** **`, value: `** **`
+                },
+                {
+                    name: `DOB:`, value: `${data.results[0].dob.date}`, inline: true
+                },
+                {
+                    name: `Age:`, value: `${data.results[0].dob.age}`, inline: true
+                },
+                {
+                    name: `** **`, value: `** **`
+                },
+                {
+                    name: `Phone`, value: `${data.results[0].phone}`, inline: true
+                },
+                {
+                    name: `Cell`, value: `${data.results[0].cell}`, inline: true
+                },
+                {
+                    name: `** **`, value: `** **`
+                },
+                {
+                    name: `SSN:`, value: `${data.results[0].id.value}`, inline: true
+                },
+                {
+                    name: `Nationality:`, value: `${data.results[0].nat}`, inline: true
+                },
             )
-            .setImage(`${data.results[0].picture.medium}`)
+            .setThumbnail(`${data.results[0].picture.thumbnail}`)
+            .setImage(`${data.results[0].picture.large}`)
+            .setTimestamp();
 
             message.channel.send(Rpembed);  
         }
