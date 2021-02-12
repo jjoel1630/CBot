@@ -24,7 +24,7 @@ module.exports = {
                     name: `Location:`, value: `${data.results[0].location.street.number} ${data.results[0].location.street.name}, ${data.results[0].location.city}, ${data.results[0].location.state} ${data.results[0].location.country} ${data.results[0].location.postcode}`
                 },
                 {
-                    name: `Email:`, value: `${data.results[0].email}`
+                    name: `Email:`, value: `${data.results[0].email}`, inline: true
                 },
                 {
                     name: `Username:`, value: `${data.results[0].login.username}`, inline: true
@@ -33,7 +33,7 @@ module.exports = {
                     name: `Password:`, value: `${data.results[0].login.password}`, inline: true
                 },
             )
-            .setImage('https://randomuser.me/api/portraits/thumb/women/39.jpg')
+            .setImage(`${data.results[0].picture.medium}`)
 
             message.channel.send(Rpembed);  
         }
