@@ -15,7 +15,7 @@ module.exports = {
 			if (message.member.hasPermission('MANAGE_MESSAGES')) {
 				let msgArgs = args.slice(0).join(' ');
 				for (let i = 0; i < times; i++) {
-					message.channel.send(msgArgs + ' ' + i);
+					message.channel.send(msgArgs + ' ');
 				}
 			} else {
 				message.channel.send("lmao you don't have the perms. HAHAHAHAHA.");
