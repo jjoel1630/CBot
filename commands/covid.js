@@ -77,7 +77,7 @@ module.exports = {
                 } else {
                     for(var x = 0; x < data.Countries.length; x++) {
                         if(data.Countries[x].Slug === args[1].toLowerCase()) {
-                            message.channel.send(data.Countries[x]);
+                            message.channel.send(data.Countries[x].NewConfirmed);
                         }
                     }
                 }
