@@ -5,6 +5,9 @@ module.exports = {
     description: 'gets youtube vids',
     aliases: ['ytsearch', 'ysearch', 'youtubesearch', 'ys'],
     execute(message=message, args=args, bot=bot) {
+        if(!args[0]) {
+            message.channel.send('Bro what do you want to search for?????????????');
+        }
         var request = new XMLHttpRequest();
 
         var api = 'https://www.googleapis.com/youtube/v3/search';
