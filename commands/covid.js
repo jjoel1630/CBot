@@ -79,11 +79,10 @@ module.exports = {
                     return;
                 } else {
                     console.log('countries');
-                    for(let x = 0; x < data.length; x++) {
-                        if(data.Countries[x].Slug === args[1]) {
+                    for(var x = 0; x < data.length; x++) {
+                        if(data.Countries[x].Slug == args[1].toLowerCase()) {
                             console.log('countries');
                             message.channel.send(data.Countries[x]);
-                            return;
                         }
                     }
                 }
