@@ -17,7 +17,7 @@ module.exports = {
         request.onload = function () {
             var data = JSON.parse(this.responseText);
 
-            message.channel.send(data);  
+            message.channel.send(data[0]);  
         }
         request.send()
     }
