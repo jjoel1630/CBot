@@ -73,11 +73,10 @@ module.exports = {
                 }
             } else if(args[0] && args[0].toLowerCase() === 'country') {
                 if(!args[1]) {
-                    message.channel.send('you need to specify a country. Try $c19 countries to see the available countries');
-                    return;
+                    message.channel.send('you need to specify a country. Try <$c19 countries> to see the available countries');
                 } else {
-                    for(var x = 0; x < data.length; x++) {
-                        if(data.Countries[x].Slug == args[1].toLowerCase()) {
+                    for(var x = 0; x < data.Countries.length; x++) {
+                        if(data.Countries[x].Slug === args[1].toLowerCase()) {
                             message.channel.send(data.Countries[x]);
                         }
                     }
