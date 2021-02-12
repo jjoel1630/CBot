@@ -21,7 +21,7 @@ module.exports = {
             .setTitle(`Random Person Genned: ${data.results[0].name.title}. ${data.results[0].name.first} ${data.results[0].name.last}`)
             .addFields(
                 {
-                    name: `Location:`, value: `${data.results[0].location.street.number} ${data.results[0].location.street.name}, ${data.results[0].location.city}, ${data.results[0].location.state} ${data.results[0].location.country} ${data.results[0].location.postcode}`
+                    name: `Location: <street>, <city>, <state>, <country> <zipcode>`, value: `${data.results[0].location.street.number} ${data.results[0].location.street.name}, ${data.results[0].location.city}, ${data.results[0].location.state}, ${data.results[0].location.country} ${data.results[0].location.postcode}`
                 },
                 {
                     name: `Email:`, value: `${data.results[0].email}`, inline: true
