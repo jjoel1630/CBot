@@ -7,6 +7,7 @@ module.exports = {
     execute(message=message, args=args, bot=bot) {
         if(!args[0]) {
             message.channel.send('Bro what do you want to search for?????????????');
+            return;
         }
         var request = new XMLHttpRequest();
 
