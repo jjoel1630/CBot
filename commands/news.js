@@ -99,10 +99,9 @@ module.exports = {
                 articleImage = articleImage.substring(1);
                 articleUrl = articleUrl.slice(0, -1);
                 articleUrl = articleUrl.substring(1);
-                console.log(articleUrl);
                 const Newsembed = new Discord.MessageEmbed()
                 .setTitle(`Article Title: ${articleTitle}`)
-                // .setUrl(articleUrl)
+                .setURL(articleUrl)
                 .setDescription(`**Description:** ${articleDescription}`)
                 .setImage(articleImage)
                 .addFields(
