@@ -1,3 +1,4 @@
 node_modules
 heroku_commands.txt
 .env
+config.json
