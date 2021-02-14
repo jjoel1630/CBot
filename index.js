@@ -10,7 +10,7 @@ const config = require('./config.json');
 const help = require('./commands/help');
 const aws = require('aws-sdk');
 
-let test = new aws.Test({
+let test = new aws({
 	test: process.env.test
 });
 
