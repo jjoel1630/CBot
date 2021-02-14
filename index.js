@@ -32,8 +32,12 @@ bot.on('ready', async () => {
 });
 
 bot.on('message', message => {
-	if(message.content==='stop the cap' || message.content==='cap') {
+	if(message.content.toLowerCase() === 'stop the cap' || 'cap') {
 		message.channel.send('https://www.youtube.com/watch?v=mugRenBeRw0&ab_channel=BruhCentralMoments')
+	} else if(message.content.toLowerCase() === 'f') {
+		message.channel.send('Lets get an F in the chat. F');
+	} else if(message.content.startsWith('imagine')) {
+		message.channel.send(`I can't even ${message.content}`);
 	} else {
 		if (!message.content.startsWith(config.prefix) || message.author.bot) return;
 
