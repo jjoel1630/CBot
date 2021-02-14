@@ -7,7 +7,6 @@ const cheerio = require('cheerio');
 const request = require('request');
 const Duration = require('humanize-duration');
 const config = require('./config.json');
-const help = require('./commands/help');
 require('dotenv').config();
 
 //clients
@@ -33,7 +32,6 @@ bot.on('ready', async () => {
 });
 
 bot.on('message', message => {
-	console.log(process.env.TEST);
 	if(message.content.toLowerCase() === 'stop the cap' || message.content.toLowerCase() === 'cap') {
 		message.channel.send('https://www.youtube.com/watch?v=mugRenBeRw0&ab_channel=BruhCentralMoments')
 		return;
