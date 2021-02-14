@@ -86,4 +86,11 @@ bot.on("messageDelete", (message) => {
 	deletedMsg.set("deleted msg", {'dcontent': message.content, 'person': message.author.tag, 'created': message.createdAt});
 });
 
-bot.login(process.env.token);
+token = '';
+if(process.env.token) {
+	token = process.env.token
+} else {
+	token = process.env.discord_bot_token
+}
+
+bot.login(token);

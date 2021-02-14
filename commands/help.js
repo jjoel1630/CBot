@@ -1,13 +1,27 @@
+const fs = require('fs');
+const { prefix } = require('./config.json')
+
 module.exports = {
 	name : "help", 
 	description : "help",
 	aliases: ["help"],
 	execute(message=message, args=args, bot=bot, Discord=Discord) {
+        var commands = [];
+
+        const commandFiles = fs.readdirSync('./commands/').filter((file) => file.endsWith('.js'));
+        for (let file of commandFiles) {
+            const command = require(`./commands/${file}`);
+
+            let aliases = command.aliases.splice(0).join(', ');
+            let description = `**${prefix}${aliases}** ${description}`
+
+            commands.push('description')
+        }
 		const helpEmbed = new Discord.MessageEmbed()
             .setTitle('Commands')
 			.addFields(
                 {
-                    name: `These are the cmds`, value: `sdf`
+                    name: `These are the cmds`, value: `${commands}`
                 },
                 // { name: 'Prefix', value: "$ (Sorry can't change it yet)." },
                 // {
