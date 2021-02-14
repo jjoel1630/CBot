@@ -3,12 +3,11 @@ module.exports = {
 	description : "help",
 	aliases: ["help"],
 	execute(message=message, args=args, bot=bot, Discord=Discord) {
-        var array = ['cmd1\ncmd2\ncmd3\n']
 		const helpEmbed = new Discord.MessageEmbed()
             .setTitle('Commands')
 			.addFields(
                 {
-                    name: `These are the cmds`, value: `${array}`
+                    name: `These are the cmds`, value: `sdf`
                 },
                 // { name: 'Prefix', value: "$ (Sorry can't change it yet)." },
                 // {
