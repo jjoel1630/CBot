@@ -8,11 +8,7 @@ const request = require('request');
 const Duration = require('humanize-duration');
 const config = require('./config.json');
 const help = require('./commands/help');
-const aws = require('aws-sdk');
-
-let test = aws.test({
-	test: process.env.test
-});
+require('dotenv').config();
 
 //clients
 const bot = new Discord.Client();
@@ -33,7 +29,7 @@ for (let file of commandFiles) {
 }
 
 bot.on('ready', async () => {
-	console.log('ACTIVE!', `${test.test}`);
+	console.log('ACTIVE!', `${process.env.TEST}`);
 });
 
 bot.on('message', message => {
