@@ -8,9 +8,9 @@ module.exports = {
 	execute(message=message, args=args, bot=bot, Discord=Discord) {
         var commands = [];
 
-        const commandFiles = fs.readdirSync('./commands/').filter((file) => file.endsWith('.js'));
+        const commandFiles = fs.readdirSync('/').filter((file) => file.endsWith('.js'));
         for (let file of commandFiles) {
-            const command = require(`./commands/${file}`);
+            const command = require(`/${file}`);
 
             let aliases = command.aliases.splice(0).join(', ');
             let description = `**${prefix}${aliases}** ${description}`
