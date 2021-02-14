@@ -87,4 +87,4 @@ bot.on("messageDelete", (message) => {
 	deletedMsg.set("deleted msg", {'dcontent': message.content, 'person': message.author.tag, 'created': message.createdAt});
 });
 
-bot.login('NzcxNzY5NTI3NDU2ODkwODgw.X5w8Yg.VMXseF-OayyjQP7xIxXWDRiRnQc');
+bot.login(process.env.token);
