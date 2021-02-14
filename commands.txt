@@ -5,3 +5,4 @@ heroku ps:scale worker=0 --app "cbot-djs"
 heroku ps:scale worker=1 --app "cbot-djs"
 heroku ps --app "cbot-djs"
 heroku logs --app "cbot-djs"
+heroku config -a 'cbot-djs'
