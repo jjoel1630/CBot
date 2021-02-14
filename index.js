@@ -32,6 +32,7 @@ bot.on('ready', async () => {
 });
 
 bot.on('message', message => {
+	console.log(process.env.token);
 	if(message.content.toLowerCase() === 'stop the cap' || message.content.toLowerCase() === 'cap') {
 		message.channel.send('https://www.youtube.com/watch?v=mugRenBeRw0&ab_channel=BruhCentralMoments')
 		return;
@@ -86,4 +87,4 @@ bot.on("messageDelete", (message) => {
 	deletedMsg.set("deleted msg", {'dcontent': message.content, 'person': message.author.tag, 'created': message.createdAt});
 });
 
-bot.login(config.token);
+bot.login('NzcxNzY5NTI3NDU2ODkwODgw.X5w8Yg.VMXseF-OayyjQP7xIxXWDRiRnQc');
