@@ -29,10 +29,11 @@ for (let file of commandFiles) {
 }
 
 bot.on('ready', async () => {
-	console.log('ACTIVE!', `${process.env.TEST}`);
+	console.log('ACTIVE!');
 });
 
 bot.on('message', message => {
+	console.log(`${process.env.TEST}`);
 	if(message.content.toLowerCase() === 'stop the cap' || message.content.toLowerCase() === 'cap') {
 		message.channel.send('https://www.youtube.com/watch?v=mugRenBeRw0&ab_channel=BruhCentralMoments')
 		return;
