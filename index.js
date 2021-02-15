@@ -16,14 +16,18 @@ bot.aliases = new Discord.Collection();
 const Embed = new Discord.MessageEmbed();
 deletedMsg = new Map();
 
-const commandFiles = fs.readdirSync('./commands/').filter((file) => file.endsWith('.js'));
-for (let file of commandFiles) {
-	const command = require(`./commands/${file}`);
+const getDirectories = fs.readdirSync('./commands/', { withFileTypes: true }).filter(dirent => dirent.isDirectory()).map(dirent => dirent.name)
 
-	bot.commands.set(command.name, command);
+for(let dir of getDirectories) {
+	const commandFiles = fs.readdirSync(`./commands/${dir}/`).filter((file) => file.endsWith('.js'));
+	for (let file of commandFiles) {
+		const command = require(`./commands/${dir}/${file}`);
 
-	if(command.aliases && Array.isArray(command.aliases)) {
-		command.aliases.forEach(alias => bot.aliases.set(alias, command.name))
+		bot.commands.set(command.name, command);
+
+		if(command.aliases && Array.isArray(command.aliases)) {
+			command.aliases.forEach(alias => bot.aliases.set(alias, command.name))
+		}
 	}
 }
 
