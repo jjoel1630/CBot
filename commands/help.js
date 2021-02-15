@@ -8,20 +8,22 @@ module.exports = {
 	execute(message=message, args=args, bot=bot, Discord=Discord) {
         var commands = [];
 
-        const commandFiles = fs.readdirSync('/').filter((file) => file.endsWith('.js'));
+        const commandFiles = fs.readdirSync('./commands').filter((file) => file.endsWith('.js'));
         for (let file of commandFiles) {
-            const command = require(`/${file}`);
+            const command = require(`../commands/${file}`);
 
             let aliases = command.aliases.splice(0).join(', ');
-            let description = `**${prefix}${aliases}** ${description}`
+            let description = `**${prefix}${aliases}** ${command.description}\n`
 
-            commands.push('description')
+            commands.push(description)
         }
+
+        formatted_commands = commands.splice(0).join('\n')
 		const helpEmbed = new Discord.MessageEmbed()
             .setTitle('Commands')
 			.addFields(
                 {
-                    name: `These are the cmds`, value: `${commands}`
+                    name: `These are the cmds`, value: `${formatted_commands}`
                 },
                 // { name: 'Prefix', value: "$ (Sorry can't change it yet)." },
                 // {
