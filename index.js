@@ -7,6 +7,8 @@ const cheerio = require('cheerio');
 const request = require('request');
 const Duration = require('humanize-duration');
 const config = require('./config.json');
+const path = require('path');
+const { dir } = require('console');
 require('dotenv').config();
 
 //clients
@@ -16,14 +18,18 @@ bot.aliases = new Discord.Collection();
 const Embed = new Discord.MessageEmbed();
 deletedMsg = new Map();
 
-const commandFiles = fs.readdirSync('./commands/').filter((file) => file.endsWith('.js'));
-for (let file of commandFiles) {
-	const command = require(`./commands/${file}`);
+const getDirectories = fs.readdirSync('./commands/', { withFileTypes: true }).filter(dirent => dirent.isDirectory()).map(dirent => dirent.name)
 
-	bot.commands.set(command.name, command);
+for(let dir of getDirectories) {
+	const commandFiles = fs.readdirSync(`./commands/${dir}/`).filter((file) => file.endsWith('.js'));
+	for (let file of commandFiles) {
+		const command = require(`./commands/${dir}/${file}`);
 
-	if(command.aliases && Array.isArray(command.aliases)) {
-		command.aliases.forEach(alias => bot.aliases.set(alias, command.name))
+		bot.commands.set(command.name, command);
+
+		if(command.aliases && Array.isArray(command.aliases)) {
+			command.aliases.forEach(alias => bot.aliases.set(alias, command.name))
+		}
 	}
 }
 
@@ -32,6 +38,7 @@ bot.on('ready', async () => {
 });
 
 bot.on('message', message => {
+	console.log(getDirectories);
 	if(message.content.toLowerCase() === 'stop the cap' || message.content.toLowerCase() === 'cap') {
 		message.channel.send('https://www.youtube.com/watch?v=mugRenBeRw0&ab_channel=BruhCentralMoments')
 		return;
@@ -86,4 +93,11 @@ bot.on("messageDelete", (message) => {
 	deletedMsg.set("deleted msg", {'dcontent': message.content, 'person': message.author.tag, 'created': message.createdAt});
 });
 
-bot.login(process.env.token);
+token = '';
+if(process.env.token) {
+	token = process.env.token
+} else {
+	token = process.env.discord_bot_token
+}
+
+bot.login(token);

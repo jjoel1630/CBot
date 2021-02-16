@@ -1,5 +1,3 @@
-const help = require("./help");
-
 module.exports = {
     name: 'covid',
     description: 'covid',
