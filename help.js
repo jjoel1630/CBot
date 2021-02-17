@@ -12,7 +12,7 @@ module.exports = {
         const getDirectories = fs.readdirSync('./commands/', { withFileTypes: true }).filter(dirent => dirent.isDirectory()).map(dirent => dirent.name)
         
         if(!args[0]) {
-            commandCategories(message=message, args=args, bot=bot, Discord=Discord);
+            commandCategories(message=message, Discord=Discord);
         } else {
             return;
         }
