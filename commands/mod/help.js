@@ -8,22 +8,26 @@ module.exports = {
 	execute(message=message, args=args, bot=bot, Discord=Discord) {
         var commands = [];
 
-        const commandFiles = fs.readdirSync('./commands').filter((file) => file.endsWith('.js'));
-        for (let file of commandFiles) {
-            const command = require(`../commands/${file}`);
+        const getDirectories = fs.readdirSync('./commands/', { withFileTypes: true }).filter(dirent => dirent.isDirectory()).map(dirent => dirent.name)
 
-            let aliases = command.aliases.splice(0).join(', ');
-            let description = `**${prefix}${aliases}** ${command.description}\n`
+        for(let dir of getDirectories) {
+            const commandFiles = fs.readdirSync(`./commands/${dir}/`).filter((file) => file.endsWith('.js'));
+            for (let file of commandFiles) {
+                const command = require(`./commands/${dir}/${file}`);
 
-            commands.push(description)
+                let aliases = command.aliases.splice(0).join(', ');
+                let whole_command = `**${prefix}${aliases}** ${command.description}\n`
+
+                commands.push(description)
+            }
         }
 
-        formatted_commands = commands.splice(0).join(' ')
+        var formatted_commands = commands.splice(0).join(' ')
 		const helpEmbed = new Discord.MessageEmbed()
             .setTitle('Commands')
 			.addFields(
                 {
-                    name: `These are the commands`, value: `${formatted_commands}`
+                    name: `These are the cmds`, value: `${formatted_commands}`
                 },
                 // { name: 'Prefix', value: "$ (Sorry can't change it yet)." },
                 // {
