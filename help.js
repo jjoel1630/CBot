@@ -12,7 +12,22 @@ module.exports = {
         const getDirectories = fs.readdirSync('./commands/', { withFileTypes: true }).filter(dirent => dirent.isDirectory()).map(dirent => dirent.name)
         
         if(!args[0]) {
-            commandCategories(message=message, Discord=Discord);
+            const cmdCategory = new Discord.MessageEmbed()
+            .setTitle('CBot Command List')
+            .setDescription("all the command categories for [CBot](https://github.com/jjoel1630/CBot)")
+            .addFields(
+                {
+                    name: `🗄️ Data`, value: `\`$help data\``
+                },
+                {
+                    name: `🎮 Fun & Games`, value: `\`$help fun\``
+                },
+                {
+                    name: `⚖️ Moderation`, value: `\`$help mod\``
+                }
+            )
+            .setFooter('Having issues with the bot or want to suggest/contribute features? Check out my [git-repo](https://github.com/jjoel1630/CBot)')
+            message.channel.send(cmdCategory);
         } else {
             return;
         }
@@ -41,22 +56,3 @@ module.exports = {
 		message.channel.send(helpEmbed);
 	}
 };
-
-function commandCategories(message, Discord) {
-    const cmdCategory = new Discord.MessageEmbed()
-    .setTitle('CBot Command List')
-    .setDescription("all the command categories for [CBot](https://github.com/jjoel1630/CBot)")
-    .addFields(
-        {
-            name: `🗄️ Data`, value: `\`$help data\``
-        },
-        {
-            name: `🎮 Fun & Games`, value: `\`$help fun\``
-        },
-        {
-            name: `⚖️ Moderation`, value: `\`$help mod\``
-        }
-    )
-    .setFooter('Having issues with the bot or want to suggest/contribute features? Check out my [git-repo](https://github.com/jjoel1630/CBot)')
-    message.channel.send(cmdCategory);
-}
