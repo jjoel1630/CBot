@@ -78,7 +78,7 @@ bot.on('message', message => {
 			}
 		} else {
 			if(cmd === 'help') {
-				help.execute();
+				help.execute(message, args, bot, Discord);
 			} else if(bot.aliases.get(cmd)) {
 				const command = bot.commands.get(bot.aliases.get(cmd));
 				command.execute(message, args, bot, Discord, Duration, cheerio); 
