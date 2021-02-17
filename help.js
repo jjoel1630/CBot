@@ -12,22 +12,7 @@ module.exports = {
         const getDirectories = fs.readdirSync('./commands/', { withFileTypes: true }).filter(dirent => dirent.isDirectory()).map(dirent => dirent.name)
         
         if(!args[0]) {
-            const cmdCategory = new Discord.MessageEmbed()
-            .setTitle('CBot Command List')
-            .setDescription("all the command categories for [CBot](https://github.com/jjoel1630/CBot)")
-            .addFields(
-                {
-                    name: `🗄️ Data`, value: `\`$help data\``
-                },
-                {
-                    name: `🎮 Fun & Games`, value: `\`$help fun\``
-                },
-                {
-                    name: `⚖️ Moderation`, value: `\`$help mod\``
-                }
-            )
-            .setFooter('Having issues with the bot or want to suggest/contribute features? Check out my [git-repo](https://github.com/jjoel1630/CBot)')
-            message.channel.send(cmdCategory);
+            commandCategories(message, Discord)
         } else {
             return;
         }
@@ -44,15 +29,34 @@ module.exports = {
         //     }
         // }
 
-        var formatted_commands = commands.splice(0).join(' ')
-		const helpEmbed = new Discord.MessageEmbed()
-            .setTitle('Commands')
-			.addFields(
-                {
-                    name: `These are the cmds`, value: `${formatted_commands}`
-                },
-            )
-			.setThumbnail(message.author.avatarURL());
-		message.channel.send(helpEmbed);
+        // var formatted_commands = commands.splice(0).join(' ')
+		// const helpEmbed = new Discord.MessageEmbed()
+        //     .setTitle('Commands')
+		// 	.addFields(
+        //         {
+        //             name: `These are the cmds`, value: `${formatted_commands}`
+        //         },
+        //     )
+		// 	.setThumbnail(message.author.avatarURL());
+		// message.channel.send(helpEmbed);
 	}
 };
+
+function commandCategories(message, Discord) {
+    const cmdCategory = new Discord.MessageEmbed()
+    .setTitle('CBot Command List')
+    .setDescription("all the command categories for [CBot](https://github.com/jjoel1630/CBot)")
+    .addFields(
+        {
+            name: `🗄️ Data`, value: `\`$help data\``
+        },
+        {
+            name: `🎮 Fun & Games`, value: `\`$help fun\``
+        },
+        {
+            name: `⚖️ Moderation`, value: `\`$help mod\``
+        }
+    )
+    .setFooter('Having issues with the bot or want to suggest/contribute features? Check out my [git-repo](https://github.com/jjoel1630/CBot)')
+    message.channel.send(cmdCategory);
+}
