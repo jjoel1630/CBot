@@ -18,12 +18,12 @@ module.exports = {
             commands.push(description)
         }
 
-        formatted_commands = commands.splice(0).join('\n')
+        formatted_commands = commands.splice(0).join(' ')
 		const helpEmbed = new Discord.MessageEmbed()
             .setTitle('Commands')
 			.addFields(
                 {
-                    name: `These are the cmds`, value: `${formatted_commands}`
+                    name: `These are the commands`, value: `${formatted_commands}`
                 },
                 // { name: 'Prefix', value: "$ (Sorry can't change it yet)." },
                 // {
