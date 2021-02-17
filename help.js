@@ -1,4 +1,5 @@
 const fs = require('fs');
+const { get } = require('request');
 const { prefix } = require('./config.json')
 
 module.exports = {
@@ -9,18 +10,24 @@ module.exports = {
         var commands = [];
 
         const getDirectories = fs.readdirSync('./commands/', { withFileTypes: true }).filter(dirent => dirent.isDirectory()).map(dirent => dirent.name)
-
-        for(let dir of getDirectories) {
-            const commandFiles = fs.readdirSync(`./commands/${dir}/`).filter((file) => file.endsWith('.js'));
-            for (let file of commandFiles) {
-                const command = require(`./commands/${dir}/${file}`);
-
-                let aliases = command.aliases.splice(0).join(', ');
-                let whole_command = `**${prefix}${aliases}** ${command.description}\n`
-
-                commands.push(whole_command)
-            }
+        
+        if(!args[0]) {
+            commandCategories();
+        } else {
+            return;
         }
+
+        // for(let dir of getDirectories) {
+        //     const commandFiles = fs.readdirSync(`./commands/${dir}/`).filter((file) => file.endsWith('.js'));
+        //     for (let file of commandFiles) {
+        //         const command = require(`./commands/${dir}/${file}`);
+
+        //         let aliases = command.aliases.splice(0).join(', ');
+        //         let whole_command = `**${prefix}${aliases}** ${command.description}\n`
+
+        //         commands.push(whole_command)
+        //     }
+        // }
 
         var formatted_commands = commands.splice(0).join(' ')
 		const helpEmbed = new Discord.MessageEmbed()
@@ -29,40 +36,27 @@ module.exports = {
                 {
                     name: `These are the cmds`, value: `${formatted_commands}`
                 },
-                // { name: 'Prefix', value: "$ (Sorry can't change it yet)." },
-                // {
-                //     name: 'cls + amount of messages (int: max 100 at a time)',
-                //     value: 'Clears messages except pinned ones'
-                // },
-                // {
-                //     name: 'echo + what you want to echo',
-                //     value: 'the bot just says whatever you type as arguements'
-                // },
-                // {
-                //     name: "gg (guessing game) + (int: just don't go crazy)",
-                //     value: 'Basically the int is just how high you want to go. 0 - whatever number'
-                // },
-                // {
-                //     name: 'i + (whatever image you want to search)',
-                //     value: 'Randomly selects an image that you pass in'
-                // },
-                // {
-                //     name: 'pick + (whatever you want it to choose from)',
-                //     value: 'Randomly selects an option (its always right!)'
-                // },
-                // {
-                //     name: 'poll + (question you want to poll)',
-                //     value: 'Launches a poll that users can react yes, no, maybe'
-                // },
-                // {
-                //     name:
-                //         'spam + (int: number of times you wanna spam) + whatever you want the bot to spam',
-                //     value:
-                //         'Simple spam command :). Only people with the manage_messages perm can use this tho. oof'
-                // },
-                // { name: 'welcome + (name [optional])', value: 'welcome message' }
             )
 			.setThumbnail(message.author.avatarURL());
 		message.channel.send(helpEmbed);
 	}
 };
+
+function commandCategories() {
+    const cmdCategory = new Discord.MessageEmbed()
+    .setTitle('CBot Command List')
+    .setDescription("all the command categories for [CBot](https://github.com/jjoel1630/CBot)")
+    .addFields(
+        {
+            name: `🗄️ Data`, value: `\`$help data\``
+        },
+        {
+            name: `🎮 Fun & Games`, value: `\`$help fun\``
+        },
+        {
+            name: `⚖️ Moderation`, value: `\`$help mod\``
+        }
+    )
+    .setFooter('Having issues with the bot or want to suggest/contribute features? Check out my [git-repo](https://github.com/jjoel1630/CBot)')
+    message.channel.send(cmdCategory);
+}
