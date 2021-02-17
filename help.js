@@ -8,8 +8,6 @@ module.exports = {
 	execute(message=message, args=args, bot=bot, Discord=Discord) {
         var commands = [];
 
-        require('./commands')
-
         const getDirectories = fs.readdirSync('./commands/', { withFileTypes: true }).filter(dirent => dirent.isDirectory()).map(dirent => dirent.name)
 
         for(let dir of getDirectories) {
