@@ -7,9 +7,7 @@ const cheerio = require('cheerio');
 const request = require('request');
 const Duration = require('humanize-duration');
 const config = require('./config.json');
-const mongo = require('./mongo');
 const path = require('path');
-const mongoose = require('mongoose');
 require('dotenv').config();
 
 //clients
@@ -36,8 +34,6 @@ for(let dir of getDirectories) {
 
 bot.on('ready', async () => {
 	console.log('ACTIVE!');
-
-	mongo();
 });
 
 bot.on('message', message => {
