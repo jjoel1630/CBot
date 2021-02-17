@@ -12,7 +12,7 @@ module.exports = {
         const getDirectories = fs.readdirSync('./commands/', { withFileTypes: true }).filter(dirent => dirent.isDirectory()).map(dirent => dirent.name)
         
         if(!args[0]) {
-            commandCategories();
+            commandCategories(message=message, args=args, bot=bot, Discord=Discord);
         } else {
             return;
         }
@@ -42,7 +42,7 @@ module.exports = {
 	}
 };
 
-function commandCategories() {
+function commandCategories(message, Discord) {
     const cmdCategory = new Discord.MessageEmbed()
     .setTitle('CBot Command List')
     .setDescription("all the command categories for [CBot](https://github.com/jjoel1630/CBot)")
