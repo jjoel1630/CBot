@@ -8,6 +8,7 @@ const request = require('request');
 const Duration = require('humanize-duration');
 const config = require('./config.json');
 const path = require('path');
+const help = require('./help.js');
 require('dotenv').config();
 
 //clients
@@ -76,7 +77,9 @@ bot.on('message', message => {
 				message.channel.send('There is nothing to snipe');
 			}
 		} else {
-			if(bot.aliases.get(cmd)) {
+			if(cmd === 'help') {
+				help.execute();
+			} else if(bot.aliases.get(cmd)) {
 				const command = bot.commands.get(bot.aliases.get(cmd));
 				command.execute(message, args, bot, Discord, Duration, cheerio); 
 			} else {
