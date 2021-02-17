@@ -18,7 +18,7 @@ module.exports = {
                 let aliases = command.aliases.splice(0).join(', ');
                 let whole_command = `**${prefix}${aliases}** ${command.description}\n`
 
-                commands.push(description)
+                commands.push(whole_command)
             }
         }
 
