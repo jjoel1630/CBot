@@ -51,10 +51,10 @@ function commandCategories(message, Discord) {
             name: `🗄️ Data`, value: `\`$help data\``
         },
         {
-            name: `🎮 Fun & Games`, value: `\`$help fun\``
+            name: `🎮 Fun & Games`, value: `\`$help fun\``, inline: true
         },
         {
-            name: `⚖️ Moderation`, value: `\`$help mod\``
+            name: `⚖️ Moderation`, value: `\`$help mod\``, inline: true
         }
     )
     .setFooter('Having issues with the bot or want to suggest/contribute features? Check out my [git-repo](https://github.com/jjoel1630/CBot)')
