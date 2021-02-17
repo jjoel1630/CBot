@@ -8,7 +8,7 @@ module.exports = {
 	execute(message=message, args=args, bot=bot, Discord=Discord) {
         var commands = [];
 
-        const getDirectories = fs.readdirSync('../../commands', { withFileTypes: true }).filter(dirent => dirent.isDirectory()).map(dirent => dirent.name)
+        const getDirectories = fs.readdirSync('../../commands/', { withFileTypes: true }).filter(dirent => dirent.isDirectory()).map(dirent => dirent.name)
 
         for(let dir of getDirectories) {
             const commandFiles = fs.readdirSync(`../${dir}/`).filter((file) => file.endsWith('.js'));
