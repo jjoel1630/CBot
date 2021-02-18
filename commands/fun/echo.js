@@ -1,7 +1,9 @@
 module.exports = {
-	name: "echo",
-	description: "echo",
+	name: "Echo",
+	description: "I will echo whatever you tell me to say",
 	aliases: ['echo'],
+	perms: 'SEND_MESSAGES', 
+	usage: '`$echo <text>`',
 	execute(message=message, args=args, bot=bot) {
 		if(!args[0]) {
 			message.channel.send("what do you want me to echo idiot???")

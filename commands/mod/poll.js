@@ -1,12 +1,12 @@
-const { MessageReaction } = require('discord.js');
-
 module.exports = {
-	name : "poll", 
-	description : "poll",
+	name : "Poll", 
+	description : "creates a poll",
 	aliases: ["poll"],
+	perms: ['ADD_REACTIONS', 'SEND_MESSAGES'],
+	usage: "`$poll <what you want to poll>`",
 	execute(message=message, args=args, bot=bot, Discord=Discord) {
 		if (!args[0]) {
-			message.channel.send('you have to supply arguements for what you want to poll for.');
+			message.channel.send('you have to supply arguments for what you want to poll for.');
 			return;
 		}
 

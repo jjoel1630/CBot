@@ -1,12 +1,14 @@
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 module.exports = {
-    name: 'youtube',
-    description: 'gets youtube vids',
+    name: 'Youtube Videos',
+    description: 'Gets a youtube video based on your search',
     aliases: ['ytsearch', 'ysearch', 'youtubesearch', 'ys'],
+    perms: null, 
+    usage: '`$ys <keywords>`',
     execute(message=message, args=args, bot=bot) {
         if(!args[0]) {
-            message.channel.send('Bro what do you want to search for?????????????');
+            message.channel.send('Bro what do you want to search for???????');
             return;
         }
         var request = new XMLHttpRequest();

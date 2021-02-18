@@ -1,7 +1,9 @@
 module.exports = {
-	name : "cls",
-	description : "clear cmd",
-	aliases: ["cls"],
+	name : "Clear/Purge",
+	description : "deletes a certain amount of messages (does not delete pinned messages)",
+	aliases: ["cls", "clear", "purge"],
+	perms: ["ADMINISTRATOR", "BAN_MEMBERS"],
+	usage: "`$ban <@user>`",
 	execute(message=message, args=args, bot=bot) {
 		if (message.member.hasPermission('MANAGE_MESSAGES')) {
 			console.log(args[1]);
@@ -9,7 +11,7 @@ module.exports = {
 				message.channel.send('Idiot, u have to say that amt of msgs (2 - 100). SMH');
 				message.delete({ timeout: 100 }).catch(console.error);
 			} else if (args[0] == 1) {
-				message.channel.send('You lazy bum, delete the msg ureself.');
+				message.channel.send('You lazy idiot, delete the msg ureself.');
 				message.delete({ timeout: 100 }).catch(console.error);
 			} else if (args[0] == 0) {
 				message.channel.send(

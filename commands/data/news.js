@@ -2,9 +2,11 @@ var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var fs = require('fs');
 
 module.exports = {
-    name: 'news',
-    description: 'news',
+    name: 'News',
+    description: 'Returns the the lastest news on a given argument',
     aliases: ['news'],
+    perms: null,
+    usage: '`$news everything <keywords>`, `$news top-headlines <country (default: us)> <category (optional)>`, Type $news help for more info',
     execute(message=message, args=args, bot=bot, Discord=Discord) {
         var request = new XMLHttpRequest();
 

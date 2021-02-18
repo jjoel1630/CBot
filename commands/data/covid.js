@@ -1,13 +1,15 @@
 module.exports = {
-    name: 'covid',
-    description: 'covid',
-    aliases: ['covid', 'c19'],
+    name: 'Covid status',
+    description: 'Returns the covid-19 status for the provided arguments',
+    aliases: ['covid', 'c19', 'covid-19'],
+    perms: null,
+    usage: '`$c19 <global/(country)>`, Type $c19 help for more',
     execute(message=message, args=args, bot=bot, Discord=Discord) {
         var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
         var request = new XMLHttpRequest();
-        var api = 'https://api.covid19api.com/summary'
-        var countries = ''
+        var api = 'https://api.covid19api.com/summary';
+        var countries = '';
 
         if(args[0] && args[0] === 'global') {
             api = 'https://api.covid19api.com/summary'

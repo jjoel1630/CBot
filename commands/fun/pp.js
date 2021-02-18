@@ -1,7 +1,9 @@
 module.exports = {
-	name : "pp", 
-	description : "pp",
+	name : "PP", 
+	description : "accurately finds the size of your pp",
 	aliases: ["pp"],
+	perms: null, 
+	usage: "`$pp <name of person>`", 
 	execute(message=message, args=args, bot=bot) {
 		if (message.author.id === '535671100001222668' && !args[0]) {
 			message.channel.send(`The God's pp is too long to calculate!`);

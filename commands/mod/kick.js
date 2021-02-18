@@ -1,7 +1,9 @@
 module.exports = {
-	name : "kick", 
-	description : "kick",
+	name : "Kick", 
+	description : "kicks the mentioned used",
 	aliases: ["kick"],
+	perms: ["BAN_MEMBERS"],
+	usage: "`$kick <@user>`",
 	execute(message=message, args=args, bot=bot) {
 		const { member, mentions } = message;
 		if (member.hasPermission('ADMINISTRATOR') || member.hasPermission('KICK_MEMBERS')) {

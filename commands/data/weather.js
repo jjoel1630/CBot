@@ -2,9 +2,11 @@ var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var fs = require('fs');
 
 module.exports = {
-    name: 'weather',
-    description: 'weather',
+    name: 'Weather',
+    description: 'Returns the weather for a given location',
     aliases: ['weather'],
+    perms: null,
+    usage: '`$weather <zip code> <2 letter country (ISO alpha-2) code>`',
     execute(message=message, args=args, bot=bot, Discord=Discord) {
         var request = new XMLHttpRequest();
 

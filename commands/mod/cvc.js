@@ -1,7 +1,9 @@
 module.exports = {
-	name : "cvc", 
-	description : "create voice channel",
-	aliases: ["cvc"],
+	name : "Create voice channel", 
+	description : "creates a voice channel",
+	aliases: ["cvc", "createvoicechannel"],
+	usage: "`$cvc <name of voice channel>`",
+	perms: ['MANAGE_CHANNELS', 'MANAGE_GUILD', ],
 	execute(message=message, args=args, bot=bot) {
 		let msgArgs = args.slice(0).join(' ');
 

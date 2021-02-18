@@ -1,11 +1,14 @@
 module.exports = {
-	name : "pick", 
-	description : "pick",
+	name : "Pick", 
+	description : "picks between multiple options SEPARATED BY A SPACE",
 	aliases: ["pick"],
+	perms: null, 
+	usage: "`$pick <option 1> <option 2> ...`",
 	execute(message=message, args=args, bot=bot, Discord=Discord) {
 		var index = Math.floor(Math.random() * args.length);
+		args.join(', ')
 		const pickEmbed = new Discord.MessageEmbed()
-			.setTitle('Question: ' + args)
+			.setTitle('Options: ' + args)
 			.addField('Result: ' + args[index], 'That was the result')
 			.setThumbnail(message.author.avatarURL());
 		message.channel.send(pickEmbed);

@@ -1,7 +1,9 @@
 module.exports = {
-    name : "members",
-    description : "members",
+    name : "Members",
+    description : "returns the amount of members",
     aliases: ["members"],
+    perms: null,
+    usage: "`$members`",
     execute(message=message, args=args, bot=bot) {
         bot.guilds.cache.forEach((guild) => {
 			message.channel.send(`${guild.name} has a total of ${guild.memberCount} members.`);

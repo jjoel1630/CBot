@@ -2,9 +2,11 @@ var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 
 module.exports = {
-    name: 'randomperson',
-    description: 'randomperson',
+    name: 'Random Person Generator',
+    description: 'Generates a random person',
     aliases: ['ranperson', 'rp', 'randomperson'],
+    perms: null,
+    usage: '`$rp`', 
     execute(message=message, args=args, bot=bot, Discord=Discord) {
         var request = new XMLHttpRequest();
 

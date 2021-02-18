@@ -1,13 +1,9 @@
 //Packages / important modules
 const Discord = require('discord.js');
-const ms = require('ms');
 const fs = require('fs');
-const ytdl = require('ytdl-core');
 const cheerio = require('cheerio');
-const request = require('request');
 const Duration = require('humanize-duration');
 const config = require('./config.json');
-const path = require('path');
 const help = require('./help.js');
 require('dotenv').config();
 
@@ -15,11 +11,9 @@ require('dotenv').config();
 const bot = new Discord.Client();
 bot.commands = new Discord.Collection();
 bot.aliases = new Discord.Collection();
-const Embed = new Discord.MessageEmbed();
 deletedMsg = new Map();
 
 const getDirectories = fs.readdirSync('./commands/', { withFileTypes: true }).filter(dirent => dirent.isDirectory()).map(dirent => dirent.name)
-
 for(let dir of getDirectories) {
 	const commandFiles = fs.readdirSync(`./commands/${dir}/`).filter((file) => file.endsWith('.js'));
 	for (let file of commandFiles) {
@@ -55,20 +49,20 @@ bot.on('message', message => {
 
 		if(cmd == 'snipe') {
 			try {
-				dmessage = deletedMsg.get('deleted msg').dcontent;
-				dauthor = deletedMsg.get('deleted msg').person;
-				dcreated = deletedMsg.get('deleted msg').created;
+				var deletedMessage = deletedMsg.get('deleted msg').deletedContent;
+				var deletedAuthor = deletedMsg.get('deleted msg').person;
+				var deleteMessageCreateTime = deletedMsg.get('deleted msg').created;
 				const DEmbed = new Discord.MessageEmbed()
 				.setTitle('Last Deleted Message')
 				.addFields( 
 					{
-						name: `Message content`, value: `${dmessage}`
+						name: `Message content`, value: `${deletedMessage}`
 					},
 					{
-						name: `Author`, value: `${dauthor}`
+						name: `Author`, value: `${deletedAuthor}`
 					},
 					{
-						name: `Created at`, value: `${dcreated}`
+						name: `Created at`, value: `${deleteMessageCreateTime}`
 					},
 				)
 				.setThumbnail(message.author.avatarURL());
@@ -91,7 +85,7 @@ bot.on('message', message => {
 
 bot.on("messageDelete", (message) => {
 	if (message.author.bot) return;
-	deletedMsg.set("deleted msg", {'dcontent': message.content, 'person': message.author.tag, 'created': message.createdAt});
+	deletedMsg.set("deleted msg", {'deletedContent': message.content, 'person': message.author.tag, 'created': message.createdAt});
 });
 
 const token = process.env.token ? process.env.token : process.env.discord_bot_token;

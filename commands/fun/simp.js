@@ -1,7 +1,9 @@
 module.exports = {
-    name : "simp",
-	description : "simp detector",
+    name : "Simp command",
+	description : "accurately calculates your simp percentage",
 	aliases: ["simp"],
+	perms: null, 
+	usage: "`$simp <name of person>`",
     execute(message=message, args=args, bot=bot) {
         var rate = Math.floor(Math.random() * 100);
         if (message.author.id === '535671100001222668' && !args[0]) {
