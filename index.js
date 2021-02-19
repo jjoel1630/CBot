@@ -42,18 +42,14 @@ bot.on('message', message => {
 		message.channel.send(`I can't even ${message.content}`);
 		return;
 	} else if(message.content.toLowerCase() === "gg") {
-		var frequencyRandom = 12 //Math.floor(Math.random() * 30);
+		var frequencyRandom = Math.floor(Math.random() * 30);
 		var messageRandom = Math.floor(Math.random() * 4);
 		var list = ["GG", "Good one", "Well played", "Good game"]
 		var messageGG = list[messageRandom];
-		switch(frequencyRandom) {
-			case 5:case 12:
-				message.channel.send(messageGG);
-				break;
-			default:
-				return;
+		if(frequencyRandom === 5 || frequencyRandom === 12) {
+			message.channel.send(messageGG);
+			return;
 		}
-		return;
 	} else {
 		if (!message.content.startsWith(config.prefix) || message.author.bot) return;
 
