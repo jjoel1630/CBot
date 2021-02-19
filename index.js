@@ -44,16 +44,16 @@ bot.on('message', message => {
 	} else if(message.content.toLowerCase() === "gg") {
 		var number = Math.floor(Math.random() * 4);
 		switch(number) {
-			case number === 0:
+			case 0:
 				message.channel.send("GG");
-			case number === 1:
+			case 1:
 				message.channel.send("Good One");
-			case number === 2:
+			case 2:
 				message.channel.send('Well played');
-			case number === 3:
+			case 3:
 				message.channel.send('Good game');
-			return;
 		}
+		return;
 	} else {
 		if (!message.content.startsWith(config.prefix) || message.author.bot) return;
 
