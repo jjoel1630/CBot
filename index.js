@@ -41,13 +41,25 @@ bot.on('message', message => {
 	} else if(message.content.startsWith('imagine')) {
 		message.channel.send(`I can't even ${message.content}`);
 		return;
+	} else if(message.content.toLowerCase() === "gg") {
+		var number = Math.floor(Math.random() * 4);
+		switch(number) {
+			case number === 0:
+				message.channel.send("GG");
+			case number === 1:
+				message.channel.send("Good One");
+			case number === 2:
+				message.channel.send('Well played');
+			case number === 3:
+				message.channel.send('Good game');
+		}
 	} else {
 		if (!message.content.startsWith(config.prefix) || message.author.bot) return;
 
 		let args = message.content.substring(config.prefix.length).split(' ');
 		const cmd = args.shift().toLowerCase();
 
-		if(cmd == 'snipe') {
+		if(cmd === 'snipe') {
 			try {
 				var deletedMessage = deletedMsg.get('deleted msg').deletedContent;
 				var deletedAuthor = deletedMsg.get('deleted msg').person;
