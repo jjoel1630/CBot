@@ -46,12 +46,16 @@ bot.on('message', message => {
 		switch(number) {
 			case 0:
 				message.channel.send("GG");
+				break;
 			case 1:
 				message.channel.send("Good One");
+				break;
 			case 2:
 				message.channel.send('Well played');
+				break;
 			case 3:
 				message.channel.send('Good game');
+				break;
 		}
 		return;
 	} else {
