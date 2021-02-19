@@ -52,6 +52,7 @@ bot.on('message', message => {
 				message.channel.send('Well played');
 			case number === 3:
 				message.channel.send('Good game');
+			return;
 		}
 	} else {
 		if (!message.content.startsWith(config.prefix) || message.author.bot) return;
