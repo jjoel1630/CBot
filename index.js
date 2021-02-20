@@ -11,6 +11,7 @@ require('dotenv').config();
 const bot = new Discord.Client();
 bot.commands = new Discord.Collection();
 bot.aliases = new Discord.Collection();
+// var active = {};
 deletedMsg = new Map();
 
 const getDirectories = fs.readdirSync('./commands/', { withFileTypes: true }).filter(dirent => dirent.isDirectory()).map(dirent => dirent.name)
@@ -20,6 +21,8 @@ for(let dir of getDirectories) {
 		const command = require(`./commands/${dir}/${file}`);
 
 		bot.commands.set(command.name, command);
+
+		// active = {...active, name: [command.name, command.active]  };
 
 		if(command.aliases && Array.isArray(command.aliases)) {
 			command.aliases.forEach(alias => bot.aliases.set(alias, command.name))
@@ -56,6 +59,8 @@ bot.on('message', message => {
 		let args = message.content.substring(config.prefix.length).split(' ');
 		const cmd = args.shift().toLowerCase();
 
+		if(!active) return;
+
 		if(cmd === 'snipe') {
 			try {
 				var deletedMessage = deletedMsg.get('deleted msg').deletedContent;
@@ -82,9 +87,24 @@ bot.on('message', message => {
 		} else {
 			if(cmd === 'help') {
 				help.execute(message, args, bot, Discord);
-			} else if(bot.aliases.get(cmd)) {
+			} // else if(cmd === 'stop'){
+			// 	if(!message.author.id === '535671100001222668') {
+			// 		message.channel.send("Are you the owner of this bot?? No dumbo!");
+			// 		return;
+			// 	} else if(message.author.id === '535671100001222668' && args[0] && bot.aliases.get(args[0])) {
+			// 		const command = bot.commands.get(bot.aliases.get(args[0]));
+			// 		command.active = false;
+			// 	}
+			//} 
+			else if(bot.aliases.get(cmd)) {
 				const command = bot.commands.get(bot.aliases.get(cmd));
-				command.execute(message, args, bot, Discord, Duration, cheerio); 
+				command.execute(message, args, bot, Discord, Duration, cheerio);
+				// if(command.active === false) {
+				// 	message.channel.send('this command aint available rn bruv. thas an oof');
+				// 	return;
+				// } else {
+				// 	command.execute(message, args, bot, Discord, Duration, cheerio); 
+				// }
 			} else {
 				return;
 			}

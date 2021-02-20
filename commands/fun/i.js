@@ -1,8 +1,9 @@
 const request = require('request');
 
 module.exports = {
-	name : "i", 
+	name : "i",
 	description : "random image",
+	active: false,
 	aliases: ["i", "image"],
 	execute(message=message, args=args, cheerio=cheerio) {
 		message.channel.send("This command aint available rn. Thats tuff bruv");

@@ -2,7 +2,8 @@ module.exports = {
 	name : "IQ", 
 	description : "accurately finds your iq",
 	aliases: ["iq"],
-	perms: null, 
+	perms: null,
+	active: true,
 	usage: "`$iq <name of person>`",
 	execute(message=message, args=args, bot=bot) {
 		if (message.author.id === '535671100001222668' && !args[0]) {

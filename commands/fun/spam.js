@@ -2,6 +2,7 @@ module.exports = {
 	name : "Spam", 
 	description : "spams a message for a certain number of times",
 	aliases: ["spam"],
+	active: true,
 	perms: 'ADMINISTRATOR', 
 	usage: "$spam <number of times> <message>",
 	execute(message=message, args=args, bot=bot) {

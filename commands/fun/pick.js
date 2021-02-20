@@ -3,6 +3,7 @@ module.exports = {
 	description : "picks between multiple options SEPARATED BY A SPACE",
 	aliases: ["pick"],
 	perms: null, 
+	active: true,
 	usage: "`$pick <option 1> <option 2> ...`",
 	execute(message=message, args=args, bot=bot, Discord=Discord) {
 		var index = Math.floor(Math.random() * args.length);

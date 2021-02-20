@@ -2,7 +2,8 @@ module.exports = {
 	name : "Guessing game", 
 	description : "A guessing game",
 	aliases: ["gg", "guess"],
-	perms: null, 
+	perms: null,
+	active: true,
 	usage: "`$gg <number (range that the correct number can be)>`",
 	execute(message=message, args=args, bot=bot, Discord=Discord, Duration=Duration) {
 		const used = new Map();

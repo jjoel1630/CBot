@@ -3,6 +3,7 @@ module.exports = {
     description: 'Returns the covid-19 status for the provided arguments',
     aliases: ['covid', 'c19', 'covid-19'],
     perms: null,
+    active: true,
     usage: '`$c19 <global/(country)>`, Type $c19 help for more',
     execute(message=message, args=args, bot=bot, Discord=Discord) {
         var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;

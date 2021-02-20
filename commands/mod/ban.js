@@ -2,6 +2,7 @@ module.exports = {
 	name : "Ban", 
 	description : "bans the mentioned user",
 	aliases: ["ban"],
+	active: true,
 	perms: ['KICK_MEMBERS'],
 	usage: "`$ban <@user>`",
 	execute(message=message, args=args, bot=bot) {

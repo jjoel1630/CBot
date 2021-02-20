@@ -3,6 +3,7 @@ module.exports = {
     description: 'returns the server info for the current server',
     aliases: ['sinfo', 'serverinfo'],
     perms: null,
+    active: true,
     usage: "`$sinfo`",
     execute(message=message, args=args, bot=bot, Discord=Discord) {
         const { guild } = message;

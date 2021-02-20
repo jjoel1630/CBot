@@ -4,7 +4,8 @@ module.exports = {
     name: 'Youtube Videos',
     description: 'Gets a youtube video based on your search',
     aliases: ['ytsearch', 'ysearch', 'youtubesearch', 'ys'],
-    perms: null, 
+    perms: null,
+    active: true,
     usage: '`$ys <keywords>`',
     execute(message=message, args=args, bot=bot) {
         if(!args[0]) {

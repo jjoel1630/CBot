@@ -6,6 +6,7 @@ module.exports = {
     description: 'Returns the the lastest news on a given argument',
     aliases: ['news'],
     perms: null,
+    active: true,
     usage: '`$news everything <keywords>`, `$news top-headlines <country (default: us)> <category (optional)>`, Type $news help for more info',
     execute(message=message, args=args, bot=bot, Discord=Discord) {
         var request = new XMLHttpRequest();

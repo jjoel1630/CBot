@@ -2,6 +2,7 @@ module.exports = {
 	name: "Echo",
 	description: "I will echo whatever you tell me to say",
 	aliases: ['echo'],
+	active: true,
 	perms: 'SEND_MESSAGES', 
 	usage: '`$echo <text>`',
 	execute(message=message, args=args, bot=bot) {

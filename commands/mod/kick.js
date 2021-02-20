@@ -3,6 +3,7 @@ module.exports = {
 	description : "kicks the mentioned used",
 	aliases: ["kick"],
 	perms: ["BAN_MEMBERS"],
+	active: false,
 	usage: "`$kick <@user>`",
 	execute(message=message, args=args, bot=bot) {
 		const { member, mentions } = message;

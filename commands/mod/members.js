@@ -3,6 +3,7 @@ module.exports = {
     description : "returns the amount of members",
     aliases: ["members"],
     perms: null,
+    active: true,
     usage: "`$members`",
     execute(message=message, args=args, bot=bot) {
         bot.guilds.cache.forEach((guild) => {

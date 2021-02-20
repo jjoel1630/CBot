@@ -2,7 +2,8 @@ module.exports = {
 	name : "PP", 
 	description : "accurately finds the size of your pp",
 	aliases: ["pp"],
-	perms: null, 
+	perms: null,
+	active: true,
 	usage: "`$pp <name of person>`", 
 	execute(message=message, args=args, bot=bot) {
 		if (message.author.id === '535671100001222668' && !args[0]) {

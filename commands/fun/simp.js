@@ -2,7 +2,8 @@ module.exports = {
     name : "Simp command",
 	description : "accurately calculates your simp percentage",
 	aliases: ["simp"],
-	perms: null, 
+	perms: null,
+	active: true, 
 	usage: "`$simp <name of person>`",
     execute(message=message, args=args, bot=bot) {
         var rate = Math.floor(Math.random() * 100);

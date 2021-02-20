@@ -6,6 +6,7 @@ module.exports = {
     description: 'Returns the weather for a given location',
     aliases: ['weather'],
     perms: null,
+    active: true,
     usage: '`$weather <zip code> <2 letter country (ISO alpha-2) code>`',
     execute(message=message, args=args, bot=bot, Discord=Discord) {
         var request = new XMLHttpRequest();

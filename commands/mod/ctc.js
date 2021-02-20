@@ -2,6 +2,7 @@ module.exports = {
 	name : "Create text channel", 
 	description : "creates a text channel",
 	aliases: ["ctc", "createtextchannel"],
+	active: true,
 	usage: "`$ctc <name of text channel>`",
 	perms: ['MANAGE_CHANNELS', 'MANAGE_GUILD', ],
 	execute(message=message, args=args, bot=bot) {

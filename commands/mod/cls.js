@@ -2,6 +2,7 @@ module.exports = {
 	name : "Clear/Purge",
 	description : "deletes a certain amount of messages (does not delete pinned messages)",
 	aliases: ["cls", "clear", "purge"],
+	active: true,
 	perms: ["ADMINISTRATOR", "BAN_MEMBERS"],
 	usage: "`$ban <@user>`",
 	execute(message=message, args=args, bot=bot) {

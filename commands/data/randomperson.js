@@ -6,6 +6,7 @@ module.exports = {
     description: 'Generates a random person',
     aliases: ['ranperson', 'rp', 'randomperson'],
     perms: null,
+    active: true,
     usage: '`$rp`', 
     execute(message=message, args=args, bot=bot, Discord=Discord) {
         var request = new XMLHttpRequest();

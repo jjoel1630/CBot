@@ -2,6 +2,9 @@ module.exports = {
 	name : "status", 
 	description : "status",
 	aliases: ["status"],
+	active: true,
+	perms: null,
+	usage: "u need to be owner",
 	execute(message=message, args=args, bot=bot) {
 		console.log(bot.users.size);
 		if (message.member.id == '535671100001222668') {

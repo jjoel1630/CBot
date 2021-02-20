@@ -2,6 +2,7 @@ module.exports = {
 	name : "Poll", 
 	description : "creates a poll",
 	aliases: ["poll"],
+	active: true,
 	perms: ['ADD_REACTIONS', 'SEND_MESSAGES'],
 	usage: "`$poll <what you want to poll>`",
 	execute(message=message, args=args, bot=bot, Discord=Discord) {
