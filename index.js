@@ -115,7 +115,8 @@ bot.on("messageDelete", (message) => {
 	deletedMsg.set("deleted msg", {'deletedContent': message.content, 'person': message.author.tag, 'created': message.createdAt});
 });
 
-const token = process.env.token ? process.env.token : process.env.discord_bot_token;
+// const token = process.env.token ? process.env.token : process.env.discord_bot_token;
+const token = process.env.token ?? process.env.discord_bot_token ?? process.env.DISCORD_BOT_TOKEN_EC2;
 
 // if(process.env.token) {
 // 	token = process.env.token
