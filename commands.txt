@@ -17,6 +17,9 @@ sudo npm install -g n
 sudo n stable
 sudo npm i --unsafe-perm
 
+pm2 stop <index>
+pm2 list
+
 available permissions {
     'CREATE_INSTANT_INVITE',
     'KICK_MEMBERS',
