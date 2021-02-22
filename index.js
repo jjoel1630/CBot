@@ -124,6 +124,4 @@ const token = process.env.token ?? process.env.discord_bot_token ?? process.env.
 // 	token = process.env.discord_bot_token
 // }
 
-console.log(`token: ${token}`);
-
 bot.login(token);
