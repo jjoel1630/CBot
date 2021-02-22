@@ -37,6 +37,7 @@ bot.on('ready', async () => {
 bot.on('message', message => {
 	if(message.author.id === '676257039839920148') {
 		message.channel.send('nah foo i aint doing sheet for u idiot. ure the reason i had to take down the spam command.');
+		return;
 	}
 	if(message.content.toLowerCase() === 'stop the cap' || message.content.toLowerCase() === 'cap') {
 		message.channel.send('https://www.youtube.com/watch?v=mugRenBeRw0&ab_channel=BruhCentralMoments')
