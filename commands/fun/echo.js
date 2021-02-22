@@ -7,7 +7,8 @@ module.exports = {
 	usage: '`$echo <text>`',
 	execute(message=message, args=args, bot=bot) {
 		if(!args[0]) {
-			message.channel.send("what do you want me to echo idiot???")
+			message.channel.send("what do you want me to echo idiot???");
+			return;
 		}
 		let msgArgs = args.slice(0).join(' ');
 		message.channel.send(msgArgs);
