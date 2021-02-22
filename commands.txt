@@ -7,6 +7,10 @@ heroku ps --app "cbot-djs"
 heroku logs --app "cbot-djs"
 heroku config -a 'cbot-djs'
 
+aws
+curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
 available permissions {
     'CREATE_INSTANT_INVITE',
     'KICK_MEMBERS',
