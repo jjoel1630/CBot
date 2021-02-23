@@ -34,7 +34,7 @@ function writeInFile(data) {
 function pushToFile(obj) {
     fs.readFile("whitelist.json", "utf-8", (err, data) => {
         if (err) console.error(err);
-        let dataObj = JSON.parse(data ?? '{"whiteListedUsers": [{"name": null, "id": null, "username": null}]');
+        let dataObj = JSON.parse(data ?? '{"whiteListedUsers": [{"name": null, "id": null, "username": null}]}');
         dataObj.whiteListedUsers.push(obj);
         
         writeInFile(JSON.stringify(dataObj));
