@@ -16,9 +16,8 @@ module.exports = {
             var whitelistedUser = {
                 name: `${message.mentions?.users?.first()?.tag}`,
                 id: `${message.mentions?.users?.first()?.id}`,
-                username: `${message.mentions?.users?.first()?.username}`
             }
-            pushToFile(whitelistedUser);
+            pushToFile(JSON.stringify(whitelistedUser));
         } else {
             message.channel.send('are you the goddamn owner of the bot??? no you arent. so y tf u runnin this command idiot???')
         }
