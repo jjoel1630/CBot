@@ -15,9 +15,9 @@ module.exports = {
                 return;
             }
             var whitelistedUser = {
-                name: `${mentions?.users?.first()?.tag}`,
-                id: `${mentions?.users?.first()?.id}`,
-                username: `${mentions?.users?.first()?.username}`
+                name: `${message.mentions?.users?.first()?.tag}`,
+                id: `${message.mentions?.users?.first()?.id}`,
+                username: `${message.mentions?.users?.first()?.username}`
             }
             pushToFile(whitelistedUser);
         } else {
