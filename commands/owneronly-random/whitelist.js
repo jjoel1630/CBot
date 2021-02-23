@@ -1,4 +1,5 @@
 const fs = require('fs');
+const test = require('./')
 
 module.exports = {
     name: 'Whitelist',
@@ -25,14 +26,14 @@ module.exports = {
 }
 
 function writeInFile(data) {
-    fs.writeFile("../../whitelist.json", data, (err) => {
+    fs.writeFile("./whitelist.json", data, (err) => {
         if (err) console.error(err);
         console.log("Successfully Written to File.");
     });   
 }
 
 function pushToFile(obj) {
-    fs.readFile("../../whitelist.json", "utf-8", (err, data) => {
+    fs.readFile("./whitelist.json", "utf-8", (err, data) => {
         if (err) console.error(err);
         let dataObj = JSON.parse(data);
         dataObj.whiteListedUsers.push(obj);
@@ -42,7 +43,7 @@ function pushToFile(obj) {
 }
 
 function readFile() {
-    fs.readFile("../../whitelist.json", "utf-8", (err, data) => {
+    fs.readFile("./whitelist.json", "utf-8", (err, data) => {
         if (err) console.error(err);
         let dataObj = JSON.parse(data);
         
