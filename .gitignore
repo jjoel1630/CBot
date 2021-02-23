@@ -3,3 +3,4 @@ heroku_commands.txt
 .env
 functions/
 test.js
+.vscode

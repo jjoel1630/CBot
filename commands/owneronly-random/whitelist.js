@@ -1,5 +1,4 @@
 const fs = require('fs');
-const test = require('../../whitelist.json')
 
 module.exports = {
     name: 'Whitelist',
