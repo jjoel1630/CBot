@@ -223,13 +223,14 @@ function addGuildAndReport(guildID, userMentioned, userMentionedName, titleOfRep
                 success: false,
                 message: err
             });
-        } //else {
-        //     console.log({
-        //         success: true,
-        //         message: 'Added element',
-        //         data: data
-        //     });
-        // }
+        } else {
+            // console.log({
+            //     success: true,
+            //     message: 'Added element',
+            //     data: data
+            // });
+            message.channel.send('added new report');
+        }
     });
 }
 

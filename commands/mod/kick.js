@@ -23,7 +23,7 @@ module.exports = {
 							`<@${targetMember.id}>, has been banned lmaoooooo. Get yo butt outta here.`
 						);
 					}).catch(err => {
-						message.channel.send(`stop tryna kick people that have a high role than u. hey admins kick <@${message.author.id}>`);
+						message.channel.send(`stop tryna kick people that have a higher role than u. hey admins kick <@${message.author.id}>`);
 						return;
 					})
 				} catch(err) {
