@@ -18,7 +18,10 @@ module.exports = {
 			if (target) {
 				try {
 					const targetMember = message.guild.members.cache.get(target.id);
-					targetMember.ban();
+					targetMember.ban().catch(err => {
+						message.channel.send(`stop tryna ban people that have a high role than u. hey admins ban <@${target.id}>`);
+						return;
+					})
 					message.channel.send(
 						`<@${targetMember.id}>, has been banned lmaoooooo. Get yo butt outta here.`
 					);

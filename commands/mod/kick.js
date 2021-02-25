@@ -18,9 +18,12 @@ module.exports = {
 			if (target) {
 				try {
 					const targetMember = message.guild.members.cache.get(target.id);
-					targetMember.kick();
+					targetMember.kick().catch(err => {
+						message.channel.send(`stop tryna kick people that have a high role than u. hey admins kick <@${target.id}>`);
+						return;
+					})
 					message.channel.send(
-						`<@${targetMember.id}>, has been kicked lmaoooooo. Get yo butt outta here.`
+						`<@${targetMember.id}>, has been banned lmaoooooo. Get yo butt outta here.`
 					);
 				} catch(err) {
 					message.channel.send(`stop tryna kick people that have a high role than u. hey admins kick <@${target.id}>`);
