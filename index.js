@@ -5,6 +5,7 @@ const cheerio = require('cheerio');
 const Duration = require('humanize-duration');
 const config = require('./config.json');
 const help = require('./help.js');
+const AWS = require('aws-sdk');
 require('dotenv').config();
 
 //clients
@@ -54,9 +55,16 @@ bot.on('message', message => {
 			return;
 		}
 	} else {
-		if (!message.content.startsWith(config.prefix) || message.author.bot) return;
+		const guildID = message.guild.id;
 
-		let args = message.content.substring(config.prefix.length).split(' ');
+		var prefix;
+		getPrefix(guildID, async (returnedPrefix) => {
+			prefix = await returnedPrefix;
+		});
+
+		if (!message.content.startsWith(prefix ?? config.prefix) || message.author.bot) return;
+
+		let args = message.content.substring(prefix?.length || config.prefix.length).split(' '); 
 		const cmd = args.shift().toLowerCase();
 
 		if(cmd === 'snipe') {
@@ -123,5 +131,38 @@ const token = process.env.token ?? process.env.discord_bot_token ?? process.env.
 // } else {
 // 	token = process.env.discord_bot_token
 // }
+
+function getPrefix(guildID, callbackPrefix) {
+    AWS.config.update({
+        secretAccessKey: process.env.secretAccessKey ?? process.env.envsecretAccessKey,
+        accessKeyId: process.env.accessKeyId ?? process.env.envaccessKeyId,
+        region: process.env.region ?? process.env.envregion
+    });
+    const docClient = new AWS.DynamoDB.DocumentClient();
+
+    const params = {
+        TableName: 'prefix',
+        ProjectionExpression:"prefix",
+        FilterExpression: "guildID = :gID",
+        ExpressionAttributeValues: {
+            ":gID": guildID,
+        },
+    };
+
+    docClient.scan(params, function (err, data) {
+
+        if (err) {
+            console.log(err);
+            return({
+                success: false,
+                message: err
+            });
+        } else {
+			const { Items } = data;
+			const returnedPrefix = Items[0]?.prefix;
+           	return callbackPrefix(returnedPrefix);
+        }
+    });
+}
 
 bot.login(token);
