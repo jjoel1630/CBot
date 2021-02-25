@@ -9,12 +9,22 @@ module.exports = {
 		const { member, mentions } = message;
 		if (member.hasPermission('ADMINISTRATOR') || member.hasPermission('BAN_MEMBERS')) {
 			const target = mentions.users.first();
+
+			if(target.id === '814565277480124427') {
+				message.channel.send('u cant ban my creator dumbo stop trying');
+				return;
+			}
+
 			if (target) {
-				const targetMember = message.guild.members.cache.get(target.id);
-				targetMember.ban();
-				message.channel.send(
-					`<@${targetMember.id}>, has been banned lmaoooooo. Get yo butt outta here.`
-				);
+				try {
+					const targetMember = message.guild.members.cache.get(target.id);
+					targetMember.ban();
+					message.channel.send(
+						`<@${targetMember.id}>, has been banned lmaoooooo. Get yo butt outta here.`
+					);
+				} catch(err) {
+					message.channel.send(`stop tryna ban people that have a high role than u. hey admins ban <@${target.id}>`);
+				}
 			} else {
 				message.channel.send(
 					`<@${member.id}>, bro you gotta tell me who to ban stupid. SMH.`
