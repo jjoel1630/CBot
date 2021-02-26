@@ -23,7 +23,7 @@ module.exports = {
             } else if(titleOfReport && descriptionOfReport) {
                 args.shift();
                 const [ titleOfReport, descriptionOfReport ] = args.join(', ');
-                checkGuildReports(guildID, userMentioned, userMentionedName, titleOfReport, descriptionOfReport);
+                checkGuildReports(guildID, userMentioned, userMentionedName, titleOfReport, descriptionOfReport, message);
             }
         } else {
             message.channel.send('lmaoooooooo you dont have the perms. tryna report people. hey admins boot this kid man');
@@ -373,7 +373,7 @@ function checkGuildReports(guildID, userMentioned, userMentionedName, titleOfRep
     });
 }
 
-function addGuildReport(guildID, userMentioned, userName, titleOfReport, descriptionOfReport) {
+function addGuildReport(guildID, userMentioned, userName, titleOfReport, descriptionOfReport, message) {
     AWS.config.update({
         secretAccessKey: process.env.secretAccessKey ?? process.env.envsecretAccessKey,
         accessKeyId: process.env.accessKeyId ?? process.env.envaccessKeyId,
