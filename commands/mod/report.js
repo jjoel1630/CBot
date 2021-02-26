@@ -20,7 +20,7 @@ module.exports = {
                 return;
             } else if(args[1] && userMentioned && args[0] === 'get') {
                 getUserReports(guildID, userMentioned, userMentionedName, message);
-            } else if(titleOfReport && descriptionOfReport) {
+            } else {
                 args.shift();
                 const [ titleOfReport, descriptionOfReport ] = args.join(', ');
                 checkGuildReports(guildID, userMentioned, userMentionedName, titleOfReport, descriptionOfReport, message);
