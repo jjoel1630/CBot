@@ -22,6 +22,7 @@ module.exports = {
                 getUserReports(guildID, userMentioned, userMentionedName, message);
             } else {
                 args.shift();
+                console.log(args);
                 const [ titleOfReport, descriptionOfReport ] = args.join(', ');
                 console.log(titleOfReport, descriptionOfReport);
                 // addGuildReport(guildID, userMentioned, userMentionedName, titleOfReport, descriptionOfReport, message);

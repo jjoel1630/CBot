@@ -57,64 +57,61 @@ bot.on('message', message => {
 	} else {
 		const guildID = message.guild.id;
 
-		var prefix;
-		getPrefix(guildID, async (returnedPrefix) => {
-			prefix = await returnedPrefix;
-		});
+		getPrefix(guildID, prefix => {
+			if (!message.content.startsWith(prefix ?? config.prefix) || message.author.bot) return;
 
-		if (!message.content.startsWith(prefix ?? config.prefix) || message.author.bot) return;
+			let args = message.content.substring(prefix?.length || config.prefix.length).split(' '); 
+			const cmd = args.shift().toLowerCase();
 
-		let args = message.content.substring(prefix?.length || config.prefix.length).split(' '); 
-		const cmd = args.shift().toLowerCase();
-
-		if(cmd === 'snipe') {
-			try {
-				var deletedMessage = deletedMsg.get('deleted msg').deletedContent;
-				var deletedAuthor = deletedMsg.get('deleted msg').person;
-				var deleteMessageCreateTime = deletedMsg.get('deleted msg').created;
-				const DEmbed = new Discord.MessageEmbed()
-				.setTitle('Last Deleted Message')
-				.addFields( 
-					{
-						name: `Message content`, value: `${deletedMessage}`
-					},
-					{
-						name: `Author`, value: `${deletedAuthor}`
-					},
-					{
-						name: `Created at`, value: `${deleteMessageCreateTime}`
-					},
-				)
-				.setThumbnail(message.author.avatarURL());
-				message.channel.send(DEmbed);
-			} catch(err) {
-				message.channel.send('There is nothing to snipe');
-			}
-		} else {
-			if(cmd === 'help') {
-				help.execute(message, args, bot, Discord);
-			} // else if(cmd === 'stop'){
-			// 	if(!message.author.id === '535671100001222668') {
-			// 		message.channel.send("Are you the owner of this bot?? No dumbo!");
-			// 		return;
-			// 	} else if(message.author.id === '535671100001222668' && args[0] && bot.aliases.get(args[0])) {
-			// 		const command = bot.commands.get(bot.aliases.get(args[0]));
-			// 		command.active = false;
-			// 	}
-			//} 
-			else if(bot.aliases.get(cmd)) {
-				const command = bot.commands.get(bot.aliases.get(cmd));
-				command.execute(message, args, bot, Discord, Duration, cheerio);
-				// if(command.active === false) {
-				// 	message.channel.send('this command aint available rn bruv. thas an oof');
-				// 	return;
-				// } else {
-				// 	command.execute(message, args, bot, Discord, Duration, cheerio); 
-				// }
+			if(cmd === 'snipe') {
+				try {
+					var deletedMessage = deletedMsg.get('deleted msg').deletedContent;
+					var deletedAuthor = deletedMsg.get('deleted msg').person;
+					var deleteMessageCreateTime = deletedMsg.get('deleted msg').created;
+					const DEmbed = new Discord.MessageEmbed()
+					.setTitle('Last Deleted Message')
+					.addFields( 
+						{
+							name: `Message content`, value: `${deletedMessage}`
+						},
+						{
+							name: `Author`, value: `${deletedAuthor}`
+						},
+						{
+							name: `Created at`, value: `${deleteMessageCreateTime}`
+						},
+					)
+					.setThumbnail(message.author.avatarURL());
+					message.channel.send(DEmbed);
+				} catch(err) {
+					message.channel.send('There is nothing to snipe');
+				}
 			} else {
-				return;
-			}
+				if(cmd === 'help') {
+					help.execute(message, args, bot, Discord);
+				} // else if(cmd === 'stop'){
+				// 	if(!message.author.id === '535671100001222668') {
+				// 		message.channel.send("Are you the owner of this bot?? No dumbo!");
+				// 		return;
+				// 	} else if(message.author.id === '535671100001222668' && args[0] && bot.aliases.get(args[0])) {
+				// 		const command = bot.commands.get(bot.aliases.get(args[0]));
+				// 		command.active = false;
+				// 	}
+				//} 
+				else if(bot.aliases.get(cmd)) {
+					const command = bot.commands.get(bot.aliases.get(cmd));
+					command.execute(message, args, bot, Discord, Duration, cheerio);
+					// if(command.active === false) {
+					// 	message.channel.send('this command aint available rn bruv. thas an oof');
+					// 	return;
+					// } else {
+					// 	command.execute(message, args, bot, Discord, Duration, cheerio); 
+					// }
+				} else {
+					return;
+				}
 		}
+		});
 	}
 });
 
@@ -132,7 +129,7 @@ const token = process.env.token ?? process.env.discord_bot_token ?? process.env.
 // 	token = process.env.discord_bot_token
 // }
 
-function getPrefix(guildID, callbackPrefix) {
+async function getPrefix(guildID, callbackPrefix) {
     AWS.config.update({
         secretAccessKey: process.env.secretAccessKey ?? process.env.envsecretAccessKey,
         accessKeyId: process.env.accessKeyId ?? process.env.envaccessKeyId,
