@@ -23,7 +23,8 @@ module.exports = {
             } else {
                 args.shift();
                 const [ titleOfReport, descriptionOfReport ] = args.join(', ');
-                addGuildReport(guildID, userMentioned, userMentionedName, titleOfReport, descriptionOfReport, message);
+                console.log(titleOfReport, descriptionOfReport);
+                // addGuildReport(guildID, userMentioned, userMentionedName, titleOfReport, descriptionOfReport, message);
             }
         } else {
             message.channel.send('lmaoooooooo you dont have the perms. tryna report people. hey admins boot this kid man');
