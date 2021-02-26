@@ -22,13 +22,28 @@ module.exports = {
                 getUserReports(guildID, userMentioned, userMentionedName, message);
             } else {
                 args.shift();
-                console.log(args);
-                const [ titleOfReport, descriptionOfReport ] = args.join(', ');
-                console.log(titleOfReport, descriptionOfReport);
-                // addGuildReport(guildID, userMentioned, userMentionedName, titleOfReport, descriptionOfReport, message);
+                
+                let i = 0;
+                let spliceIndex = undefined;
+                args.forEach(arg => {
+                    if(arg.endsWith(',')) {
+                        args[i] = arg.slice(0, -1);
+                        spliceIndex = i;
+                    }
+                    i++
+                });
+                if(!spliceIndex) {
+                    message.channel.send('u need to separate ure title and description with a comma smart one');
+                    return;
+                }
+                const argsTitle = args.splice(spliceIndex + 1);
+                const titleOfReport = argsTitle.join(' ');
+                const descriptionOfReport = args.join(' ');
+
+                addGuildReport(guildID, userMentioned, userMentionedName, titleOfReport, descriptionOfReport, message);
             }
         } else {
-            message.channel.send('lmaoooooooo you dont have the perms. tryna report people. hey admins boot this kid man');
+            message.channel.send('lmaoooooooo you dont have the perms. tryna report people. hey admins boot this kid bruh');
         }
     }
 }
@@ -63,9 +78,9 @@ function updateEntry(userMentioned, titleOfReport, descriptionOfReport) {
     docClient.update(params, function(err, data) {
         if (err) {
             console.error("Unable to update item. Error JSON:", JSON.stringify(err, null, 2));
-        } else {
-            console.log("UpdateItem succeeded"); //JSON.stringify(data, null, 2)
-        }
+        } //else {
+        //     console.log("UpdateItem succeeded"); //JSON.stringify(data, null, 2)
+        // }
     });
 
 }
