@@ -6,7 +6,7 @@ module.exports = {
     aliases: ['report'],
     perms: 'ADMINISTRATOR',
     active: true,
-    usage: '`$report <@user> <title>,<description>`',
+    usage: '`$report <@user> <title>, <description>`',
     execute(message=message, args=args, bot=bot) {
         if(message.member.hasPermission(this.perms)) {
             if(!args[1]) {message.channel.send(`Please try ${this.usage}`); return;}
@@ -14,8 +14,6 @@ module.exports = {
             const userMentioned = message.mentions.users.first()?.id;
             const guildID = message.guild.id;
             const userMentionedName = message.mentions.users.first()?.tag;
-            args.shift();
-            const [ titleOfReport, descriptionOfReport ] = args.join(', ');
 
             if(args[1] && args[1] === 'server' && args[0] === 'get') {
                 getGuildReports(guildID, message)
@@ -23,6 +21,8 @@ module.exports = {
             } else if(args[1] && userMentioned && args[0] === 'get') {
                 getUserReports(guildID, userMentioned, userMentionedName, message);
             } else if(titleOfReport && descriptionOfReport) {
+                args.shift();
+                const [ titleOfReport, descriptionOfReport ] = args.join(', ');
                 checkGuildReports(guildID, userMentioned, userMentionedName, titleOfReport, descriptionOfReport);
             }
         } else {
