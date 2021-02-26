@@ -270,8 +270,8 @@ function getUserReports(guildID, userMentioned, userMentionedName, message) {
             Items[0].reports.forEach(report => {
                 if(report.userID === userMentioned) {
                     reportString = `${reportString}\n**Report #${i}** - \`Name: ${report.title}\`, \`Description: ${report.description}\``;
+                    i++;
                 }
-                i++;
             });
 
             if(reportString === `Reports for ${userMentionedName}:`) {
