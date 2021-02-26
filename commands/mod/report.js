@@ -14,7 +14,8 @@ module.exports = {
             const userMentioned = message.mentions.users.first()?.id;
             const guildID = message.guild.id;
             const userMentionedName = message.mentions.users.first()?.tag;
-            const [ titleOfReport, descriptionOfReport ] = args[1].split(',');
+            args.shift();
+            const [ titleOfReport, descriptionOfReport ] = args.join(', ');
 
             if(args[1] && args[1] === 'server' && args[0] === 'get') {
                 getGuildReports(guildID, message)
