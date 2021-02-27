@@ -16,7 +16,7 @@ module.exports = {
         const cooldown = cooldowns.get(message.author.id);
         if(cooldown && !message.author.id === '535671100001222668') {
 			const remaining = humanizeDuration(cooldown - Date.now(), {units: ['m', 's'], round: true});
-			message.channel.send(`chill bruva. you can run this command in ${remaining}`)
+			message.channel.send(`chill bruva. the covid results dont update that fast dumbo. you can run this command in ${remaining}`)
 		} else {
 
             covid(message, args, Discord);
