@@ -13,7 +13,7 @@ module.exports = {
     active: true,
     usage: '`$rp`',
     cooldownTime: 120000,
-    execute(message=message, args=args, bot=bot) {
+    execute(message=message, args=args, bot=bot, Discord=Discord) {
         if(cooldown) {
             const remaining = humanizeDuration(cooldown - Date.now(), {units: ['m', 's'], round: true});
             message.channel.send(`chill bruva. you can run this command in remaining`)
