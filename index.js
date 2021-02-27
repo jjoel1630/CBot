@@ -43,7 +43,7 @@ const whitelistedUsers = ['676257039839920148']
 
 bot.on('message', message => {
 	if(whitelistedUsers.includes(message.author.id)) {
-		message.channel.send('frick u chait');
+		// message.channel.send('frick u chait');
 		return;
 	}
 	if(message.content.toLowerCase() === 'stop the cap' || message.content.toLowerCase() === 'cap') {
