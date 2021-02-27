@@ -12,8 +12,12 @@ require('dotenv').config();
 const bot = new Discord.Client();
 bot.commands = new Discord.Collection();
 bot.aliases = new Discord.Collection();
-// var active = {};
+
 deletedMsg = new Map();
+
+// var customResponses = {
+// 	'stopthecap': []
+// }
 
 const getDirectories = fs.readdirSync('./commands/', { withFileTypes: true }).filter(dirent => dirent.isDirectory()).map(dirent => dirent.name)
 for(let dir of getDirectories) {
