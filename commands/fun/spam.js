@@ -12,6 +12,7 @@ module.exports = {
 	usage: "$spam <number of times> <message>",
 	cooldownTime: 1000000,
 	execute(message=message, args=args, bot=bot, Discord=Discord) {
+		const cooldown = cooldowns.get(message.author.id);
 		if(cooldown) {
 			const remaining = humanizeDuration(cooldown - Date.now(), {units: ['m', 's'], round: true});
 			message.channel.send(`chill bruva. you can run this command in remaining`)
