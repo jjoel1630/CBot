@@ -26,10 +26,10 @@ module.exports = {
 }
 
 const spam = (message, args) => {
-	if(message.author.id === '676257039839920148') {
-		message.channel.send('frick u chait');
-		return;
-	}
+	// if(message.author.id === '676257039839920148') {
+	// 	message.channel.send('frick u chait');
+	// 	return;
+	// }
 	// message.channel.send('yall idiots are so stupid frickin overusing the spam command. cuz of these dumbos this command is now permanently shut down. ');
 	if (!args[0]) {
 		message.channel.send('How many times u wanna spam bruh');
