@@ -39,8 +39,10 @@ bot.on('ready', async () => {
 	console.log('ACTIVE!');
 });
 
+const whitelistedUsers = ['676257039839920148']
+
 bot.on('message', message => {
-	if(message.author.id === '676257039839920148') {
+	if(whitelistedUsers.includes(message.author.id)) {
 		message.channel.send('frick u chait');
 		return;
 	}
