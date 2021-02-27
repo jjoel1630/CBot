@@ -39,12 +39,12 @@ bot.on('ready', async () => {
 	console.log('ACTIVE!');
 });
 
-const whitelistedUsers = ['676257039839920148']
+const whitelistedUsers = []
 
 bot.on('message', message => {
-	if(whitelistedUsers.includes(message.author.id)) return;
+	if(whitelistedUsers?.includes(message.author.id)) return;
 		// message.channel.send('frick u chait');
-		
+
 	if(message.content.toLowerCase() === 'stop the cap' || message.content.toLowerCase() === 'cap') {
 		message.channel.send('https://www.youtube.com/watch?v=mugRenBeRw0&ab_channel=BruhCentralMoments')
 		return;
