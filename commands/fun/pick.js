@@ -12,9 +12,10 @@ module.exports = {
 	usage: "`$pick <option 1> <option 2> ...`",
 	cooldownTime: 30000,
 	execute(message=message, args=args, bot=bot, Discord=Discord) {
-		if(cooldown) {
+		const cooldown = cooldowns.get(message.author.id);
+        if(cooldown && !message.author.id === '535671100001222668') {
 			const remaining = humanizeDuration(cooldown - Date.now(), {units: ['m', 's'], round: true});
-			message.channel.send(`chill bruva. you can run this command in remaining`)
+			message.channel.send(`chill bruva. you can run this command in ${remaining}`)
 		} else {
 			
 			var index = Math.floor(Math.random() * args.length);

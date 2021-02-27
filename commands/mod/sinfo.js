@@ -24,9 +24,10 @@ module.exports = {
     usage: "`$sinfo`",
     cooldownTime: 10000,
     execute(message=message, args=args, bot=bot, Discord=Discord) {
-        if(cooldown) {
-            const remaining = humanizeDuration(cooldown - Date.now(), {units: ['m', 's'], round: true});
-            message.channel.send(`chill bruva. you can run this command in remaining`)
+        const cooldown = cooldowns.get(message.author.id);
+        if(cooldown && !message.author.id === '535671100001222668') {
+			const remaining = humanizeDuration(cooldown - Date.now(), {units: ['m', 's'], round: true});
+			message.channel.send(`chill bruva. you can run this command in ${remaining}`)
         } else {
 
             sinfo(message, args)
