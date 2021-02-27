@@ -28,15 +28,45 @@ module.exports = {
 
 const gg = (message, args, Discord) => {
 	if (!args[0]) {
-		message.reply('From 0 - wut bruh');
+		const filter1 = m => m.author.id === message.author.id;
+		message.reply('From 0 - wut bruh').then(() => {
+			message.channel.awaitMessages(filter1, { max: 1, time: 15000, errors: ['time'] })
+				.then(collected => {
+					if (collected.first().content == 'cancel') {
+						message.reply('Bruh what a wuss.');
+					} else if(!parseInt(collected.first().content)) {
+						message.reply('Bruh that aint a number idiot')
+					} else if (parseInt(collected.first().content)) {
+						const filter2 = m => m.author.id === message.author.id;
+						const number = Math.floor(Math.random() * collected.first().content);
+						message.reply(`Pick a number from \`0 - ${collected.first().content}\``).then(() => {
+							message.channel.awaitMessages(filter2, { max: 1, time: 15000, errors: ['time'] })
+								.then(collected => {
+									if (collected.first().content == 'cancel') {
+										message.reply('Bruh what a simp.');
+									} else if (parseInt(number) === parseInt(collected.first().content)) {
+										message.reply('Nice job!');
+									} else {
+										message.reply(`Lmao ure trash. The number was \`${number}\``);
+									}
+								})
+								.catch(collected => {
+									message.reply('Slowpoke.');
+								});
+						});
+					}
+				})
+				.catch(collected => {
+					message.reply('Bruh u were supposed to give me a number idiot');
+				});
+		});
 	} else {
 		const number = Math.floor(Math.random() * args[0]);
 		if (number >= 100000) {
 			message.reply('bro are you tryna crash my server???? Nice try idiot.');
-			message.delete({ timeout: 20 }).catch(console.error);
 		} else {
 			const filter = m => m.author.id === message.author.id;
-			message.reply('Pick a number from ' + '`' + '0 - ' + args[0] + '`').then(() => {
+			message.reply(`Pick a number from \`0 - ${args[0]}\``).then(() => {
 				message.channel.awaitMessages(filter, { max: 1, time: 15000, errors: ['time'] })
 					.then(collected => {
 						if (collected.first().content == 'cancel') {
@@ -44,13 +74,13 @@ const gg = (message, args, Discord) => {
 						} else if (parseInt(number) === parseInt(collected.first().content)) {
 							message.reply('Nice job!');
 						} else {
-							message.reply('Lmao ure trash. The number was ' + '`' + number + '`');
+							message.reply(`Lmao ure trash. The number was \`${number}\``);
 						}
 					})
 					.catch(collected => {
 						message.reply('Slowpoke.');
 					});
-			})
+			});
 			// message.channel
 			// 	.awaitMessages(filter, {
 			// 		max: 1, // leave this the same
