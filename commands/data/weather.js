@@ -14,13 +14,13 @@ module.exports = {
     active: true,
     usage: '`$weather <zip code> <2 letter country (ISO alpha-2) code>`',
     cooldownTime: 120000,
-    execute(message=message, args=args, bot=bot) {
+    execute(message=message, args=args, bot=bot, Discord=Discord) {
         if(cooldown) {
             const remaining = humanizeDuration(cooldown - Date.now(), {units: ['m', 's'], round: true});
             message.channel.send(`chill bruva. you can run this command in remaining`)
         } else {
 
-            weather(message, args, bot)
+            weather(message, args, bot, Discord=Discord)
             
             cooldowns.set(message.author.id, Date.now() + this.cooldownTime);
             setTimeout(() => cooldowns.delete(message.author.id), this.cooldownTime);
@@ -28,7 +28,7 @@ module.exports = {
     }
 }
 
-const weather = (message, args, bot, DIscord) => {
+const weather = (message, args, bot, Discord) => {
     var request = new XMLHttpRequest();
 
     if(args[0].toLowerCase() === 'help') {
