@@ -26,7 +26,7 @@ module.exports = {
 	}
 }
 
-const cls = () => {
+const cls = (message, args) => {
 	if (message.member.hasPermission('MANAGE_MESSAGES')) {
 		console.log(args[1]);
 		if (!args[0]) {

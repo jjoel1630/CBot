@@ -109,13 +109,12 @@ bot.on('message', message => {
 				//} 
 				else if(bot.aliases.get(cmd)) {
 					const command = bot.commands.get(bot.aliases.get(cmd));
-					command.execute(message, args, bot, Discord, Duration, cheerio);
-					// if(command.active === false) {
-					// 	message.channel.send('this command aint available rn bruv. thas an oof');
-					// 	return;
-					// } else {
-					// 	command.execute(message, args, bot, Discord, Duration, cheerio); 
-					// }
+					if(command.active === false) {
+						message.channel.send('this command aint available rn bruv. thas an oof');
+						return;
+					} else {
+						command.execute(message, args, bot, Discord, Duration, cheerio); 
+					}
 				} else {
 					return;
 				}
