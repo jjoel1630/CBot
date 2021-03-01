@@ -34,13 +34,11 @@ const ftg = (message, args) => {
         return;
     }
     // const number = Math.floor(Math.random() * 6);
-    const filter = m => m === wordsList.list[args[0]].words[0];
-    message.channel.send(`Playing difficulty ${wordsList.list[args[0]].difficulty}\nType \`${wordsList.list[args[0]].words[0]}\``).then(() => {
-        message.channel.awaitMessages(filter, { max: 1, time: wordsList.list[args[0]].time, errors: ['time'] })
+    const filter = m => m.content === wordsList.list[args[0]].words[0];
+    message.channel.send(`Playing difficulty \`${wordsList.list[args[0]].difficulty}\`\nType \`${wordsList.list[args[0]].words[0]}\``).then(() => {
+        message.channel.awaitMessages(filter, { max: 1, time: 10000, errors: ['time'] })
             .then(collected => {
-                if(collected === wordsList.list[args[0]].words[0]) {
-                    message.channel.send(wordsList.list[args[0]].succesMsg);
-                }
+                message.channel.send(`<@!${collected.first().author.id}> \`${wordsList.list[args[0]].succesMsg}\``);
             })
             .catch(collected => {
                 message.channel.send(wordsList.list[args[0]].slowMsg);

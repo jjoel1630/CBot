@@ -1,53 +1,53 @@
 {
     "list": [
         {
-            "difficulty": "god",
-            "words": ["siodfjsdkjfahskjdfhakjsdfhakjsdbfkjasbdfkjabsdkjfoieuaishdf", "isdufhsdafbsdkjfahsdfhqowieashbvncakvh237i36r782akjsdbfh sbfiauhsd", "sduahfsdgadfasudfyasdfhaisfuy1892731892kjsadbfaksdgfiuewgfa"],
-            "time": 10,
-            "succesMsg": "`<@!${collected.first().author.id}> you truly are god. i will worship u`",
-            "slowMsg": "dude im telling yall. u LITERALLY have to be god for this"
-        },
-        {
-            "difficulty": "500wpmdudes",
-            "words": ["iF YOu cAN tYPe ThIs wITHoUt CoPyiNG aNd pAstING tHAt MeANs u Are oNE oF tHOsE tRyHArD kIdS. gET a lIFe brUh"],
-            "time": 10000,
-            "succesMsg": "`<@!${collected.first().author.id}> either ure just cheating or ure THE biggest tryhard`",
-            "slowMsg": "its coo tho, at least yall aint mfing tryhards"
-        },
-        {
-            "difficulty": "hard",
-            "words": ["this aint too hard bruh, but if u type this i respect u cuh"],
-            "time": 16000,
-            "succesMsg": "`<@!${collected.first().author.id}> nice`",
-            "slowMsg": "cmon, how did yall not get this"
-        },
-        {
-            "difficulty": "medium",
-            "words": ["not too hard bruh"],
-            "time": 13000,
-            "succesMsg": "`<@!${collected.first().author.id}> won the MEDIUM challenge. it aint that big of an accomplishment if ure celebrating bruv`",
-            "slowMsg": "yall are actually bad if u didnt get this"
-        },
-        {
-            "difficulty": "easy",
-            "words": ["at", "the", "place", "where"],
-            "time": 5000,
-            "succesMsg": "`<@!${collected.first().author.id}> nice job on winning THE EASIEST GODDAMN CHALLENGE`",
-            "slowMsg": "ok yall are actually bad no cap"
-        },
-        {
-            "difficulty": "dont know how to read or type",
-            "words": ["t", "a"],
-            "time": 10000,
-            "succesMsg": "`<@!${collected.first().author.id}> CAN U NOT READ OR SOMETHING. Y ARE U EVEN PLAYING AT THIS DIFFICULTY`",
-            "slowMsg": "DUDE JUST KICK ME OUT OF THIS SERVER BRO. YALL ARE ACTAULLY BAD"
-        },
-        {
             "difficulty": "dumbaf",
             "words": ["SIKE BRO YOU THINK IMA WASTE MY PROCESSING POWER FOR YO DUMBA**???? HELL NAH LEARN HOW TO READ THEN COME TO ME."],
             "time": 10,
             "succesMsg": "",
             "slowMsg": ""
-        }
+        },
+        {
+            "difficulty": "dont know how to read or type",
+            "words": ["t", "a"],
+            "time": 10000,
+            "succesMsg": "CAN U NOT READ OR SOMETHING. Y ARE U EVEN PLAYING AT THIS DIFFICULTY",
+            "slowMsg": "DUDE JUST KICK ME OUT OF THIS SERVER BRO. YALL ARE ACTAULLY BAD"
+        },
+        {
+            "difficulty": "easy",
+            "words": ["at", "the", "place", "where"],
+            "time": 5000,
+            "succesMsg": "nice job on winning THE EASIEST GODDAMN CHALLENGE",
+            "slowMsg": "ok yall are actually bad no cap"
+        },
+        {
+            "difficulty": "medium",
+            "words": ["not too hard bruh"],
+            "time": 13000,
+            "succesMsg": "won the MEDIUM challenge. it aint that big of an accomplishment if ure celebrating bruv",
+            "slowMsg": "yall are actually bad if u didnt get this"
+        },
+        {
+            "difficulty": "hard",
+            "words": ["this aint too hard bruh, but if u type this i respect u cuh"],
+            "time": 16000,
+            "succesMsg": "nice",
+            "slowMsg": "cmon, how did yall not get this"
+        },
+        {
+            "difficulty": "500wpmdudes",
+            "words": ["iF YOu cAN tYPe ThIs wITHoUt CoPyiNG aNd pAstING tHAt MeANs u Are oNE oF tHOsE tRyHArD kIdS. gET a lIFe brUh"],
+            "time": 10000,
+            "succesMsg": "either ure just cheating or ure THE biggest tryhard",
+            "slowMsg": "its coo tho, at least yall aint mfing tryhards"
+        },
+        {
+            "difficulty": "god",
+            "words": ["siodfjsdkjfahskjdfhakjsdfhakjsdbfkjasbdfkjabsdkjfoieuaishdf", "isdufhsdafbsdkjfahsdfhqowieashbvncakvh237i36r782akjsdbfh sbfiauhsd", "sduahfsdgadfasudfyasdfhaisfuy1892731892kjsadbfaksdgfiuewgfa"],
+            "time": 10,
+            "succesMsg": "you truly are god. i will worship u",
+            "slowMsg": "dude im telling yall. u LITERALLY have to be god for this"
+        }        
     ]
 }
