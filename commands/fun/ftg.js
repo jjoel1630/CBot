@@ -29,7 +29,8 @@ module.exports = {
 
 const ftg = (message, args) => {
     if(args[0] == 6) {
-        message.channel.send("Playing difficulty dumbaf\nSIKE BRO. YOU THINK IMA WASTE MY PROCESSING POWER FOR YO DUMBA**???? HELL NAH LEARN HOW TO READ THEN COME TO ME.");
+        message.channel.send('Playing difficulty dumbaf');        
+        message.channel.send(wordsList.list[6].words[0]);
         return;
     }
     // const number = Math.floor(Math.random() * 6);
