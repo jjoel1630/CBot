@@ -28,31 +28,57 @@ module.exports = {
 
 const simp = (message, args) => {
 	var rate = Math.floor(Math.random() * 100);
-	if (message.author.id === '535671100001222668' && !args[0]) {
+	const targetMember = message.mentions.users.first();
+
+	if((message.author.id === '535671100001222668' && !args[0]) || args[0]?.toLowerCase() === 'joel' || message.mentions.users.first()?.id === '535671100001222668') {
 		message.channel.send(`God is not a simp`);
-	} else if (!args[0]) {
-		var rate = Math.floor(Math.random() * 100);
-		if (rate === 0) {
-			message.channel.send(
-				`Yo ${message.member.user.tag}, you aint a simp!`
-			);
+		return;
+	} else if(targetMember) {
+		if(iq <= 0) {
+			message.channel.send(`<@!${targetMember.id}> aint a simp!`);
 		} else {
-			message.channel.send(
-				`${message.member.user.tag} is ${rate}% simp`
-			);
+			message.channel.send(`<@!${targetMember.id}> is ${rate}% simp`);
 		}
-	} else if (args[0]) {
-		if(args[0].toLowerCase() === 'joel') {
-			message.channel.send(`The God's IQ is too high to calculate!`);
-		} else if(message.mentions.users.first()) {
-			if(message.mentions.users.first().id === '535671100001222668') {
-				message.channel.send(`God is not a simp`);
-			}
+	} else if(args[0]) {
+		if(iq <= 0) {
+			message.channel.send(`${args[0]} aint a simp!`);
 		} else {
-			var rate = Math.floor(Math.random() * 100);
-			message.channel.send(
-				`${args[0]} is ${rate}% simp.`
-			);
+			message.channel.send(`${args[0]} is ${rate}% simp`);
 		}
+	} else if(!args[0]) {
+		if(iq <= 0) {
+			message.channel.send(`${message.member.id} aint a simp!`);
+		} else {
+			message.channel.send(`${message.member.id} is ${rate}% simp`);
+		}
+	} else {
+		message.channel.send('your command format is wrong');
 	}
+	// if (message.author.id === '535671100001222668' && !args[0]) {
+	// 	message.channel.send(`God is not a simp`);
+	// } else if (!args[0]) {
+	// 	var rate = Math.floor(Math.random() * 100);
+	// 	if (rate === 0) {
+	// 		message.channel.send(
+	// 			`Yo ${message.member.user.tag}, you aint a simp!`
+	// 		);
+	// 	} else {
+	// 		message.channel.send(
+	// 			`${message.member.user.tag} is ${rate}% simp`
+	// 		);
+	// 	}
+	// } else if (args[0]) {
+	// 	if(args[0].toLowerCase() === 'joel') {
+	// 		message.channel.send(`The God's IQ is too high to calculate!`);
+	// 	} else if(message.mentions.users.first()) {
+	// 		if(message.mentions.users.first().id === '535671100001222668') {
+	// 			message.channel.send(`God is not a simp`);
+	// 		}
+	// 	} else {
+	// 		var rate = Math.floor(Math.random() * 100);
+	// 		message.channel.send(
+	// 			`${args[0]} is ${rate}% simp.`
+	// 		);
+	// 	}
+	// }
 }
