@@ -40,6 +40,8 @@ const report = (message, args) => {
             return;
         } else if(args[1] && userMentioned && args[0] === 'get') {
             getUserReports(guildID, userMentioned, userMentionedName, message);
+        } else if(args[1] && args[0] === 'delete') {
+            deleteReport(message, args);
         } else {
             args.shift();
             
@@ -360,7 +362,7 @@ function getGuildReports(guildID, message) {
             });
 
             if(reportString === `Reports for this server:`) {
-                message.channel.send('no reports for this user');
+                message.channel.send('no reports for this server');
                 return;
             }
 
@@ -442,6 +444,37 @@ function addGuildReport(guildID, userMentioned, userName, titleOfReport, descrip
             console.error("Unable to update item. Error JSON:", JSON.stringify(err, null, 2));
         } else {
             message.channel.send('added new report'); //JSON.stringify(data, null, 2)
+        }
+    });
+}
+
+function deleteReport(message, args) {
+    AWS.config.update({
+        secretAccessKey: process.env.secretAccessKey ?? process.env.envsecretAccessKey,
+        accessKeyId: process.env.accessKeyId ?? process.env.envaccessKeyId,
+        region: process.env.region ?? process.env.envregion
+    });
+    const docClient = new AWS.DynamoDB.DocumentClient();
+
+    var index = args[1] - 1;
+    var params = {
+        TableName: 'reports',
+        Key:{
+            "guildID": message.guild.id,
+        },
+        UpdateExpression: `REMOVE reports[${index}]`,
+        // ConditionExpression: ":age >= :limitAge",
+        // ExpressionAttributeValues:{
+        //     ":index": args[1]
+        // },
+        ReturnValues:"UPDATED_NEW"
+    };
+    docClient.update(params, function(err, data) {
+        if (err) {
+            console.error("Unable to update item. Error JSON:", JSON.stringify(err, null, 2));
+        } else {
+            message.channel.send('deleted report');
+            // console.log("UpdateItem succeeded:", JSON.stringify(data, null, 2));
         }
     });
 }
