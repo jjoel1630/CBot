@@ -1,5 +1,3 @@
-const AWS = require('aws-sdk');
-
 module.exports = {
     name: 'Set Prefix',
     description: 'you can set a prefix for the bot, the default is `$`',
@@ -7,14 +5,25 @@ module.exports = {
     perms: 'ADMINISTRATOR',
     active: true,
     usage: '`$setprefix <prefixname>`',
-    execute(message=message, args=args, bot=bot) {
-        if(message.member.hasPermission(this.perms)) {
-            const prefix = args.join(' ');
-            const guildID = message.guild.id;
-
-            checkGuildPrefix(guildID, prefix, message)
+    cooldownTime: 60000,
+    execute(message=message, args=args, bot=bot, Discord=Discord) {
+        const cooldown = cooldowns.get(message.author.id);
+        if(cooldown && !message.author.id === '535671100001222668') {
+            const remaining = humanizeDuration(cooldown - Date.now(), {units: ['m', 's'], round: true});
+            message.channel.send(`chill bruva. you can run this command in ` + remaining)
         } else {
-            message.channel.send(`lmaooooooooooo you dont got the perms bruva. stop tryna set my prefix without admin. admin kick this dude.`);
+            
+            if(message.member.hasPermission(this.perms)) {
+                const prefix = args.join(' ');
+                const guildID = message.guild.id;
+    
+                checkGuildPrefix(guildID, prefix, message)
+            } else {
+                message.channel.send(`lmaooooooooooo you dont got the perms bruva. stop tryna set my prefix without admin. admin kick this dude.`);
+            }
+
+            cooldowns.set(message.author.id, Date.now() + this.cooldownTime);
+            setTimeout(() => cooldowns.delete(message.author.id), this.cooldownTime);
         }
     }
 }

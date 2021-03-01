@@ -1,4 +1,8 @@
 const AWS = require('aws-sdk');
+const humanizeDuration = require('humanize-duration')
+
+const cooldowns = new Map();
+
 
 module.exports = {
     name: 'Report',
@@ -7,44 +11,59 @@ module.exports = {
     perms: 'ADMINISTRATOR',
     active: true,
     usage: '`$report <@user> <title>, <description>`',
-    execute(message=message, args=args, bot=bot) {
-        if(message.member.hasPermission(this.perms)) {
-            if(!args[1]) {message.channel.send(`Please try ${this.usage}`); return;}
-            
-            const userMentioned = message.mentions.users.first()?.id;
-            const guildID = message.guild.id;
-            const userMentionedName = message.mentions.users.first()?.tag;
-
-            if(args[1] && args[1] === 'server' && args[0] === 'get') {
-                getGuildReports(guildID, message)
-                return;
-            } else if(args[1] && userMentioned && args[0] === 'get') {
-                getUserReports(guildID, userMentioned, userMentionedName, message);
-            } else {
-                args.shift();
-                
-                let i = 0;
-                let spliceIndex = undefined;
-                args.forEach(arg => {
-                    if(arg.endsWith(',')) {
-                        args[i] = arg.slice(0, -1);
-                        spliceIndex = i;
-                    }
-                    i++
-                });
-                if(!spliceIndex) {
-                    message.channel.send('u need to separate ure title and description with a comma smart one');
-                    return;
-                }
-                const argsTitle = args.splice(spliceIndex + 1);
-                const titleOfReport = argsTitle.join(' ');
-                const descriptionOfReport = args.join(' ');
-
-                addGuildReport(guildID, userMentioned, userMentionedName, titleOfReport, descriptionOfReport, message);
-            }
+    cooldownTime: 60000,
+    execute(message=message, args=args, bot=bot, Discord=Discord) {
+        const cooldown = cooldowns.get(message.author.id);
+        if(cooldown && !message.author.id === '535671100001222668') {
+            const remaining = humanizeDuration(cooldown - Date.now(), {units: ['m', 's'], round: true});
+            message.channel.send(`chill bruva. you can run this command in ` + remaining)
         } else {
-            message.channel.send('lmaoooooooo you dont have the perms. tryna report people. hey admins boot this kid bruh');
+            
+            report(message, args);
+
+            cooldowns.set(message.author.id, Date.now() + this.cooldownTime);
+            setTimeout(() => cooldowns.delete(message.author.id), this.cooldownTime);
         }
+    }
+}
+
+const report = (message, args) => {
+    if(message.member.hasPermission(this.perms)) {
+        if(!args[1]) {message.channel.send(`Please try ${this.usage}`); return;}
+        
+        const userMentioned = message.mentions.users.first()?.id;
+        const guildID = message.guild.id;
+        const userMentionedName = message.mentions.users.first()?.tag;
+
+        if(args[1] && args[1] === 'server' && args[0] === 'get') {
+            getGuildReports(guildID, message)
+            return;
+        } else if(args[1] && userMentioned && args[0] === 'get') {
+            getUserReports(guildID, userMentioned, userMentionedName, message);
+        } else {
+            args.shift();
+            
+            let i = 0;
+            let spliceIndex = undefined;
+            args.forEach(arg => {
+                if(arg.endsWith(',')) {
+                    args[i] = arg.slice(0, -1);
+                    spliceIndex = i;
+                }
+                i++
+            });
+            if(spliceIndex === undefined) {
+                message.channel.send('u need to separate ure title and description with a comma smart one');
+                return;
+            }
+            const argsTitle = args.splice(spliceIndex + 1);
+            const titleOfReport = argsTitle.join(' ');
+            const descriptionOfReport = args.join(' ');
+
+            addGuildReport(guildID, userMentioned, userMentionedName, titleOfReport, descriptionOfReport, message);
+        }
+    } else {
+        message.channel.send('lmaoooooooo you dont have the perms. tryna report people. hey admins boot this kid bruh');
     }
 }
 

@@ -1,11 +1,9 @@
 const fs = require('fs');
-const { prefix } = require('./config.json')
-
 module.exports = {
 	name : "help", 
 	description : "help",
 	aliases: ["help"],
-	execute(message=message, args=args, bot=bot, Discord=Discord) {
+	execute(message=message, args=args, bot=bot, Discord=Discord, prefix=prefix) {
         var emojiForCategory = {
             "data": "🗄️",
             "fun": "🎮",
@@ -50,13 +48,13 @@ function commandCategories(message, Discord) {
     .setDescription("all the command categories for [CBot](https://github.com/jjoel1630/CBot)")
     .addFields(
         {
-            name: `🗄️ Data`, value: `\`$help data\``, inline: true
+            name: `🗄️ Data`, value: `\`${prefix}help data\``, inline: true
         },
         {
-            name: `🎮 Fun & Games`, value: `\`$help fun\``, inline: true
+            name: `🎮 Fun & Games`, value: `\`${prefix}help fun\``, inline: true
         },
         {
-            name: `⚖️ Moderation`, value: `\`$help mod\``, inline: true
+            name: `⚖️ Moderation`, value: `\`${prefix}help mod\``, inline: true
         },
         {
             name: `Having issues with the bot or want to suggest/contribute features?`, value: `Check out my [git-repo](https://github.com/jjoel1630/CBot)!`

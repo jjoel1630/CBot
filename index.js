@@ -113,7 +113,7 @@ bot.on('message', message => {
 						message.channel.send('this command aint available rn bruv. thas an oof');
 						return;
 					} else {
-						command.execute(message, args, bot, Discord, Duration, cheerio); 
+						command.execute(message, args, bot, Discord, Duration, cheerio, prefix); 
 					}
 				} else {
 					return;
