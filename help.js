@@ -20,12 +20,12 @@ module.exports = {
         var commandFiles = [];
 
         if(!args[0]) {
-            commandCategories(message, Discord)
+            commandCategories(message, Discord, prefix)
         } else if(args[0] && getDirectories.includes(args[0].toLowerCase())){
             args[0] = getDirectories[getDirectories.indexOf(args[0].toLowerCase())];
             commandFilesCategory = fs.readdirSync(`./commands/${args[0]}/`).filter((file) => file.endsWith('.js'));
             let emoji = emojiForCategory[args[0]];
-            commandsInCategory(message, Discord, args, commandFilesCategory, emoji);
+            commandsInCategory(message, Discord, args, commandFilesCategory, emoji, prefix);
         } else if(args[0]) {
             for(let dir of getDirectories) {
                 commandFiles = fs.readdirSync(`./commands/${dir}/`).filter((file) => file.endsWith('.js'));
@@ -33,7 +33,7 @@ module.exports = {
                     const command = require(`./commands/${dir}/${file}`);
 
                     if(command.aliases.includes(args[0].toLowerCase())) {
-                        individualCommand(message, Discord, command);
+                        individualCommand(message, Discord, command, prefix);
                         return;
                     }
                 }
@@ -42,7 +42,7 @@ module.exports = {
 	}
 };
 
-function commandCategories(message, Discord) {
+function commandCategories(message, Discord, prefix) {
     const cmdCategory = new Discord.MessageEmbed()
     .setTitle('CBot Command Catagories')
     .setDescription("all the command categories for [CBot](https://github.com/jjoel1630/CBot)")
@@ -64,7 +64,7 @@ function commandCategories(message, Discord) {
     message.channel.send(cmdCategory);
 }
 
-function commandsInCategory(message, Discord, args, commandFilesCategory, emoji) {
+function commandsInCategory(message, Discord, args, commandFilesCategory, emoji, prefix) {
     var alias =[];
     for(var i = 0; i < commandFilesCategory.length; i++) {
         // let a = commandFilesCategory[i].split('.');
@@ -90,7 +90,7 @@ function commandsInCategory(message, Discord, args, commandFilesCategory, emoji)
     message.channel.send(cmdCategory);
 }
 
-function individualCommand(message, Discord, command) {
+function individualCommand(message, Discord, command, prefix) {
     const individualCommand = new Discord.MessageEmbed()
     .setTitle(`The ${command?.name} command`)
     .setDescription("all the [CBot](https://github.com/jjoel1630/CBot) commands for this category")

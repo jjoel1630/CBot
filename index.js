@@ -97,7 +97,7 @@ bot.on('message', message => {
 				}
 			} else {
 				if(cmd === 'help') {
-					help.execute(message, args, bot, Discord);
+					help.execute(message, args, bot, Discord, prefix);
 				} // else if(cmd === 'stop'){
 				// 	if(!message.author.id === '535671100001222668') {
 				// 		message.channel.send("Are you the owner of this bot?? No dumbo!");

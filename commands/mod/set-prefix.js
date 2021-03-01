@@ -1,3 +1,9 @@
+const humanizeDuration = require('humanize-duration')
+const AWS = require('aws-sdk')
+
+const cooldowns = new Map();
+
+
 module.exports = {
     name: 'Set Prefix',
     description: 'you can set a prefix for the bot, the default is `$`',
