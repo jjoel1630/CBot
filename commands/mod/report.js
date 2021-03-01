@@ -43,6 +43,10 @@ const report = (message, args) => {
         } else if(args[1] && args[0] === 'delete') {
             deleteReport(message, args);
         } else {
+            if(!message.mentions?.users?.first()?.id) {
+                message.channel.send('u need to specify someone to report dumbo');
+                return;
+            }
             args.shift();
             
             let i = 0;
@@ -59,8 +63,8 @@ const report = (message, args) => {
                 return;
             }
             const argsTitle = args.splice(spliceIndex + 1);
-            const titleOfReport = argsTitle.join(' ');
-            const descriptionOfReport = args.join(' ');
+            const  descriptionOfReport = argsTitle.join(' ');
+            const titleOfReport = args.join(' ');
 
             addGuildReport(guildID, userMentioned, userMentionedName, titleOfReport, descriptionOfReport, message);
         }
