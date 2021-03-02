@@ -66,14 +66,14 @@ const report = (message, args) => {
             const  descriptionOfReport = argsTitle.join(' ');
             const titleOfReport = args.join(' ');
 
-            checkGuildReports(guildID, userMentioned, userMentionedName, titleOfReport, descriptionOfReport);
+            checkGuildReports(guildID, userMentioned, userMentionedName, titleOfReport, descriptionOfReport, message);
         }
     } else {
         message.channel.send('lmaoooooooo you dont have the perms. tryna report people. hey admins boot this kid bruh');
     }
 }
 
-function checkGuildReports(guildID, userMentioned, userMentionedName, titleOfReport, descriptionOfReport) {
+function checkGuildReports(guildID, userMentioned, userMentionedName, titleOfReport, descriptionOfReport, message) {
     AWS.config.update({
         secretAccessKey: process.env.secretAccessKey ?? process.env.envsecretAccessKey,
         accessKeyId: process.env.accessKeyId ?? process.env.envaccessKeyId,
@@ -104,11 +104,60 @@ function checkGuildReports(guildID, userMentioned, userMentionedName, titleOfRep
         } else {
             const { Items } = data;
 
-            if(Items[0]) {
+            if(Items[0]?.reports) {
+                console.log('addGuildReport');
                 addGuildReport(guildID, userMentioned, userMentionedName, titleOfReport, descriptionOfReport, message);
-            } else {
+            } else if(!Items[0]) {
+                console.log('addGuildAndReport');
                 addGuildAndReport(guildID, userMentioned, userMentionedName, titleOfReport, descriptionOfReport, message);
+            } else {
+                console.log('addReportDoc');
+                addReportDoc(guildID, userMentioned, userMentionedName, titleOfReport, descriptionOfReport, message);
             }
+        }
+    });
+}
+
+function addReportDoc(guildID, userMentioned, userMentionedName, titleOfReport, descriptionOfReport, message) {
+    AWS.config.update({
+        secretAccessKey: process.env.secretAccessKey ?? process.env.envsecretAccessKey,
+        accessKeyId: process.env.accessKeyId ?? process.env.envaccessKeyId,
+        region: process.env.region ?? process.env.envregion
+    });
+    const docClient = new AWS.DynamoDB.DocumentClient();
+
+    var params = {
+        TableName: 'guildSettings',
+        Key: {
+            "guildID": guildID
+        },
+        UpdateExpression: 'set reports = :report',
+        ExpressionAttributeValues: {
+            ':report' : [
+                {
+                    userID: userMentioned,
+                    username: userMentionedName,
+                    title: titleOfReport,
+                    description: descriptionOfReport
+                }
+            ]
+        }
+    };
+
+    // Call DynamoDB to add the item to the table
+    docClient.update(params, function (err, data) {
+        if (err) {
+            console.log({
+                success: false,
+                message: err
+            });
+        } else {
+            // console.log({
+            //     success: true,
+            //     message: 'Added element',
+            //     data: data
+            // });
+            message.channel.send('added new report');
         }
     });
 }

@@ -146,7 +146,7 @@ async function getPrefix(guildID, callbackPrefix) {
     const docClient = new AWS.DynamoDB.DocumentClient();
 
     const params = {
-        TableName: 'prefix',
+        TableName: 'guildSettings',
         ProjectionExpression:"prefix",
         FilterExpression: "guildID = :gID",
         ExpressionAttributeValues: {

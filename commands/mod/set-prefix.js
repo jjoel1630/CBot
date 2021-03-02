@@ -43,7 +43,7 @@ function addGuildAndPrefix(prefix, message) {
     const docClient = new AWS.DynamoDB.DocumentClient();
 
     var params = {
-        TableName: 'prefix',
+        TableName: 'guildSettings',
         Item: {
             guildID: guildID,
             prefix: prefix
@@ -77,7 +77,7 @@ function checkGuildPrefix(guildID, prefix, message) {
     const docClient = new AWS.DynamoDB.DocumentClient();
 
     const params = {
-        TableName: 'prefix',
+        TableName: 'guildSettings',
         ProjectionExpression:"prefix",
         FilterExpression: "guildID = :gID",
         ExpressionAttributeValues: {
@@ -96,10 +96,16 @@ function checkGuildPrefix(guildID, prefix, message) {
         } else {
             const { Items } = data;
 
-            if(Items) {
-                changePrefix(guildID, prefix, message);
-            } else {
-                addGuildAndPrefix(prefix, message);
+            console.log(Items[0]);
+            console.log(Items);
+            console.log(Items[0]?.prefix);
+
+            if(!Items[0]) {
+
+                // addGuildAndPrefix(prefix, message);
+                // changePrefix(guildID, prefix, message);
+            } else if(!Items[0]?.prefix) {
+                // addGuildAndPrefix(prefix, message);
             }
         }
     });
@@ -114,7 +120,7 @@ function changePrefix(guildID, prefix, message) {
     const docClient = new AWS.DynamoDB.DocumentClient();
     
     var params = {
-        TableName: 'prefix',
+        TableName: 'guildSettings',
         Key:{
             "guildID": guildID,
         },
