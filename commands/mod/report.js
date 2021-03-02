@@ -82,7 +82,7 @@ function checkGuildReports(guildID, userMentioned, userMentionedName, titleOfRep
     const docClient = new AWS.DynamoDB.DocumentClient();
 
     const params = {
-        TableName: 'reports',
+        TableName: 'guildSettings',
         // ProjectionExpression:"#reports",
         FilterExpression: "guildID = :gID",
         ExpressionAttributeValues: {
@@ -122,7 +122,7 @@ function addGuildAndReport(guildID, userMentioned, userMentionedName, titleOfRep
     const docClient = new AWS.DynamoDB.DocumentClient();
 
     var params = {
-        TableName: 'reports',
+        TableName: 'guildSettings',
         Item: {
             guildID: guildID,
             reports: [
@@ -163,7 +163,7 @@ function getUserReports(guildID, userMentioned, userMentionedName, message) {
     const docClient = new AWS.DynamoDB.DocumentClient();
 
     const params = {
-        TableName: 'reports',
+        TableName: 'guildSettings',
         ProjectionExpression:"#reports",
         FilterExpression: "guildID = :gID",
         ExpressionAttributeValues: {
@@ -185,14 +185,19 @@ function getUserReports(guildID, userMentioned, userMentionedName, message) {
         } else {
             const { Items } = data;
 
-            let i = 1;
-            var reportString = `Reports for ${userMentionedName}:`;
-            Items[0].reports.forEach(report => {
-                if(report.userID === userMentioned) {
-                    reportString = `${reportString}\n**Report #${i}** - \`Name: ${report.title}\`, \`Description: ${report.description}\``;
-                    i++;
-                }
-            });
+            try {
+                let i = 1;
+                var reportString = `Reports for ${userMentionedName}:`;
+                Items[0].reports.forEach(report => {
+                    if(report.userID === userMentioned) {
+                        reportString = `${reportString}\n**Report #${i}** - \`Name: ${report.title}\`, \`Description: ${report.description}\``;
+                        i++;
+                    }
+                });
+            } catch(err) {
+                message.channel.send('this server has no data yet, try adding a report');
+                return;
+            }
 
             if(reportString === `Reports for ${userMentionedName}:`) {
                 message.channel.send('no reports for this user');
@@ -213,7 +218,7 @@ function getGuildReports(guildID, message) {
     const docClient = new AWS.DynamoDB.DocumentClient();
 
     const params = {
-        TableName: 'reports',
+        TableName: 'guildSettings',
         ProjectionExpression:"#reports",
         FilterExpression: "guildID = :gID",
         ExpressionAttributeValues: {
@@ -261,7 +266,7 @@ function addGuildReport(guildID, userMentioned, userName, titleOfReport, descrip
     const docClient = new AWS.DynamoDB.DocumentClient();
     
     var params = {
-        TableName: 'reports',
+        TableName: 'guildSettings',
         Key:{
             "guildID": guildID,
         },
@@ -299,7 +304,7 @@ function deleteReport(message, args) {
 
     var index = args[1] - 1;
     var params = {
-        TableName: 'reports',
+        TableName: 'guildSettings',
         Key:{
             "guildID": message.guild.id,
         },
