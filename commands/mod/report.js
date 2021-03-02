@@ -66,69 +66,31 @@ const report = (message, args) => {
             const  descriptionOfReport = argsTitle.join(' ');
             const titleOfReport = args.join(' ');
 
-            addGuildReport(guildID, userMentioned, userMentionedName, titleOfReport, descriptionOfReport, message);
+            checkGuildReports(guildID, userMentioned, userMentionedName, titleOfReport, descriptionOfReport);
         }
     } else {
         message.channel.send('lmaoooooooo you dont have the perms. tryna report people. hey admins boot this kid bruh');
     }
 }
 
-function updateEntry(userMentioned, titleOfReport, descriptionOfReport) {
-    AWS.config.update({
-        secretAccessKey: process.env.secretAccessKey ?? process.env.envsecretAccessKey,
-        accessKeyId: process.env.accessKeyId ?? process.env.envaccessKeyId,
-        region: process.env.region ?? process.env.envregion
-    });
-    var dynamodb = new AWS.DynamoDB();
-    const docClient = new AWS.DynamoDB.DocumentClient();
-    
-    var params = {
-        TableName: 'reports',
-        Key:{
-            "userID": userMentioned,
-        },
-        UpdateExpression: "SET #reports = list_append(#reports, :newreport)",
-        ExpressionAttributeNames: {
-            "#reports": "reports"
-        },
-        ExpressionAttributeValues:{
-            ":newreport": [{
-                title: titleOfReport,
-                description: descriptionOfReport
-            }]
-        },
-        ReturnValues:"UPDATED_NEW"
-    };
-
-    docClient.update(params, function(err, data) {
-        if (err) {
-            console.error("Unable to update item. Error JSON:", JSON.stringify(err, null, 2));
-        } //else {
-        //     console.log("UpdateItem succeeded"); //JSON.stringify(data, null, 2)
-        // }
-    });
-
-}
-
-function checkUserReports(userMentioned, titleOfReport, descriptionOfReport) {
+function checkGuildReports(guildID, userMentioned, userMentionedName, titleOfReport, descriptionOfReport) {
     AWS.config.update({
         secretAccessKey: process.env.secretAccessKey ?? process.env.envsecretAccessKey,
         accessKeyId: process.env.accessKeyId ?? process.env.envaccessKeyId,
         region: process.env.region ?? process.env.envregion
     });
     const docClient = new AWS.DynamoDB.DocumentClient();
-    var dynamodb = new AWS.DynamoDB();
 
     const params = {
         TableName: 'reports',
-        ProjectionExpression:"#reports",
-        FilterExpression: "userID = :id",
+        // ProjectionExpression:"#reports",
+        FilterExpression: "guildID = :gID",
         ExpressionAttributeValues: {
-            ":id": userMentioned
+            ":gID": guildID
         },
-        ExpressionAttributeNames: {
-            "#reports": "reports",
-        }
+        // ExpressionAttributeNames: {
+        //     "#reports": "reports",
+        // }
     };
 
     docClient.scan(params, function (err, data) {
@@ -142,101 +104,16 @@ function checkUserReports(userMentioned, titleOfReport, descriptionOfReport) {
         } else {
             const { Items } = data;
 
-            console.log(data);
-
             if(Items[0]) {
-                updateEntry(userMentioned, titleOfReport, descriptionOfReport);
+                addGuildReport(guildID, userMentioned, userMentionedName, titleOfReport, descriptionOfReport, message);
             } else {
-                addNewReportAndUser(userMentioned, titleOfReport, descriptionOfReport);
+                addGuildAndReport(guildID, userMentioned, userMentionedName, titleOfReport, descriptionOfReport, message);
             }
         }
     });
 }
 
-function getUserReports(userMentioned, message) {
-    AWS.config.update({
-        secretAccessKey: process.env.secretAccessKey ?? process.env.envsecretAccessKey,
-        accessKeyId: process.env.accessKeyId ?? process.env.envaccessKeyId,
-        region: process.env.region ?? process.env.envregion
-    });
-    const docClient = new AWS.DynamoDB.DocumentClient();
-    var dynamodb = new AWS.DynamoDB();
-
-    const params = {
-        TableName: 'reports',
-        ProjectionExpression:"#reports",
-        FilterExpression: "userID = :id",
-        ExpressionAttributeValues: {
-            ":id": userMentioned
-        },
-        ExpressionAttributeNames: {
-            "#reports": "reports",
-        }
-    };
-
-    docClient.scan(params, function (err, data) {
-
-        if (err) {
-            console.log(err);
-            return({
-                success: false,
-                message: err
-            });
-        } else {
-            const { Items } = data;
-
-            let i = 1;
-            var reportString = '';
-            Items[0].reports.forEach(report => {
-                reportString = `${reportString}\nReport #${i} - Name: ${report.title} Description: ${report.description}`
-                i++;
-            });
-
-            message.channel.send(reportString);
-        }
-    });
-}
-
-function addNewReportAndUser(titleOfReport, descriptionOfReport, userMentioned) {
-    AWS.config.update({
-        secretAccessKey: process.env.secretAccessKey ?? process.env.envsecretAccessKey,
-        accessKeyId: process.env.accessKeyId ?? process.env.envaccessKeyId,
-        region: process.env.region ?? process.env.envregion
-    });
-    const docClient = new AWS.DynamoDB.DocumentClient();
-    var dynamodb = new AWS.DynamoDB();
-    
-    var params = {
-        TableName: 'reports',
-        Item: {
-            userID: userMentioned,
-            reports: [
-                {
-                    title: titleOfReport,
-                    description: descriptionOfReport
-                }
-            ]
-        }
-    };
-
-    // Call DynamoDB to add the item to the table
-    docClient.put(params, function (err, data) {
-        if (err) {
-            console.log({
-                success: false,
-                message: err
-            });
-        } //else {
-        //     console.log({
-        //         success: true,
-        //         message: 'Added element',
-        //         data: data
-        //     });
-        // }
-    });
-}
-
-function addGuildAndReport(guildID, userMentioned, userMentionedName, titleOfReport, descriptionOfReport) {
+function addGuildAndReport(guildID, userMentioned, userMentionedName, titleOfReport, descriptionOfReport, message) {
     AWS.config.update({
         secretAccessKey: process.env.secretAccessKey ?? process.env.envsecretAccessKey,
         accessKeyId: process.env.accessKeyId ?? process.env.envaccessKeyId,
@@ -371,46 +248,6 @@ function getGuildReports(guildID, message) {
             }
 
             message.channel.send(reportString);
-        }
-    });
-}
-
-function checkGuildReports(guildID, userMentioned, userMentionedName, titleOfReport, descriptionOfReport) {
-    AWS.config.update({
-        secretAccessKey: process.env.secretAccessKey ?? process.env.envsecretAccessKey,
-        accessKeyId: process.env.accessKeyId ?? process.env.envaccessKeyId,
-        region: process.env.region ?? process.env.envregion
-    });
-    const docClient = new AWS.DynamoDB.DocumentClient();
-
-    const params = {
-        TableName: 'reports',
-        // ProjectionExpression:"#reports",
-        FilterExpression: "guildID = :gID",
-        ExpressionAttributeValues: {
-            ":gID": guildID
-        },
-        // ExpressionAttributeNames: {
-        //     "#reports": "reports",
-        // }
-    };
-
-    docClient.scan(params, function (err, data) {
-
-        if (err) {
-            console.log(err);
-            return({
-                success: false,
-                message: err
-            });
-        } else {
-            const { Items } = data;
-
-            if(Items[0]) {
-                addGuildReport(guildID, userMentioned, userMentionedName, titleOfReport, descriptionOfReport);
-            } else {
-                addGuildAndReport(guildID, userMentioned, userMentionedName, titleOfReport, descriptionOfReport);
-            }
         }
     });
 }
