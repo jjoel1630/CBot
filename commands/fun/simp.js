@@ -34,19 +34,19 @@ const simp = (message, args) => {
 		message.channel.send(`God is not a simp`);
 		return;
 	} else if(targetMember) {
-		if(iq <= 0) {
+		if(rate <= 0) {
 			message.channel.send(`<@!${targetMember.id}> aint a simp!`);
 		} else {
 			message.channel.send(`<@!${targetMember.id}> is ${rate}% simp`);
 		}
 	} else if(args[0]) {
-		if(iq <= 0) {
+		if(rate <= 0) {
 			message.channel.send(`${args[0]} aint a simp!`);
 		} else {
 			message.channel.send(`${args[0]} is ${rate}% simp`);
 		}
 	} else if(!args[0]) {
-		if(iq <= 0) {
+		if(rate <= 0) {
 			message.channel.send(`${message.member.id} aint a simp!`);
 		} else {
 			message.channel.send(`${message.member.id} is ${rate}% simp`);
