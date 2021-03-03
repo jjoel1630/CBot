@@ -97,6 +97,7 @@ bot.on('message', message => {
 				}
 			} else {
 				if(cmd === 'help') {
+					prefix = prefix ?? config.prefix;
 					help.execute(message, args, bot, Discord, prefix);
 				} // else if(cmd === 'stop'){
 				// 	if(!message.author.id === '535671100001222668') {

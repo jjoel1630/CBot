@@ -17,7 +17,7 @@ module.exports = {
     aliases: ['todo'],
     perms: 'ADMINISTRATOR',
     active: true,
-    usage: '`$todo <command (add, delete, etc)> time, title, description`',
+    usage: '`$todo <command (add, delete, get)> date time title, description`',
     cooldownTime: 60000,
     execute(message=message, args=args, bot=bot, Discord=Discord) {
         const cooldown = cooldowns.get(message.author.id);
@@ -45,19 +45,35 @@ const todo = (message, args) => {
         return;
     }
 
-    console.log(args);
-    var timeOfTodo = args[1];
+    var dateOfTodo = args[1];
+    var timeOfTodo = args[2];
+
     args.shift();
     args.shift();
-    console.log(timeOfTodo);
-    console.log(args);
-    var titleOfTodo = args[2];
-    var descriptionOfTodo = args[3];
-    
-    // checkGuildTodos(message, guildID, titleOfTodo, descriptionOfTodo, timeOfTodo);
+    args.shift();
+
+    let i = 0;
+    let spliceIndex = undefined;
+    args.forEach(arg => {
+        if(arg.endsWith(',')) {
+            args[i] = arg.slice(0, -1);
+            spliceIndex = i;
+        }
+        i++
+    });
+    if(spliceIndex === undefined) {
+        message.channel.send('u need to separate ure title and description with a comma smart one');
+        return;
+    }
+
+    const argsTitle = args.splice(spliceIndex + 1);
+    const  descriptionOfTodo = argsTitle.join(' ');
+    const titleOfTodo = args.join(' ');
+
+    checkGuildTodos(message, guildID, dateOfTodo, titleOfTodo, descriptionOfTodo, timeOfTodo);
 }
 
-function checkGuildTodos(message, guildID, titleOfTodo, descriptionOfTodo, timeOfTodo) {
+function checkGuildTodos(message, guildID, dateOfTodo, titleOfTodo, descriptionOfTodo, timeOfTodo) {
     const params = {
         TableName: 'guildSettings',
         FilterExpression: "guildID = :gID",
@@ -78,17 +94,17 @@ function checkGuildTodos(message, guildID, titleOfTodo, descriptionOfTodo, timeO
             const { Items } = data;
 
             if(Items[0]?.todos) {
-                addGuildTodo(message, guildID, titleOfTodo, descriptionOfTodo, timeOfTodo);
+                addGuildTodo(message, guildID, titleOfTodo, descriptionOfTodo, dateOfTodo, timeOfTodo);
             } else if(!Items[0]) {
-                addGuildAndTodo(message, guildID, titleOfTodo, descriptionOfTodo, timeOfTodo);
+                addGuildAndTodo(message, guildID, titleOfTodo, descriptionOfTodo, dateOfTodo, timeOfTodo);
             } else {
-                addTodoDoc(message, guildID, titleOfTodo, descriptionOfTodo, timeOfTodo);
+                addTodoDoc(message, guildID, titleOfTodo, descriptionOfTodo, dateOfTodo, timeOfTodo);
             }
         }
     });
 }
 
-function addTodoDoc(message, guildID, titleOfTodo, descriptionOfTodo, timeOfTodo) {
+function addTodoDoc(message, guildID, titleOfTodo, descriptionOfTodo, dateOfTodo, timeOfTodo) {
     var params = {
         TableName: 'guildSettings',
         Key: {
@@ -100,7 +116,8 @@ function addTodoDoc(message, guildID, titleOfTodo, descriptionOfTodo, timeOfTodo
                 {
                     title: titleOfTodo,
                     description: descriptionOfTodo,
-                    time: timeOfTodo
+                    time: timeOfTodo,
+                    date: dateOfTodo
                 }
             ]
         }
@@ -119,7 +136,7 @@ function addTodoDoc(message, guildID, titleOfTodo, descriptionOfTodo, timeOfTodo
     });
 }
 
-function addGuildAndTodo(message, guildID, titleOfTodo, descriptionOfTodo, timeOfTodo) {
+function addGuildAndTodo(message, guildID, titleOfTodo, descriptionOfTodo, dateOfTodo, timeOfTodo) {
     var params = {
         TableName: 'guildSettings',
         Item: {
@@ -128,7 +145,8 @@ function addGuildAndTodo(message, guildID, titleOfTodo, descriptionOfTodo, timeO
                 {
                     title: titleOfTodo,
                     description: descriptionOfTodo,
-                    time: timeOfTodo
+                    time: timeOfTodo,
+                    date: dateOfTodo
                 }
             ]
         }
@@ -174,7 +192,7 @@ function getGuildTodos(guildID, message) {
             let i = 1;
             var todoString = 'Todos for this server:';
             Items[0].todos.forEach(todo => {
-                todoString = `${todoString}\n**Todo #${i}** - \`Title: ${todo.title}\`, \`Description: ${todo.description}\`, \`Time: ${todo.time}\``
+                todoString = `${todoString}\n**Todo #${i}** - \`Title: ${todo.title}\`, \`Description: ${todo.description}\`, \`Date: ${todo.date}\`, \`Time: ${todo.time}\``
                 i++;
             });
 
@@ -188,7 +206,7 @@ function getGuildTodos(guildID, message) {
     });
 }
 
-function addGuildTodo(message, guildID, titleOfTodo, descriptionOfTodo, timeOfTodo) {
+function addGuildTodo(message, guildID, titleOfTodo, descriptionOfTodo, dateOfTodo,  timeOfTodo) {
     var params = {
         TableName: 'guildSettings',
         Key:{
@@ -203,7 +221,8 @@ function addGuildTodo(message, guildID, titleOfTodo, descriptionOfTodo, timeOfTo
                 {
                     title: titleOfTodo,
                     description: descriptionOfTodo,
-                    time: timeOfTodo
+                    time: timeOfTodo,
+                    date: dateOfTodo
                 }
             ]
         },

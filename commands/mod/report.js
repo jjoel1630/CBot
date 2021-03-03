@@ -288,7 +288,7 @@ function getGuildReports(guildID, message) {
 
             let i = 1;
             var reportString = 'Reports for this server:';
-            Items[0].reports.forEach(report => {
+            Items[0].reports?.forEach(report => {
                 reportString = `${reportString}\n**Report #${i}** - \`User: ${report.userName}\`, \`Name: ${report.title}\`, \`Description: ${report.description}\``
                 i++;
             });
