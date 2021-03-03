@@ -1,6 +1,14 @@
 const humanizeDuration = require('humanize-duration')
+const AWS = require('aws-sdk');
 
 const cooldowns = new Map();
+
+AWS.config.update({
+    secretAccessKey: process.env.secretAccessKey ?? process.env.envsecretAccessKey,
+    accessKeyId: process.env.accessKeyId ?? process.env.envaccessKeyId,
+    region: process.env.region ?? process.env.envregion
+});
+const docClient = new AWS.DynamoDB.DocumentClient();
 
 
 module.exports = {
@@ -9,7 +17,7 @@ module.exports = {
     aliases: ['todo'],
     perms: 'ADMINISTRATOR',
     active: true,
-    usage: '`$todo <command (add, delete, etc)> title, description, time`',
+    usage: '`$todo <command (add, delete, etc)> time, title, description`',
     cooldownTime: 60000,
     execute(message=message, args=args, bot=bot, Discord=Discord) {
         const cooldown = cooldowns.get(message.author.id);
@@ -27,8 +35,210 @@ module.exports = {
 }
 
 const todo = (message, args) => {
-    if(!args[3]) {
-        message.channel.send(this.usage);
+    const guildID = message.guild.id;
+    
+    if(args[0] === 'get' && args[1] === 'server') {
+        getGuildTodos(guildID, message);
+        return;
+    } else if(args[0] === 'delete' && args[1]) {
+        deleteTodo(message, args);
         return;
     }
+
+    console.log(args);
+    var timeOfTodo = args[1];
+    args.shift();
+    args.shift();
+    console.log(timeOfTodo);
+    console.log(args);
+    var titleOfTodo = args[2];
+    var descriptionOfTodo = args[3];
+    
+    // checkGuildTodos(message, guildID, titleOfTodo, descriptionOfTodo, timeOfTodo);
+}
+
+function checkGuildTodos(message, guildID, titleOfTodo, descriptionOfTodo, timeOfTodo) {
+    const params = {
+        TableName: 'guildSettings',
+        FilterExpression: "guildID = :gID",
+        ExpressionAttributeValues: {
+            ":gID": guildID
+        }
+    };
+
+    docClient.scan(params, function (err, data) {
+
+        if (err) {
+            console.log(err);
+            return({
+                success: false,
+                message: err
+            });
+        } else {
+            const { Items } = data;
+
+            if(Items[0]?.todos) {
+                addGuildTodo(message, guildID, titleOfTodo, descriptionOfTodo, timeOfTodo);
+            } else if(!Items[0]) {
+                addGuildAndTodo(message, guildID, titleOfTodo, descriptionOfTodo, timeOfTodo);
+            } else {
+                addTodoDoc(message, guildID, titleOfTodo, descriptionOfTodo, timeOfTodo);
+            }
+        }
+    });
+}
+
+function addTodoDoc(message, guildID, titleOfTodo, descriptionOfTodo, timeOfTodo) {
+    var params = {
+        TableName: 'guildSettings',
+        Key: {
+            "guildID": guildID
+        },
+        UpdateExpression: 'set todos = :todo',
+        ExpressionAttributeValues: {
+            ':todo' : [
+                {
+                    title: titleOfTodo,
+                    description: descriptionOfTodo,
+                    time: timeOfTodo
+                }
+            ]
+        }
+    };
+
+    // Call DynamoDB to add the item to the table
+    docClient.update(params, function (err, data) {
+        if (err) {
+            console.log({
+                success: false,
+                message: err
+            });
+        } else {
+            message.channel.send('added new todo');
+        }
+    });
+}
+
+function addGuildAndTodo(message, guildID, titleOfTodo, descriptionOfTodo, timeOfTodo) {
+    var params = {
+        TableName: 'guildSettings',
+        Item: {
+            guildID: guildID,
+            todos: [
+                {
+                    title: titleOfTodo,
+                    description: descriptionOfTodo,
+                    time: timeOfTodo
+                }
+            ]
+        }
+    };
+
+    // Call DynamoDB to add the item to the table
+    docClient.put(params, function (err, data) {
+        if (err) {
+            console.log({
+                success: false,
+                message: err
+            });
+        } else {
+            message.channel.send('added new todo');
+        }
+    });
+}
+
+function getGuildTodos(guildID, message) {
+    const params = {
+        TableName: 'guildSettings',
+        ProjectionExpression:"#todos",
+        FilterExpression: "guildID = :gID",
+        ExpressionAttributeValues: {
+            ":gID": guildID
+        },
+        ExpressionAttributeNames: {
+            "#todos": "todos",
+        }
+    };
+
+    docClient.scan(params, function (err, data) {
+
+        if (err) {
+            console.log(err);
+            return({
+                success: false,
+                message: err
+            });
+        } else {
+            const { Items } = data;
+
+            let i = 1;
+            var todoString = 'Todos for this server:';
+            Items[0].todos.forEach(todo => {
+                todoString = `${todoString}\n**Todo #${i}** - \`Title: ${todo.title}\`, \`Description: ${todo.description}\`, \`Time: ${todo.time}\``
+                i++;
+            });
+
+            if(todoString === `Todos for this server:`) {
+                message.channel.send('no todos for this server');
+                return;
+            }
+
+            message.channel.send(todoString);
+        }
+    });
+}
+
+function addGuildTodo(message, guildID, titleOfTodo, descriptionOfTodo, timeOfTodo) {
+    var params = {
+        TableName: 'guildSettings',
+        Key:{
+            "guildID": guildID,
+        },
+        UpdateExpression: "SET #todos = list_append(#todos, :todo)",
+        ExpressionAttributeNames: {
+            "#todos": "todos"
+        },
+        ExpressionAttributeValues:{
+            ":todo": [
+                {
+                    title: titleOfTodo,
+                    description: descriptionOfTodo,
+                    time: timeOfTodo
+                }
+            ]
+        },
+        ReturnValues:"UPDATED_NEW"
+    };
+
+    docClient.update(params, function(err, data) {
+        if (err) {
+            console.error("Unable to update item. Error JSON:", JSON.stringify(err, null, 2));
+        } else {
+            message.channel.send('added new todo'); //JSON.stringify(data, null, 2)
+        }
+    });
+}
+
+function deleteTodo(message, args) {
+    var index = args[1] - 1;
+    var params = {
+        TableName: 'guildSettings',
+        Key:{
+            "guildID": message.guild.id,
+        },
+        UpdateExpression: `REMOVE todos[${index}]`,
+        // ConditionExpression: ":age >= :limitAge",
+        // ExpressionAttributeValues:{
+        //     ":index": args[1]
+        // },
+        ReturnValues:"UPDATED_NEW"
+    };
+    docClient.update(params, function(err, data) {
+        if (err) {
+            console.error("Unable to delete the todo. Check to see if that was the correct todo number");
+        } else {
+            message.channel.send('deleted todo');
+            // console.log("UpdateItem succeeded:", JSON.stringify(data, null, 2));
+        }
+    });
 }
