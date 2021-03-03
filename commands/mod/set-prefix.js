@@ -34,7 +34,7 @@ module.exports = {
     }
 }
 
-function addGuildAndPrefix(prefix, message) {
+function addGuildAndPrefix(guildID, prefix, message) {
     AWS.config.update({
         secretAccessKey: process.env.secretAccessKey ?? process.env.envsecretAccessKey,
         accessKeyId: process.env.accessKeyId ?? process.env.envaccessKeyId,
@@ -63,7 +63,7 @@ function addGuildAndPrefix(prefix, message) {
             //     message: 'Added element',
             //     data: data
             // });
-            message.channel.send(`Prefix set as ${data.Attributes.prefix}`);
+            message.channel.send(`Prefix set as ${prefix}`);
         }
     });
 }
@@ -96,17 +96,47 @@ function checkGuildPrefix(guildID, prefix, message) {
         } else {
             const { Items } = data;
 
-            console.log(Items[0]);
-            console.log(Items);
-            console.log(Items[0]?.prefix);
-
-            if(!Items[0]) {
-
+            if(Items[0]?.prefix) {
+                changePrefix(guildID, prefix, message);
                 // addGuildAndPrefix(prefix, message);
+            } else if(!Items[0]) {
+                addGuildAndPrefix(guildID, prefix, message);
                 // changePrefix(guildID, prefix, message);
-            } else if(!Items[0]?.prefix) {
-                // addGuildAndPrefix(prefix, message);
-            }
+            } else {
+                addPrefixDoc(prefix, guildID, message);
+            } 
+        }
+    });
+}
+
+function addPrefixDoc(prefix, guildID, message) {
+    AWS.config.update({
+        secretAccessKey: process.env.secretAccessKey ?? process.env.envsecretAccessKey,
+        accessKeyId: process.env.accessKeyId ?? process.env.envaccessKeyId,
+        region: process.env.region ?? process.env.envregion
+    });
+    const docClient = new AWS.DynamoDB.DocumentClient();
+    
+    var params = {
+        TableName: 'guildSettings',
+        Key:{
+            "guildID": guildID,
+        },
+        UpdateExpression: "SET #prefix = :newprefix",
+        ExpressionAttributeNames: {
+            "#prefix": "prefix"
+        },
+        ExpressionAttributeValues:{
+            ":newprefix": prefix 
+        },
+        ReturnValues:"UPDATED_NEW"
+    };
+
+    docClient.update(params, function(err, data) {
+        if (err) {
+            console.error("Unable to update item. Error JSON:", JSON.stringify(err, null, 2));
+        } else {
+            message.channel.send(`Set new prefix to ${data.Attributes.prefix}`); //JSON.stringify(data, null, 2)
         }
     });
 }

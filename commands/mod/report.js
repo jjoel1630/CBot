@@ -105,13 +105,10 @@ function checkGuildReports(guildID, userMentioned, userMentionedName, titleOfRep
             const { Items } = data;
 
             if(Items[0]?.reports) {
-                console.log('addGuildReport');
                 addGuildReport(guildID, userMentioned, userMentionedName, titleOfReport, descriptionOfReport, message);
             } else if(!Items[0]) {
-                console.log('addGuildAndReport');
                 addGuildAndReport(guildID, userMentioned, userMentionedName, titleOfReport, descriptionOfReport, message);
             } else {
-                console.log('addReportDoc');
                 addReportDoc(guildID, userMentioned, userMentionedName, titleOfReport, descriptionOfReport, message);
             }
         }
