@@ -15,7 +15,7 @@ module.exports = {
     cooldownTime: 120000,
     execute(message=message, args=args, bot=bot, Discord=Discord) {
         const cooldown = cooldowns.get(message.author.id);
-        if(cooldown && !message.author.id === '535671100001222668') {
+        if(cooldown && message.author.id !== '535671100001222668') {
 			const remaining = humanizeDuration(cooldown - Date.now(), {units: ['m', 's'], round: true});
 			message.channel.send(`chill bruva. u running from the FBI or something??? y u generating so many random people???? you can run this command in ${remaining}`)
         } else {
