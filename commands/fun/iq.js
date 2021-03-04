@@ -47,9 +47,9 @@ const iq = (message, args) => {
 		}
 	} else if(!args[0]) {
 		if(iq <= 0) {
-			message.channel.send(`${message.member.id}'s IQ is so low, it doesnt even register lmao`);
+			message.channel.send(`<@!${message.member.id}>'s IQ is so low, it doesnt even register lmao`);
 		} else {
-			message.channel.send(`${message.member.id}'s IQ is ${iq}`);
+			message.channel.send(`<@!${message.member.id}>'s IQ is ${iq}`);
 		}
 	} else {
 		message.channel.send('your command format is wrong');

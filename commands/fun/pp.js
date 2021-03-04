@@ -28,7 +28,7 @@ module.exports = {
 
 const pp = (message, args) => {
 	const targetMember = message.mentions.users.first();
-	const size = Math.floor(Math.random() * 300);
+	const size = Math.floor(Math.random() * 16);
 	var sizeStr = '8';
 	for (let i = 0; i <= size; i++) {
 		sizeStr = sizeStr + '=';
@@ -54,9 +54,9 @@ const pp = (message, args) => {
 		}
 	} else if(!args[0]) {
 		if(sizeStr === '8') {
-			message.channel.send(`${message.member.id}'s pp is 8D long. Wtf u are either a girl, or your pp is non-existent!`);
+			message.channel.send(`<@!${message.member.id}>'s pp is 8D long. Wtf u are either a girl, or your pp is non-existent!`);
 		} else {
-			message.channel.send(`${message.member.id}'s pp is ${sizeStr} long :). Don't ask me how I know.`);
+			message.channel.send(`<@!${message.member.id}>'s pp is ${sizeStr} long :). Don't ask me how I know.`);
 		}
 	} else {
 		message.channel.send('your command format is wrong');

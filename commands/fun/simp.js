@@ -47,9 +47,9 @@ const simp = (message, args) => {
 		}
 	} else if(!args[0]) {
 		if(rate <= 0) {
-			message.channel.send(`${message.member.id} aint a simp!`);
+			message.channel.send(`<@!${message.member.id}> aint a simp!`);
 		} else {
-			message.channel.send(`${message.member.id} is ${rate}% simp`);
+			message.channel.send(`<@!${message.member.id}> is ${rate}% simp`);
 		}
 	} else {
 		message.channel.send('your command format is wrong');
