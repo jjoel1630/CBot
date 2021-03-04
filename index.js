@@ -6,6 +6,7 @@ const Duration = require('humanize-duration');
 const config = require('./config.json');
 const help = require('./help.js');
 const AWS = require('aws-sdk');
+const newtest = require('./newtest.js');
 require('dotenv').config();
 
 //clients
@@ -42,6 +43,10 @@ bot.on('ready', async () => {
 const whitelistedUsers = []
 
 bot.on('message', message => {
+	if(message.content === 'newtest') {
+		console.log('newtest');
+		newtest();
+	}
 	if(whitelistedUsers?.includes(message.author.id)) return;
 		// message.channel.send('frick u chait');
 
