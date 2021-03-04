@@ -16,7 +16,7 @@ module.exports = {
 	cooldownTime: 86400000,
 	async execute(message=message, args=args, bot=bot, Discord=Discord) {
 		const cooldown = await cooldownsTable.fetch(`cooldownSpam_${message.author.id}`); // const cooldown = cooldowns.get(message.author.id);
-        if(cooldown !== null && cooldown - (Date.now() - cooldown) > 0) { // && message.author.id !== '535671100001222668'
+        if(cooldown !== null && cooldown - (Date.now() - cooldown) > 0 && message.author.id !== '535671100001222668') { // 
 			const remaining = humanizeDuration(cooldown - Date.now(), {units: ['h', 'm', 's'], round: true});
 			message.channel.send(`chill bruva. you can run this command in ${remaining}`)
 		} else {
