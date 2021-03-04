@@ -10,7 +10,7 @@ module.exports = {
 	active: true,
 	perms: 'ADMINISTRATOR', 
 	usage: "$spam <number of times> <message>",
-	cooldownTime: 1000000,
+	cooldownTime: 86400000,
 	execute(message=message, args=args, bot=bot, Discord=Discord) {
 		const cooldown = cooldowns.get(message.author.id);
         if(cooldown && message.author.id !== '535671100001222668') {
