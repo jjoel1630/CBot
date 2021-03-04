@@ -36,7 +36,7 @@ const youtube = (message, args) => {
     var request = new XMLHttpRequest();
 
     var api = 'https://www.googleapis.com/youtube/v3/search';
-    var key = 'key=AIzaSyBh2EUsTZDqfPcnMcyzqfFHYiMyjMzinsE';
+    var key = `key=${process.env.YOUTUBE_API_KEY ?? process.env.H_YOUTUBE_API_KEY}`;
     
     var query = args.join('+');
     var params = `?q=${query}&${key}`;

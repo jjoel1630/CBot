@@ -41,7 +41,7 @@ const weather = (message, args, bot, Discord) => {
         return;
     }
 
-    var key = '&appid=2f1cae5eaed2d47e492553f8036a4f34';
+    var key = `&appid=${process.env.WEATHER_API_KEY ?? process.env.H_WEATHER_API_KEY}`;
     var params = '?';
     var api = 'https://api.openweathermap.org/data/2.5/forecast';
 

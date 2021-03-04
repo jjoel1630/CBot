@@ -30,9 +30,9 @@ module.exports = {
 const news = (message, args, Discord) => {
     var request = new XMLHttpRequest();
 
-    key = '&apiKey=1b28b79af51a4d28816452334d1dee0f';
-    params = ``;
-    api = ``;
+    var key = `&apiKey=${process.env.NEWS_API_KEY ?? process.env.H_NEWS_API_KEY}`;
+    var params = ``;
+    var api = ``;
 
     if(args[0] === 'help') {
         const Newshelpembed = new Discord.MessageEmbed()
@@ -63,7 +63,7 @@ const news = (message, args, Discord) => {
 
     if(args[0] == 'everything') {
         if(args[1]) {
-            key = '&apiKey=1b28b79af51a4d28816452334d1dee0f';
+            var key = `&apiKey=${process.env.NEWS_API_KEY ?? process.env.H_NEWS_API_KEY}`;
             params = `?q=${args.slice(1).join(' ')}`;
             api = `https://newsapi.org/v2/${args[0]}`;
         } else {
@@ -91,8 +91,6 @@ const news = (message, args, Discord) => {
     }
 
     call = api + params + key
-
-    console.log(call);
 
     request.open('GET', call, true)
     request.onload = function () {

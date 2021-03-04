@@ -27,5 +27,24 @@ module.exports = {
 }
 
 const issues = (message, args) => {
+    var request = new XMLHttpRequest();
 
+    var call = 'https://api.github.com/repos/jjoel1630/CBot/issues';
+    var bodyParams = {
+        "title": "this is a title",
+        "body": "this is a description"
+    }
+
+    request.open('POST', call, true);
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.setRequestHeader('Authorization', `token ${process.env.GITHUB_TOKEN ?? process.env.H_GITHUB_TOKEN}`);
+    request.onload = function () {
+        try {
+            message.channel.send('new issue created');
+        } catch(err) {
+            console.log(err);
+            message.channel.send('There was an error sending your issue');
+        }
+    }
+    request.send(bodyParams);
 }

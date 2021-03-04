@@ -41,7 +41,7 @@ const covid = (message, args, Discord) => {
     }
 
     request.open('GET', api, true)
-    request.setRequestHeader('X-Access-Token', '5cf9dfd5-3449-485e-b5ae-70a60e997864')
+    request.setRequestHeader('X-Access-Token', `${process.env.COVID_API_KEY ?? process.env.H_COVID_API_KEY}`)
     request.onload = function () {
         try {
             var data = JSON.parse(this.responseText);
