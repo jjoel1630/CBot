@@ -21,7 +21,7 @@ module.exports = {
 	aliases: ["kick"],
 	perms: ["BAN_MEMBERS"],
 	active: true,
-	usage: "`$kick <@user>`",
+	usage: "`$kick <@user> <reason>`",
 	cooldownTime: 10000,
 	execute(message=message, args=args, bot=bot, Discord=Discord) {
 		const cooldown = cooldowns.get(message.author.id);
@@ -40,7 +40,7 @@ module.exports = {
 
 const kick = (message, args) => {
 	if(!args[1]) {
-		message.channel.send(this.usage);
+		message.channel.send(`$kick <@user> <reason>`);
 	}
 
 	args.shift();
@@ -48,7 +48,7 @@ const kick = (message, args) => {
 	const { member, mentions } = message;
 
 	if(!reason) {
-		message.channel.send(this.usage);
+		message.channel.send(`$kick <@user> <reason>`);
 		return;
 	}
 	

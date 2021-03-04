@@ -29,7 +29,7 @@ module.exports = {
 
 const ban = (message, args) => {
 	if(!args[2]) {
-		message.channel.send(this.usage);
+		message.channel.send(`$ban <@user> <time (in days)> <reason>`);
 	}
 
 	const time = args[1];
@@ -39,7 +39,7 @@ const ban = (message, args) => {
 	const { member, mentions } = message;
 
 	if(!reason || !time) {
-		message.channel.send(this.usage);
+		message.channel.send(`$ban <@user> <time (in days)> <reason>`);
 		return;
 	}
 	
