@@ -1,4 +1,7 @@
 const humanizeDuration = require('humanize-duration')
+const db = require('quick.db');
+
+var cooldownsTable = new db.table('cooldowns');
 
 const cooldowns = new Map();
 
@@ -11,17 +14,19 @@ module.exports = {
 	perms: 'ADMINISTRATOR', 
 	usage: "$spam <number of times> <message>",
 	cooldownTime: 86400000,
-	execute(message=message, args=args, bot=bot, Discord=Discord) {
-		const cooldown = cooldowns.get(message.author.id);
-        if(cooldown && message.author.id !== '535671100001222668') {
-			const remaining = humanizeDuration(cooldown - Date.now(), {units: ['m', 's'], round: true});
+	async execute(message=message, args=args, bot=bot, Discord=Discord) {
+		const cooldown = await cooldownsTable.fetch(`cooldownSpam_${message.author.id}`); // const cooldown = cooldowns.get(message.author.id);
+        if(cooldown !== null && cooldown - (Date.now() - cooldown) > 0) { // && message.author.id !== '535671100001222668'
+			const remaining = humanizeDuration(cooldown - Date.now(), {units: ['h', 'm', 's'], round: true});
 			message.channel.send(`chill bruva. you can run this command in ${remaining}`)
 		} else {
 
 			spam(message, args);
 			
-			cooldowns.set(message.author.id, Date.now() + this.cooldownTime);
-			setTimeout(() => cooldowns.delete(message.author.id), this.cooldownTime);
+			cooldownsTable.set(`cooldownSpam_${message.author.id}`, Date.now() + this.cooldownTime);
+			setTimeout(() => cooldownsTable.delete(`cooldownSpam_${message.author.id}`), this.cooldownTime);
+			// cooldowns.set(message.author.id, Date.now() + this.cooldownTime);
+			// setTimeout(() => cooldowns.delete(message.author.id), this.cooldownTime);
 		}
 	}
 }
@@ -35,8 +40,8 @@ const spam = (message, args) => {
 	if (!args[0]) {
 		message.channel.send('How many times u wanna spam bruh');
 	}
-	console.log(typeof args[0]);
-	if (parseInt(args[0]) >= 50) {
+	// console.log(typeof args[0]);
+	if (parseInt(args[0]) >= 30) {
 		message.channel.send('wtf are u tryna do, crash my server???????');
 	} else if (Number.isInteger(parseInt(args[0]))) {
 		var times = parseInt(args[0]);
