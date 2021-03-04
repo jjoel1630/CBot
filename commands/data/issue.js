@@ -1,4 +1,5 @@
-const humanizeDuration = require('humanize-duration')
+const humanizeDuration = require('humanize-duration');
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 const cooldowns = new Map();
 
@@ -6,9 +7,9 @@ const cooldowns = new Map();
 module.exports = {
     name: 'Issue command',
     description: 'create an issue/suggestion/new feature that you have with the bot',
-    aliases: ['issue', 'new issue'],
+    aliases: ['issue', 'newissue'],
     perms: null,
-    active: false,
+    active: true,
     usage: '`$issue <title>, <description>`',
     cooldownTime: 60000,
     execute(message=message, args=args, bot=bot, Discord=Discord) {
@@ -35,16 +36,18 @@ const issues = (message, args) => {
         "body": "this is a description"
     }
 
-    request.open('POST', call, true);
-    request.setRequestHeader('Content-Type', 'application/json');
-    request.setRequestHeader('Authorization', `token ${process.env.GITHUB_TOKEN ?? process.env.H_GITHUB_TOKEN}`);
-    request.onload = function () {
-        try {
-            message.channel.send('new issue created');
-        } catch(err) {
-            console.log(err);
-            message.channel.send('There was an error sending your issue');
-        }
-    }
-    request.send(bodyParams);
+    message.channel.send('sent request');
+
+    // request.open('POST', call, true);
+    // request.setRequestHeader('Content-Type', 'application/json');
+    // request.setRequestHeader('Authorization', `token ${process.env.GITHUB_TOKEN ?? process.env.H_GITHUB_TOKEN}`);
+    // request.onload = function () {
+    //     try {
+    //         message.channel.send('new issue created');
+    //     } catch(err) {
+    //         console.log(err);
+    //         message.channel.send('There was an error sending your issue');
+    //     }
+    // }
+    // request.send(JSON.stringify(bodyParams));
 }

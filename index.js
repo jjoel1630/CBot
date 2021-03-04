@@ -43,7 +43,7 @@ const whitelistedUsers = []
 
 bot.on('message', message => {
 	if(whitelistedUsers?.includes(message.author.id)) return;
-		// message.channel.send('frick u chait');
+	if(message.author.bot) return;
 
 	if(message.content.toLowerCase() === 'stop the cap' || message.content.toLowerCase() === 'cap') {
 		message.channel.send('https://www.youtube.com/watch?v=mugRenBeRw0&ab_channel=BruhCentralMoments')
@@ -99,16 +99,7 @@ bot.on('message', message => {
 				if(cmd === 'help') {
 					prefix = prefix ?? config.prefix;
 					help.execute(message, args, bot, Discord, prefix);
-				} // else if(cmd === 'stop'){
-				// 	if(!message.author.id === '535671100001222668') {
-				// 		message.channel.send("Are you the owner of this bot?? No dumbo!");
-				// 		return;
-				// 	} else if(message.author.id === '535671100001222668' && args[0] && bot.aliases.get(args[0])) {
-				// 		const command = bot.commands.get(bot.aliases.get(args[0]));
-				// 		command.active = false;
-				// 	}
-				//} 
-				else if(bot.aliases.get(cmd)) {
+				} else if(bot.aliases.get(cmd)) {
 					const command = bot.commands.get(bot.aliases.get(cmd));
 					if(command.active === false) {
 						message.channel.send('this command aint available rn bruv. thas an oof');
