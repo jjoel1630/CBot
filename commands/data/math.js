@@ -57,7 +57,6 @@ module.exports = {
         switch(args[0].toLowerCase()) {
             case 'cuberoot':
             case 'cbrt':
-                console.log('cbrt');
                 if(!args[1]) {
                     message.channel.send('try $math help');
                     break;
