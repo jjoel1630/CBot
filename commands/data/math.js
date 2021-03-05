@@ -17,7 +17,7 @@ module.exports = {
             const mathHelp = new Discord.MessageEmbed()
             .setTitle('Math Help')
             .setDescription('A mini calculator for your needs')
-            .addFeilds(
+            .addFields(
                 {
                     name: `Cuberoot`, value: `$math cuberoot <number>`
                 },
