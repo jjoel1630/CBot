@@ -2,20 +2,24 @@ exports.calculateCircumference = (radius) => {
     return 2 * Math.PI * radius;
 }
 
-// function calcArcCos(adjacent, hypotenuse) {
-//     return Math.acos(adjacent / hypotenuse);
-// }
+exports.degToRag = (deg) => {
+    return deg * (Math.PI / 180);
+}
 
-// function calcArcSin(opposite, hypotenuse) {
-//     return Math.asin(opposite / hypotenuse);
-// }
+exports.radToDeg = (rad) => {
+    return rad / (Math.PI / 180);
+}
 
-// function calcArcTan(opposite, adjacent) {
-//     return Math.atan(opposite / adjacent);
-// }
+exports.apothem = (deg) => {
+    50 * Math.tan(this.degToRag(deg));
+}
 
 exports.cubeRoot = (number) => {
     return Math.cbrt(number);
+}
+
+exports.squareRoot = (number) => {
+    return Math.sqrt(number);
 }
 
 exports.power = (x, y) => {
