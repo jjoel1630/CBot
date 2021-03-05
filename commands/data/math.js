@@ -4,7 +4,7 @@ module.exports = {
     aliases: ['math', 'calc', 'calculator'],
     perms: null,
     active: true,
-    usage: '``',
+    usage: '`$math help`',
     execute(message=message, args=args, bot=bot, Discord=Discord) {
         if(!args[0]) {
             message.channel.send(`bruv tell me what operation you want to do. no wonder you need a calculator lmao. (get it. cuz ure that dumb. NVM)`);
