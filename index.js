@@ -39,7 +39,7 @@ bot.on('ready', async () => {
 	console.log('ACTIVE!');
 });
 
-const whitelistedUsers = ['676257039839920148'];
+const whitelistedUsers = [];
 
 bot.on('message', message => {
 	if(whitelistedUsers?.includes(message.author.id)) return;
