@@ -41,7 +41,7 @@ const spam = (message, args) => {
 		message.channel.send('How many times u wanna spam bruh');
 	}
 	// console.log(typeof args[0]);
-	if (parseInt(args[0]) >= 30) {
+	if (parseInt(args[0]) >= 150) {
 		message.channel.send('wtf are u tryna do, crash my server???????');
 	} else if (Number.isInteger(parseInt(args[0]))) {
 		var times = parseInt(args[0]);
