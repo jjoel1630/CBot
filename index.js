@@ -74,9 +74,9 @@ bot.on('message', message => {
 
 			if(cmd === 'snipe') {
 				try {
-					var deletedMessage = deletedMsg.get('deleted msg').deletedContent;
-					var deletedAuthor = deletedMsg.get('deleted msg').person;
-					var deleteMessageCreateTime = deletedMsg.get('deleted msg').created;
+					var deletedMessage = deletedMsg.get(`${message.guild.id}`).deletedContent;
+					var deletedAuthor = deletedMsg.get(`${message.guild.id}`).person;
+					var deleteMessageCreateTime = deletedMsg.get(`${message.guild.id}`).created;
 					const DEmbed = new Discord.MessageEmbed()
 					.setTitle('Last Deleted Message')
 					.addFields( 
@@ -117,7 +117,7 @@ bot.on('message', message => {
 
 bot.on("messageDelete", (message) => {
 	if (message.author.bot) return;
-	deletedMsg.set("deleted msg", {'deletedContent': message.content, 'person': message.author.tag, 'created': message.createdAt});
+	deletedMsg.set(`${message.guild.id}`, {'deletedContent': message.content, 'person': message.author.tag, 'created': message.createdAt});
 });
 
 // const token = process.env.token ? process.env.token : process.env.discord_bot_token;
