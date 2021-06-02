@@ -57,7 +57,9 @@ bot.on("message", (message) => {
 			message.author.id != "535671100001222668" &&
 			message.content.toLowerCase().includes(words[word])
 		) {
-			message.channel.send(`no, you are ${word === "idiot" ? "an" : ""}${words[word]}`);
+			message.channel.send(
+				`no, you are ${words[word] === "idiot" ? "an" : ""}${words[word]}`
+			);
 		}
 	}
 
