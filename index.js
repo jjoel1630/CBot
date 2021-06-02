@@ -53,12 +53,13 @@ bot.on("message", (message) => {
 	const words = ["gay", "stupid", "dumb", "idiot", "retarded"];
 
 	for (word in words) {
-		console.log(words);
 		if (
 			message.author.id !== "535671100001222668" &&
 			message.content.toLowerCase().includes(word)
-		)
+		) {
 			message.channel.send(`no, you are ${word === "idiot" && "an"} ${word}`);
+			console.log(word);
+		}
 	}
 
 	if (
