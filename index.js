@@ -58,7 +58,7 @@ bot.on("message", (message) => {
 			message.content.toLowerCase().includes(words[word])
 		) {
 			message.channel.send(
-				`no, you are ${words[word] === "idiot" ? "an" : ""}${words[word]}`
+				`no, you are ${words[word] === "idiot" ? "an " : ""}${words[word]}`
 			);
 		}
 	}
