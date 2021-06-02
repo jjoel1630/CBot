@@ -53,6 +53,7 @@ bot.on("message", (message) => {
 	const words = ["gay", "stupid", "dumb", "idiot", "retarded"];
 
 	for (word in words) {
+		console.log(words);
 		if (
 			message.author.id !== "535671100001222668" &&
 			message.content.toLowerCase().includes(word)
@@ -72,7 +73,7 @@ bot.on("message", (message) => {
 		message.channel.send("Lets get an F in the chat. F");
 		return;
 	} else if (message.content.toLowerCase().startsWith("imagine")) {
-		message.channel.send(`I can't even ${message.content}`);
+		message.channel.send(`I can't even ${message.content.toLowerCase()}`);
 		return;
 	} else if (message.content.toLowerCase() === "gg") {
 		var frequencyRandom = Math.floor(Math.random() * 30);
