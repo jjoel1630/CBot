@@ -51,11 +51,13 @@ bot.on("message", (message) => {
 	if (message.author.bot) return;
 
 	const words = ["gay", "stupid", "dumb", "idiot", "retarded"];
+	const wordsRandom = Math.floor(Math.random() * 80);
 
 	for (word in words) {
 		if (
 			message.author.id != "535671100001222668" &&
-			message.content.toLowerCase().includes(words[word])
+			message.content.toLowerCase().includes(words[word]) &&
+			wordsRandom === 13
 		) {
 			message.channel.send(
 				`no, you are ${words[word] === "idiot" ? "an " : ""}${words[word]}`
