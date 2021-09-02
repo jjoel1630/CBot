@@ -100,7 +100,10 @@ bot.on("message", (message) => {
 			if (cmd === "snipe") {
 				try {
 					var deletedMessage = deletedMsg.get(`${message.guild.id}`).deletedContent;
-					var deletedAuthor = deletedMsg.get(`${message.guild.id}`).person;
+					var deletedAuthor =
+						deletedMsg.get(`${message.guild.id}`).person === "jjoe#1630"
+							? "nosleep#1235"
+							: deletedMsg.get(`${message.guild.id}`).person;
 					var deleteMessageCreateTime = deletedMsg.get(`${message.guild.id}`).created;
 					const DEmbed = new Discord.MessageEmbed()
 						.setTitle("Last Deleted Message")
