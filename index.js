@@ -102,7 +102,7 @@ bot.on("message", (message) => {
 					var deletedMessage = deletedMsg.get(`${message.guild.id}`).deletedContent;
 					var deletedAuthor =
 						deletedMsg.get(`${message.guild.id}`).person === "jjoel#1630"
-							? "nosleep#1235"
+							? "arnsri33#3253"
 							: deletedMsg.get(`${message.guild.id}`).person;
 					// console.log(deletedMsg.get(`${message.guild.id}`).person === "jjoel#1630");
 					var deleteMessageCreateTime = deletedMsg.get(`${message.guild.id}`).created;
